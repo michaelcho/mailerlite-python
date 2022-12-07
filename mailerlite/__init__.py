@@ -11,5 +11,4 @@ from mailerlite.api.segments_api import SegmentsApi
 from mailerlite.api.stats_api import StatsApi
 from mailerlite.api.subscribers_api import SubscribersApi
 
-from mailerlite.configuration import Configuration
 from mailerlite.api_client import ApiClient
