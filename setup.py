@@ -5,10 +5,10 @@ from setuptools import setup, find_packages
 # Save version and author to __meta__.py
 version = open('VERSION').read().strip()
 dirname = os.path.dirname(__file__)
-path = os.path.join(dirname, 'src', 'mailerlite', '__meta__.py')
+path = os.path.join(dirname, 'mailerlite', '__meta__.py')
 meta = '''# Automatically created. Please do not edit.
 __version__ = '%s'
-__author__ = 'Igor Hrček'
+__author__ = 'MailerLite'
 ''' % version
 with open(path, 'w') as F:
     F.write(meta)
@@ -17,7 +17,7 @@ setup(
     # Basic info
     name='mailerlite-sdk',
     version=version,
-    author='Igor Hrček',
+    author='MailerLite',
     author_email='igor@mailerlite.com',
     url='',
     description='',

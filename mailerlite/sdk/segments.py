@@ -2,5 +2,5 @@
 
 from __future__ import absolute_import
 
-class FieldsApi(object):
+class Segments(object):
     pass

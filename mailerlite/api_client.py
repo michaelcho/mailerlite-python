@@ -29,3 +29,5 @@ class ApiClient(object):
             self.api_version = config['api_version']
             self.default_headers['X-Version'] = self.api_version
         
+    def request(self, method, url, query_params=None, header_params=None):
+        pass

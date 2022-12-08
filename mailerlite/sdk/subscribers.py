@@ -2,5 +2,5 @@
 
 from __future__ import absolute_import
 
-class GroupsApi(object):
+class Subscribers(object):
     pass

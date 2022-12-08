@@ -2,5 +2,5 @@
 
 from __future__ import absolute_import
 
-class FormsApi(object):
+class Campaigns(object):
     pass
