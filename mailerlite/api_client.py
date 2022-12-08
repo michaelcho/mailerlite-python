@@ -37,7 +37,7 @@ class ApiClient(object):
 
         if method == "POST":
             return requests.post(
-                url,
+                self.host+url,
                 data=json.dumps(body),
                 params=query_params,
                 headers=self.default_headers,
@@ -45,14 +45,14 @@ class ApiClient(object):
             )
         elif method == "GET":
             return requests.get(
-                url,
+                self.host+url,
                 params=query_params,
                 headers=self.default_headers,
                 timeout=self.timeout,
             )
         elif method == "PUT":
             return requests.put(
-                url,
+                self.host+url,
                 data=json.dumps(body),
                 params=query_params,
                 headers=self.default_headers,
@@ -60,7 +60,7 @@ class ApiClient(object):
             )
         elif method == "DELETE":
             return requests.delete(
-                url,
+                self.host+url,
                 params=query_params,
                 headers=self.default_headers,
                 timeout=self.timeout,
