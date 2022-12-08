@@ -13,7 +13,7 @@ class ApiClient(object):
         self.default_headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'User-Agent': 'MailerLite-Python-SDK-Client/version'
+            'User-Agent': 'MailerLite-Python-SDK-Client'
         }
         self.set_config(config)
     
@@ -22,3 +22,10 @@ class ApiClient(object):
 
         # Authentication
         self.api_key = config['api_key'] if 'api_key' in config.keys() else ''
+        self.default_headers['Authorization'] = 'Bearer ' + self.api_key
+
+        # API version
+        if 'api_version' in config.keys():
+            self.api_version = config['api_version']
+            self.default_headers['X-Version'] = self.api_version
+        
