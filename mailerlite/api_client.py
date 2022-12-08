@@ -32,12 +32,15 @@ class ApiClient(object):
             self.api_version = config["api_version"]
             self.default_headers["X-Version"] = self.api_version
 
+        # Request timeout
+        self.timeout = config["timeout"] if "timeout" in config.keys() else 120
+
     def request(self, method, url, query_params=None, body=None):
         """Requests Wrapper"""
 
         if method == "POST":
             return requests.post(
-                self.host+url,
+                self.host + url,
                 data=json.dumps(body),
                 params=query_params,
                 headers=self.default_headers,
@@ -45,14 +48,14 @@ class ApiClient(object):
             )
         elif method == "GET":
             return requests.get(
-                self.host+url,
+                self.host + url,
                 params=query_params,
                 headers=self.default_headers,
                 timeout=self.timeout,
             )
         elif method == "PUT":
             return requests.put(
-                self.host+url,
+                self.host + url,
                 data=json.dumps(body),
                 params=query_params,
                 headers=self.default_headers,
@@ -60,7 +63,7 @@ class ApiClient(object):
             )
         elif method == "DELETE":
             return requests.delete(
-                self.host+url,
+                self.host + url,
                 params=query_params,
                 headers=self.default_headers,
                 timeout=self.timeout,

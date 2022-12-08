@@ -13,8 +13,9 @@ from mailerlite.sdk.subscribers import Subscribers
 
 from mailerlite.api_client import ApiClient
 
+
 class Client(object):
-    def __init__(self, config = {}):
+    def __init__(self, config={}):
         # Initialize ApiClient
         self.api_client = ApiClient(config)
 
