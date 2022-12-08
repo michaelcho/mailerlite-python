@@ -1,6 +1,7 @@
 import pytest
+from pytest_mock import mocker
+import requests
 from mailerlite.api_client import ApiClient
-
 
 class TestApiClient:
     def test_config_api_key_is_set_properly(self):
@@ -43,3 +44,10 @@ class TestApiClient:
         assert client.default_headers['Accept'] == "application/json"
         assert client.default_headers['User-Agent'] == "MailerLite-Python-SDK-Client"
         
+    def test_it_will_return_error_if_request_method_is_not_supported(self):
+        """Tests if error is going to be returned in case of incorrect http method"""
+
+        client = ApiClient({})
+        with pytest.raises(ValueError):
+            response = client.request("PPOST", "some-url")
+

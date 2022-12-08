@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 import datetime
 import json
+import requests
 
 class ApiClient(object):
     def __init__(self, config = {}):
@@ -29,5 +30,18 @@ class ApiClient(object):
             self.api_version = config['api_version']
             self.default_headers['X-Version'] = self.api_version
         
-    def request(self, method, url, query_params=None, header_params=None):
-        pass
+    def request(self, method, url, query_params=None, body=None):
+        """Requests Wrapper"""
+
+        if method == "POST":
+            return requests.post(url, data=json.dumps(body), params=query_params, headers=self.default_headers, timeout=self.timeout)
+        elif method == "GET":
+            return requests.get(url, params=query_params, headers=self.default_headers, timeout=self.timeout)
+        elif method == "PUT":
+            return requests.put(url, data=json.dumps(body), params=query_params, headers=self.default_headers, timeout=self.timeout)
+        elif method == "DELETE":
+            return requests.delete(url, params=query_params, headers=self.default_headers, timeout=self.timeout)
+        else:
+            raise ValueError(
+                "http method must be `POST`, `GET`, `PUT` or `DELETE`."
+            )
