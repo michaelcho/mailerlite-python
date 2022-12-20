@@ -24,3 +24,4 @@ class Client(object):
         self.groups = Groups(self.api_client)
         self.segments = Segments(self.api_client)
         self.fields = Fields(self.api_client)
+        self.forms = Forms(self.api_client)
