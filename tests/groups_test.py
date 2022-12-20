@@ -8,7 +8,6 @@ import random
 
 from dotenv import load_dotenv
 from pytest import fixture
-from pprint import pprint
 
 
 @fixture
