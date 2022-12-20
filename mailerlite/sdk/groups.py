@@ -2,8 +2,6 @@ from __future__ import absolute_import
 from mailerlite.api_client import ApiClient
 import re
 import json
-import urllib
-
 
 class Groups(object):
     base_api_url = "api/groups"
