@@ -44,14 +44,14 @@ class ApiClient(object):
                 data=json.dumps(body),
                 params=query_params,
                 headers=self.default_headers,
-                timeout=self.timeout
+                timeout=self.timeout,
             )
         elif method == "GET":
             return requests.get(
                 self.host + url,
                 params=query_params,
                 headers=self.default_headers,
-                timeout=self.timeout
+                timeout=self.timeout,
             )
         elif method == "PUT":
             return requests.put(
@@ -59,14 +59,14 @@ class ApiClient(object):
                 data=json.dumps(body),
                 params=query_params,
                 headers=self.default_headers,
-                timeout=self.timeout
+                timeout=self.timeout,
             )
         elif method == "DELETE":
             return requests.delete(
                 self.host + url,
                 params=query_params,
                 headers=self.default_headers,
-                timeout=self.timeout
+                timeout=self.timeout,
             )
         else:
             raise ValueError("http method must be `POST`, `GET`, `PUT` or `DELETE`.")

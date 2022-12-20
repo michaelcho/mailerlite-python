@@ -4,12 +4,13 @@ import re
 import json
 import urllib
 
+
 class Groups(object):
     base_api_url = "api/groups"
 
     def __init__(self, api_client):
         self.api_client = api_client
-    
+
     def list(self, **kwargs):
         """
         List all groups
@@ -35,28 +36,30 @@ class Groups(object):
 
     def create(self, name):
         if len(name) > 255:
-            raise ValueError('Group name cannot exceed 255 characters.')
+            raise ValueError("Group name cannot exceed 255 characters.")
 
         params = locals()
-        body_params = {
-            'name': name
-        }
+        body_params = {"name": name}
 
-        return self.api_client.request("POST", self.base_api_url, body=body_params).json()
+        return self.api_client.request(
+            "POST", self.base_api_url, body=body_params
+        ).json()
 
     def update(self, group_id, name):
         if len(name) > 255:
-            raise ValueError('Group name cannot exceed 255 characters.')
+            raise ValueError("Group name cannot exceed 255 characters.")
 
         params = locals()
-        body_params = {
-            'name': name
-        }
+        body_params = {"name": name}
 
-        return self.api_client.request("PUT", '{}/{}'.format(self.base_api_url, group_id), body=body_params).json()
+        return self.api_client.request(
+            "PUT", "{}/{}".format(self.base_api_url, group_id), body=body_params
+        ).json()
 
     def delete(self, group_id):
-        response =  self.api_client.request("DELETE", '{}/{}'.format(self.base_api_url, group_id))
+        response = self.api_client.request(
+            "DELETE", "{}/{}".format(self.base_api_url, group_id)
+        )
 
         return True if response.status_code == 204 else False
 
@@ -70,4 +73,8 @@ class Groups(object):
                 raise TypeError("Got an unknown argument '%s'" % key)
             query_params[key] = val
 
-        return self.api_client.request("GET", '{}/{}/{}'.format(self.base_api_url, group_id, 'subscribers'), query_params).json()
+        return self.api_client.request(
+            "GET",
+            "{}/{}/{}".format(self.base_api_url, group_id, "subscribers"),
+            query_params,
+        ).json()
