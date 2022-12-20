@@ -60,3 +60,8 @@ class Campaigns(object):
         return self.api_client.request(
             "POST", '{}/{}/reports/subscriber-activity'.format(self.base_api_url, campaign_id)
         ).json()
+
+    def languages(self):
+        return self.api_client.request(
+            "GET", '{}/languages'.format(self.base_api_url)
+        ).json()

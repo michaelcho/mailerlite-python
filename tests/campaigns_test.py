@@ -18,6 +18,10 @@ def campaign_keys():
 def campaign_activity_keys():
     return ['id', 'opens_count', 'clicks_count', 'subscriber']
 
+@fixture
+def campaign_language_keys():
+    return ['id', 'shortcode', 'iso639', 'name', 'direction']
+
 
 class TestCampaigns:
     @classmethod
@@ -134,3 +138,11 @@ class TestCampaigns:
         assert isinstance(response, dict)
         assert isinstance(response['data'], list)
         assert set(campaign_activity_keys).issubset(response['data'][0].keys())
+
+    @vcr.use_cassette('tests/vcr_cassettes/campaign-languages.yml', remove_headers=['Authorization'])
+    def test_campaign_languages(self, campaign_language_keys):
+        response = self.client.campaigns.languages()
+
+        assert isinstance(response, dict)
+        assert isinstance(response['data'], list)
+        assert set(campaign_language_keys).issubset(response['data'][0].keys())
