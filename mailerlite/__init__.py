@@ -21,3 +21,4 @@ class Client(object):
 
         # Bootstrap API classes
         self.subscribers = Subscribers(self.api_client)
+        self.groups = Groups(self.api_client)
