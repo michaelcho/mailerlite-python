@@ -106,4 +106,24 @@ class Subscribers(object):
         if not isinstance(id, int):
             raise ValueError('Subscriber ID is not valid.')
 
-        return self.api_client.request("GET", '{}/{}/{}'.format(self.base_api_url, 'import', id)).json()
+        return self.api_client.request("GET", '{}/import/{}'.format(self.base_api_url, id)).json()
+
+    def assign_subscriber_to_group(self, subscriber_id, group_id):
+        if not isinstance(subscriber_id, int):
+            raise ValueError('Subscriber ID is not valid.')
+
+        if not isinstance(group_id, int):
+            raise ValueError('Group ID is not valid.')
+
+        return self.api_client.request("POST", '{}/{}/groups/{}'.format(self.base_api_url, subscriber_id, group_id)).json()
+
+    def unassign_subscriber_from_group(self, subscriber_id, group_id):
+        if not isinstance(subscriber_id, int):
+            raise ValueError('Subscriber ID is not valid.')
+
+        if not isinstance(group_id, int):
+            raise ValueError('Group ID is not valid.')
+
+        response = self.api_client.request("DELETE", '{}/{}/groups/{}'.format(self.base_api_url, subscriber_id, group_id))
+
+        return True if response.status_code == 204 else False

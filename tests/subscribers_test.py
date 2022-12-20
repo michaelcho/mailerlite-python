@@ -16,6 +16,10 @@ def subscriber_keys():
 def import_keys():
     return ['id', 'total', 'processed', 'imported', 'updated', 'errored', 'percent', 'done', 'invalid', 'invalid_count', 'mistyped', 'mistyped_count', 'changed', 'changed_count', 'unchanged', 'unchanged_count', 'unsubscribed', 'unsubscribed_count', 'role_based', 'role_based_count', 'banned_import_emails_count', 'updated_at', 'undone_at', 'stopped_at', 'undo_started_at', 'finished_at']
 
+@fixture
+def group_keys():
+    return ['id', 'name', 'active_count', 'sent_count', 'opens_count', 'open_rate', 'clicks_count', 'click_rate', 'unsubscribed_count', 'unconfirmed_count', 'bounced_count', 'junk_count']
+
 class TestSubscribers:
     @classmethod
     def setup_class(self):
@@ -109,3 +113,30 @@ class TestSubscribers:
         assert isinstance(response, dict)
         assert isinstance(response['data'], dict)
         assert set(import_keys).issubset(response['data'].keys())
+
+    @vcr.use_cassette('tests/vcr_cassettes/subscribers-assign-subscriber-to-group.yml', remove_headers=['Authorization'])
+    def test_assign_subscriber_to_group(self, group_keys):
+        """Tests an API call for retreiving members of a subscriber group"""
+
+        group_id = 75011449370445335
+        subscriber_id = 73931277474989872
+        response = self.client.subscribers.assign_subscriber_to_group(subscriber_id, group_id)
+
+        assert isinstance(response, dict)
+        assert isinstance(response['data'], dict)
+        assert set(group_keys).issubset(response['data'].keys())
+
+    @vcr.use_cassette('tests/vcr_cassettes/subscribers-unassign-subscriber-from-group.yml', remove_headers=['Authorization'])
+    def test_assign_subscriber_to_group(self, group_keys):
+        """Tests an API call for retreiving members of a subscriber group"""
+
+        group_id = 75011449370445335
+        subscriber_id = 73931277474989872
+        response = self.client.subscribers.unassign_subscriber_from_group(subscriber_id, group_id)
+
+        assert response == True
+
+        subscriber_id = 121212
+        response = self.client.subscribers.unassign_subscriber_from_group(subscriber_id, group_id)
+
+        assert response == False
