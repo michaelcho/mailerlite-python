@@ -27,13 +27,12 @@ class TestWebhooks:
     def test_api_url_is_properly_set(self):
         assert self.client.webhooks.base_api_url == "api/webhooks"
 
-    def test_creating_field_will_fail_if_attributes_are_incorrect(self):
-
+    def test_creating_webhook_will_fail_if_attributes_are_incorrect(self):
         with pytest.raises(TypeError):
             self.client.webhooks.create({}, "http", "Test")
 
     @vcr.use_cassette('tests/vcr_cassettes/webhooks-create.yml', remove_headers=['Authorization'])
-    def test_create_field(self, webhook_keys):
+    def test_create_webhook(self, webhook_keys):
         """Tests an API call for creating a webhook"""
 
         name = "My Webhooks"        
@@ -72,8 +71,8 @@ class TestWebhooks:
         assert set(webhook_keys).issubset(response['data'].keys())
 
     @vcr.use_cassette('tests/vcr_cassettes/webhook-update.yml', remove_headers=['Authorization'])
-    def test_update_field(self, webhook_keys):
-        """Tests an API call for updating the field"""
+    def test_update_webhook(self, webhook_keys):
+        """Tests an API call for updating the webhook"""
 
         name = "My New Webhook Name"        
         response = self.client.webhooks.update(pytest.entity_id, name=name)
