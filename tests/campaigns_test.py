@@ -77,7 +77,7 @@ class TestCampaigns:
         assert int(response['data']['language']['id']) == params['language_id']
 
     @vcr.use_cassette('tests/vcr_cassettes/campaign-get.yml', remove_headers=['Authorization'])
-    def test_update_campaign(self, campaign_keys):
+    def test_get_campaign(self, campaign_keys):
         response = self.client.campaigns.get(pytest.entity_id)
         
         assert isinstance(response, dict)
@@ -85,7 +85,7 @@ class TestCampaigns:
         assert set(campaign_keys).issubset(response['data'].keys())
 
     @vcr.use_cassette('tests/vcr_cassettes/campaign-list.yml', remove_headers=['Authorization'])
-    def test_update_campaign(self, campaign_keys):
+    def test_list_campaigns(self, campaign_keys):
         response = self.client.campaigns.list(limit=10, page=1, filter={"filter[status]": "draft"})
 
         assert isinstance(response, dict)
