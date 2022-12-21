@@ -1,0 +1,66 @@
+interactions:
+- request:
+    body: 'null'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '4'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: POST
+    uri: https://connect.mailerlite.com/api/campaigns/75037917434611569/reports/subscriber-activity
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA7xVS2/bMAz+KwEPPbmJJL81DOthtwHDgB3rwVBspdEiS54efSzIfx/kOE6adlt7
+        yY0kSPnjx4/0FlrmGNDbLYgWKOQpigsU4zQheVLiFEEEuufK1o32ygHFETRSNJspgCKwfmkbI5bc
+        AD28E5cxJnme5ElZlEVOIALeMSGBgm03N8HkRgrH543uIALrmPMWKLDGiXseItqbhgOFjinPZIjw
+        8EFyhoi8gigk1IY5DhQjNCaMARSB6GvWtoZbC1R5KU9aaGvmgAJBhFxjco2KGY5pTGgSmPDqLG9f
+        3BjO3H8q+/ZlCkEzXNAkpSiGCFaCy9YGBhXrQt/fP3+BCCSzrt5Hxq/prmfq6eh65czRFW6y+7VW
+        U1kgeHJ+16Lu984usBWgCXXSku6dULU45OyiM31kCCUEFXEJb5jGa/pIUYyyOMsSXGJcJPGJPsSd
+        Njdr0/DN3Nh/S+OBL1fadJM28BvU+g5tQFHOCc7mJJ/jJIe/yyRMMqNJRmP8TpmcVb4qEzxDeZDJ
+        sI3nMtm/fWmVvMSfEDiVzRl1u92PCKRQmwH5ShgbHlk711taLapFo5XijZs/vwvVgvWiWjSs65m4
+        U7ZaBN3kJc6TOMkwTrOyWhjea+NstTjK7HpQinBPn3p2xz/icY0u+8Xe8PsDk4o/uonIjoeLu4XG
+        G8OVq0PFINWV0d1gDNOcwiNtt1vwRh4HvuRhWa4k++X1h9k3w++F9mFfxjWhKyYtD5s7lF2W7D04
+        fILGGX8E87yHr/zRza7M0MgL/D8i6JlbX6KBMDRuRuJTFIHTw0Fz2jG5P21hjQYJMymnXxFvB9Or
+        g3O4KqN9eg+GwEqbB2ba0Vsz0y61V83oW71yp/5PrzZA0W63+wMAAP//AwAdxcVyrgcAAA==
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 77d1b73aab87c23d-VIE
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 21 Dec 2022 15:40:21 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Locale:
+      - en
+      X-RateLimit-Limit:
+      - '120'
+      X-RateLimit-Remaining:
+      - '117'
+    status:
+      code: 200
+      message: OK
+version: 1

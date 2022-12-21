@@ -1,0 +1,68 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: GET
+    uri: https://connect.mailerlite.com/api/campaigns/languages
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA5SXbU/bMBDHvwrKK5Cw1MQpJbzjGUZhrIVp2tgLJ3FbL8bpbKfjQXz3KVdQ7Cs1
+        4s3JSaPf/3znu3Ofo5JZFu39eo5EGe1FCY22IzOrtS3qkkd7EdPRdiRMvUOztyfF7ttfNplmuSi2
+        7preTjJobZq2lmZgY3i/C+8ZrLNoOyqF5oUVtYr2Im1l9LL9KkxTJFwwVxieXoUPmWXyrun1eA8R
+        pdUdMYkx8ckjGnL4s4PeNb24V3BTteBJGQLTPgbPPPDMcXUmFDc8RIt3EK2sXFrJyNFFBzxiylQh
+        HPat5B6Nk6Njh8Yba8Df9e5hIPeA3JJjB3jMjRUhHM4yVx5NkduxQ1NTKUzQvV3MMx7PkGOXZ+YM
+        0hvXMgTNEPT+AUEvf7wP3di85A+iYGorGNIB4k+Ey58IcnLe8U+EUh8EAZ+giVezE01ORg5PMwXF
+        M2DCBOtnFfsXcQ/313A3yMa3Bp6ynBfBYsIqM+98wdNbw5nxXPN/bcPp86S1ZQzrXVhnsGahJpP0
+        sJgXqZkmZ06kzvSCWVMFzzNOpbAuUFhyftMBzy2Tgqk6GA9M/OP1wT9z1fG+sDn7sL3gipMLlycX
+        ZPi9Iw6ZXQje9sKduAliMdXbt7Rk6Ox7KLhtFmKJrVgwoDTBKWq8FDXk7LYjX7LpI8yk9Y7igaak
+        y1OSXA073hUvuZZMleHKwF0HUtoxFbn66jBrHW7ZFLs49+uXkXPnVG7OuTaCKZi7adxN3+XEpbS1
+        RREsA6znhWQuybUTkutaflADMQ7H3DsMc0uub1yets102RxYMMxxtsLNNSIfjNaRNzYPNHsSMtiK
+        E1xt2sukrsnIyeSovgd4ouC2QINkHGTjBdlIMnaa/FjWC64+ijPuXsa7KZiKjC9WkY9BJK5j43Vf
+        syBjZ7qPAciC28bXBetlzGpy42TsBgZnoavl4Ag2sgQ3sqlH5pKcjrzrHM36rc1zxw7AlmAzsO3s
+        piw8onDc86mrnE/JwamnnMZtKaZw7U1pDpaC7cH7pYVv6PKb3eDOV+4jXt7vK3J5gfSLTu1VoQ82
+        BcvBlp/zAjcp7fVl3ZDRre9Estwm7WR8MbBZUHLldHopN5ocPmqJVOMuxHTyuS3GuGYbb/Y2Fbnd
+        R2q0Y79qgu0PcIjTwvHi3f8tv1/+AwAA//8DAEajCbeNDQAA
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 77d1b73c6b1577f7-VIE
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 21 Dec 2022 15:40:21 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Locale:
+      - en
+      X-RateLimit-Limit:
+      - '120'
+      X-RateLimit-Remaining:
+      - '116'
+    status:
+      code: 200
+      message: OK
+version: 1

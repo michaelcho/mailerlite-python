@@ -1,0 +1,52 @@
+interactions:
+- request:
+    body: '{"name": "My Field", "type": "text"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '36'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: POST
+    uri: https://connect.mailerlite.com/api/fields
+  response:
+    body:
+      string: '{"data":{"id":"90917","name":"My Field","key":"my_field","type":"text","is_default":false,"used_in_automations":false}}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 77d1d4c38d06c2e6-VIE
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 21 Dec 2022 16:00:31 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Locale:
+      - en
+      X-RateLimit-Limit:
+      - '120'
+      X-RateLimit-Remaining:
+      - '119'
+    status:
+      code: 201
+      message: Created
+version: 1

@@ -1,0 +1,61 @@
+interactions:
+- request:
+    body: '{"email": "test5@email.com", "fields": {"name": "John", "last_name": "Doe"},
+      "ip_address": "1.1.1.1"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '101'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: POST
+    uri: https://connect.mailerlite.com/api/subscribers
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SQwWoDIRCGXyXM2QR1d1nw1ENPfYVSxKhthroqOhbakHcvptkklELx4vf7z4z/
+        HMEZMqCOgA4UzBPn8zxOwzSNYp6GARj4xWAABeQrTQ9n2tm0AINKhloFBcYSfviupFas70rGjj4S
+        KM4gZR+rtqld2Aa07/dCN+hiyN+eb4hZG+eKr32W2J1P79721Rbce6cNgQLJpdwKuZV8I7gapRo5
+        MGjxly+2EBjY4g39U5ndHxaxkUINsxLd8oo+uNrXF83Scz+lQwQGwVTSF+kx9c3YtGQTP6/je/Jy
+        Q6TrPR9S9Cv0FV/hS6POP3Bi8FZSyxXU8wuDkKwhTHF1ptw/jvEucMqEUeNaf/oGAAD//wMAMCeT
+        WvoBAAA=
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 77d3c1e9cb53c2b1-VIE
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 21 Dec 2022 21:37:10 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Locale:
+      - en
+      X-RateLimit-Limit:
+      - '120'
+      X-RateLimit-Remaining:
+      - '118'
+    status:
+      code: 200
+      message: OK
+version: 1

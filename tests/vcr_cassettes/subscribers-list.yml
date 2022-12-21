@@ -1,0 +1,65 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: GET
+    uri: https://connect.mailerlite.com/api/subscribers?limit=10&page=1
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+zXSY+bMBQA4L8SvTOTeANjn3Lorccemwo5xjOxAgYZM12i/PeKLIRkklnSbSJV
+        iiJsvWcbf9jgFeQqKJCfV2BzkMBjRFFCk4RhgXHKKERgSmULkGAfKj9deG2WY99ABE1QoW1AgtLB
+        Ppqupmq9NiDhq5nfV77sqowLIHEEVW1ck+mq3ZV1YfWyr0DbgMyrYEBihHYBuwoUga0zlefeNF2P
+        qRgTnIwJH2PGu17aeaO9nZs8UwEkEETIHSZ3BI1wIlkiKYYIWncS59qiiEB7o8ILmXV+JgSPEJcs
+        ljGCCO6tKfIG5AqcKs2+7UI1IRtW6Kqslft+KLYu+EPRhv66XlSuT+vmui/8yGxWbwvrbt66kVl3
+        YfyMwCbGuszWT6ZuHQ3h45SLlHKBiRjCz4vWTL2az204kW+drty99aXJn+NHJ/zoef7fix9Lxq7D
+        32eexd/PL8bvBn8bcLDexgyBCUYpTUnCOUED4Hu7bJvp5n+sq/LGhKmQLL5KuM+8LNyFiJsRRiJF
+        3QJmmBESD4QboyuXTzfFU+Kn27ct68qHP4O7u+FnRLHEsST8CtFB5oUNG6eSEknez4b9SlFOMUec
+        HK1Z34T/oLcHGnOMYipwQhEegjZVaehrQVVt/5Umkt1PXKE5yLy04R5CbkGTIUQRpjROU8YTcap5
+        HnNetU4fv02HmvjvaSIxQpvlE9M3ap5kntPEolu+KJbxrXwgUUEx4ZxxJlKRHm22Tb6cdpfGFzaY
+        l5dnqVyrit6UnJiSXzv+vKCajjDtbBh6q+px5qU1mnZfxoieUYVPHz7CO2H9EkFh3XIzus27cvjQ
+        9d1587i/duZb6NsvTXcqXkGtwgIkLEKoGzmbzCa6cs7oMD5+GmYTVdvZpJ/qzSmpNj6r1cMGdNt8
+        plvfVH7Y+1HVev0TAAD//wMA61a/U5APAAA=
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 77d3c1e7cde6c30f-VIE
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 21 Dec 2022 21:37:10 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Locale:
+      - en
+      X-RateLimit-Limit:
+      - '120'
+      X-RateLimit-Remaining:
+      - '119'
+    status:
+      code: 200
+      message: OK
+version: 1

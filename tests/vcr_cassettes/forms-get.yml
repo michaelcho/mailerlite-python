@@ -1,0 +1,64 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: GET
+    uri: https://connect.mailerlite.com/api/forms/75017795259074408
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4xUTXPbOAz9Kx3M7E2JJVleJ/wDe9le9hp3ODQFS2goUCXApJ6O//sO4yRy0rS7
+        F43wRRDv4fEH9E4dmB9APRjYbupmu73dtJvbett19Q1UoMcZwcAc5zxDBRLyAAb++f7317GBCthN
+        Jawoag8xTS1U4BM6xd46BQNt3bZXTXvV1p+atWlb03YlJfIDJqHIYn3MrGDqCuKMb+wlyyanWO55
+        CNGdg6KJuNyl/gNOH5xoiX3IPfFg/UihT8jvm/wq5V3fD9N+cxVBVeJBSlIf8z6gjbMSg9GUsYIh
+        xai2IN7+edNt26aCAp19B7UmGgZMAuYOlCaMWeFL9fJrBX3kXsBsKhCfYgh2xuSR1Q0IZlNXcEj4
+        LSP7I5jmwrKZqVAzRdZRoIIHEtpTID2CARce3bF4cwo2kCiYuy+LZcuwXsFwDqGCkXq0kc854kfs
+        cyhDcCxIBCdqEw4kmpwWPN1rpfNKDwjm4IJgBSR2n+J9gfbZ8+gSF8wnFHEDyrnH6Ap5rFh25Iyn
+        d0985Ll/WpLiPFWQBXtLbF3WOD01l/dHPx/5EUfiEyLLGNXmFMDAqDqL2a12K9GY3IDXQ4xDQDeT
+        XPs47VaTo4ApkOLVUi1Xc4r9brV4dqtCtuxWP6ltt2ram+57+VzPPMB52IlECgxDinleRngx7y60
+        23Td7Xpbd91mvd4s4vx8/PRXyYYX0C8kJsj6GwUW+39oL5C/fyPc4vjvusyS9+IT7bG/qM7sIx8o
+        TYt3XcE+ZvZv8r5mvr9s+qtnpzFdY9YtnJ7XR+ZAasuTtcC5+OyBmGTE/qMYstuHn0KXuqufVvmi
+        5JGYMb1WLC9IWb3ZpUJAYfCsiphoIHbBnrl7lgq7cFTyYhMK6quITqd/AQAA//8DAKTN6CbBBQAA
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 77d1fa8c0e970f92-VIE
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 21 Dec 2022 16:26:19 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Locale:
+      - en
+      X-RateLimit-Limit:
+      - '120'
+      X-RateLimit-Remaining:
+      - '118'
+    status:
+      code: 200
+      message: OK
+version: 1

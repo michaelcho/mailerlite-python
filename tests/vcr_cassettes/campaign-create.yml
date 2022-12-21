@@ -1,0 +1,62 @@
+interactions:
+- request:
+    body: '{"name": "Test Campaign", "language_id": 1, "type": "regular", "emails":
+      [{"subject": "This is a test campaign", "from_name": "Test Man", "from": "testuser@mailerlite.com",
+      "content": "Hi there, this is a test campaign!"}]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '223'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: POST
+    uri: https://connect.mailerlite.com/api/campaigns
+  response:
+    body:
+      string: '{"data":{"id":"75117069411026195","account_id":"252151","name":"Test
+        Campaign","type":"regular","status":"draft","missing_data":[],"settings":[],"filter":[],"filter_for_humans":[],"delivery_schedule":null,"language_id":"1","language":{"id":"1","shortcode":"lt","iso639":"lt-LT","name":"Lietuvi\u0161kai","direction":"ltr"},"created_at":"2022-12-21
+        15:40:19","updated_at":"2022-12-21 15:40:19","scheduled_for":null,"queued_at":null,"started_at":null,"finished_at":null,"stopped_at":null,"default_email_id":"75117069437240597","emails":[{"id":"75117069437240597","account_id":"252151","emailable_id":"75117069411026195","emailable_type":"campaigns","type":"builder_html","from":"testuser@mailerlite.com","from_name":"Test
+        Man","name":null,"subject":"This is a test campaign","plain_text":"Sveiki,\n\nJ\u016bs
+        gavote {$account} naujienlai\u0161k\u012f. Ta\u010diau J\u016bs\u0173 el.
+        pa\u0161to programa programa nepalaiko HTML formato.\n\nNaujienlai\u0161k\u012f
+        galite rasti \u010dia:\n\n{$url}\n\nPagarbiai,\n{$account}\n\n\n\nJeigu ateityje
+        nebenorite gauti {$account} naujien\u0173, spauskite \u010dia:\n{$unsubscribe}\n","screenshot_url":null,"preview_url":"https:\/\/preview.mailerlite.io\/preview\/252151\/emails\/75117069437240597","created_at":"2022-12-21
+        15:40:19","updated_at":"2022-12-21 15:40:21","is_designed":true,"language_id":1,"language":{"id":"1","shortcode":"lt","iso639":"lt-LT","name":"Lietuvi\u0161kai","direction":"ltr"},"is_winner":false,"stats":{"sent":0,"opens_count":0,"unique_opens_count":0,"open_rate":{"float":0,"string":"0%"},"clicks_count":0,"unique_clicks_count":0,"click_rate":{"float":0,"string":"0%"},"unsubscribes_count":0,"unsubscribe_rate":{"float":0,"string":"0%"},"spam_count":0,"spam_rate":{"float":0,"string":"0%"},"hard_bounces_count":0,"hard_bounce_rate":{"float":0,"string":"0%"},"soft_bounces_count":0,"soft_bounce_rate":{"float":0,"string":"0%"},"forwards_count":0},"send_after":null,"track_opens":true,"uses_quiz":false}],"used_in_automations":false,"type_for_humans":"Regular","is_stopped":false,"has_winner":null,"winner_version_for_human":null,"winner_sending_time_for_humans":null,"winner_selected_manually_at":null,"can":{"update":true,"delete":true,"send":true,"copy":true,"resend":false},"uses_ecommerce":false,"uses_survey":false,"can_be_scheduled":true,"breadcrumbs":[{"url":"https:\/\/dashboard.mailerlite.com\/campaigns\/75117069411026195\/edit","text":"Details","active":false,"disabled":false,"upcoming":false,"state":null},{"url":"https:\/\/dashboard.mailerlite.com\/emails\/75117069437240597\/edit","text":"Content","active":false,"disabled":false,"upcoming":false,"state":null},{"url":"https:\/\/dashboard.mailerlite.com\/campaigns\/75117069411026195\/recipients\/basic","text":"Recipients","active":false,"disabled":false,"upcoming":false,"state":null},{"url":"https:\/\/dashboard.mailerlite.com\/campaigns\/75117069411026195\/review","text":"Review","active":false,"disabled":false,"upcoming":false,"state":null},{"url":"https:\/\/dashboard.mailerlite.com\/campaigns\/75117069411026195\/schedule","text":"Schedule","active":false,"disabled":false,"upcoming":false,"state":null}],"warnings":[],"recipients_count":2,"next_step":"https:\/\/dashboard.mailerlite.com\/campaigns\/75117069411026195\/review","is_currently_sending_out":false}}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 77d1b72f3d7ec2c5-VIE
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 21 Dec 2022 15:40:21 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Locale:
+      - en
+      X-RateLimit-Limit:
+      - '120'
+      X-RateLimit-Remaining:
+      - '119'
+    status:
+      code: 201
+      message: Created
+version: 1

@@ -1,0 +1,54 @@
+interactions:
+- request:
+    body: '{"events": ["subscriber.created", "subscriber.unsubscribed"], "url": "https://mailerlite.com",
+      "name": "My Webhooks"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '117'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: POST
+    uri: https://connect.mailerlite.com/api/webhooks
+  response:
+    body:
+      string: '{"data":{"id":"75140634583762630","name":"My Webhooks","url":"https:\/\/mailerlite.com","events":["subscriber.created","subscriber.unsubscribed"],"enabled":true,"secret":"MRqdHiwAtP","created_at":"2022-12-21
+        21:54:53","updated_at":"2022-12-21 21:54:53"}}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 77d3dbdaa98cc2fa-VIE
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 21 Dec 2022 21:54:53 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Locale:
+      - en
+      X-RateLimit-Limit:
+      - '120'
+      X-RateLimit-Remaining:
+      - '119'
+    status:
+      code: 201
+      message: Created
+version: 1

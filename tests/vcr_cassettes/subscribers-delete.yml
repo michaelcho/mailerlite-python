@@ -1,0 +1,100 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: DELETE
+    uri: https://connect.mailerlite.com/api/subscribers/75007745355417533
+  response:
+    body:
+      string: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 77d3c2046ec57876-VIE
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Date:
+      - Wed, 21 Dec 2022 21:37:15 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Locale:
+      - en
+      X-RateLimit-Limit:
+      - '120'
+      X-RateLimit-Remaining:
+      - '106'
+    status:
+      code: 204
+      message: No Content
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: DELETE
+    uri: https://connect.mailerlite.com/api/subscribers/123123
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6rmUlBQUFDKTS0uTkxPVbJSUPLLVygsTS2qVChKLS7NKSlWSMsvUsjNT0nNUYh2
+        LCiIifEFsYtjYoJLk4qTizKTUouQ2bF6Sly1AAAAAP//AwCoGehYVgAAAA==
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 77d3c206ae94c21e-VIE
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 21 Dec 2022 21:37:15 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-RateLimit-Limit:
+      - '120'
+      X-RateLimit-Remaining:
+      - '105'
+    status:
+      code: 404
+      message: Not Found
+version: 1
