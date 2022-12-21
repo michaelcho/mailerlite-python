@@ -2,11 +2,9 @@ import pytest
 import os
 import vcr
 import mailerlite as MailerLite
-import mailerlite.sdk.subscribers as Subscribers
 
 from dotenv import load_dotenv
 from pytest import fixture
-from pprint import pprint
 
 @fixture
 def subscriber_keys():
@@ -33,9 +31,7 @@ class TestSubscribers:
         assert self.client.subscribers.base_api_url == "api/subscribers"
 
     @vcr.use_cassette('tests/vcr_cassettes/subscribers-list.yml', filter_headers=['Authorization'])
-    def test_list_all_subscribers(self, subscriber_keys):
-        """Tests an API call for getting information about all subscribers"""
-        
+    def test_list_of_all_subscribers_should_be_returned(self, subscriber_keys):
         response = self.client.subscribers.list(limit=10, page=1)
 
         assert isinstance(response, dict)
@@ -43,19 +39,15 @@ class TestSubscribers:
         assert isinstance(response['data'][0], dict)
         assert set(subscriber_keys).issubset(response['data'][0].keys())
 
-    def test_creating_subscriber_will_fail_if_email_address_is_not_valid(self):
-        """Tests validation of parameters when creating a new subscriber"""
-
+    def test_given_invalid_email_address_when_calling_create_then_create_subscriber_will_fail(self):
         with pytest.raises(ValueError):
             self.client.subscribers.create('wrong2mail.com')
 
-    def test_creating_subscriber_will_fail_if_unknown_param_is_passed(self):
-        """Tests validation of unsupported parameters when creating a subscriber"""
-        
+    def test_given_invalid_param_when_caling_create_then_create_subscriber_will_fail(self):
         with pytest.raises(TypeError):
             self.client.subscribers.create('some@email.com', unknownparam=1)
 
-    def test_creating_subscriber_will_fail_if_additional_parameters_arre_not_valid(self):
+    def test_given_invalid_fields_or_groups_params_when_calling_create_then_create_subscriber_will_fail(self):
         """Tests validation of additional parameters when creating a subscriber"""
 
         with pytest.raises(TypeError):
@@ -65,49 +57,51 @@ class TestSubscribers:
             self.client.subscribers.create('some@email.com', groups={})
     
     @vcr.use_cassette('tests/vcr_cassettes/subscribers-create.yml', filter_headers=['Authorization'])
-    def test_create_subscriber(self, subscriber_keys):
-        """Tests creating new subscriber"""
+    def test_given_correct_params_when_calling_create_then_subscirber_is_created(self, subscriber_keys):
         response = self.client.subscribers.create('test5@email.com', fields={'name': 'Igor', 'last_name': 'Something'}, ip_address='1.1.1.1')
+
+        pytest.entity_id = int(response['data']['id'])
+        pytest.entity_email = response['data']['email']
 
         assert isinstance(response, dict)
         assert isinstance(response['data'], dict)
         assert set(subscriber_keys).issubset(response['data'].keys())
 
     @vcr.use_cassette('tests/vcr_cassettes/subscribers-update.yml', filter_headers=['Authorization'])
-    def test_update_subscriber(self, subscriber_keys):
-        response = self.client.subscribers.update('test5@email.com', fields={'name': 'Someone', 'last_name': 'Something'}, ip_address='1.1.1.1')
+    def test_given_correct_params_when_calling_update_then_subscirber_is_updated(self, subscriber_keys):
+        response = self.client.subscribers.update(pytest.entity_email, fields={'name': 'Someone', 'last_name': 'Something'}, ip_address='1.1.1.1')
 
         assert isinstance(response, dict)
         assert isinstance(response['data'], dict)
         assert set(subscriber_keys).issubset(response['data'].keys())
         assert response['data']['fields']['last_name'] == "Something"
 
-    def test_getting_subscriber_will_fail_if_incorrect_id_is_passed(self):
+    def test_given_invalid_subscriber_id_when_calling_get_then_returning_subscirber_will_fail(self):
         with pytest.raises(ValueError):
             self.client.subscribers.get('abcdefgh')
 
     @vcr.use_cassette('tests/vcr_cassettes/subscribers-get.yml', filter_headers=['Authorization'])
-    def test_get_subscriber(self, subscriber_keys):
-        response = self.client.subscribers.get('test5@email.com')
+    def test_given_correct_params_when_calling_update_then_subscirber_is_returned(self, subscriber_keys):
+        response = self.client.subscribers.get(pytest.entity_id)
 
         assert isinstance(response, dict)
         assert isinstance(response['data'], dict)
         assert set(subscriber_keys).issubset(response['data'].keys())
 
-    def test_removing_subscriber_will_fail_if_incorrect_id_has_been_passed(self):
+    def test_given_invalid_subscriber_id_when_calling_delete_then_returning_subscirber_will_fail(self):
         with pytest.raises(ValueError):
-            self.client.subscribers.get('abcdefgh')
+            self.client.subscribers.delete('abcdefgh')
     
     @vcr.use_cassette('tests/vcr_cassettes/subscribers-delete.yml', filter_headers=['Authorization'])
-    def test_delete_subscriber(self):
-        response = self.client.subscribers.delete(75007210693855095)
+    def test_given_valid_subscriber_id_when_calling_delete_then_subscriber_is_deleted(self):
+        response = self.client.subscribers.delete(pytest.entity_id)
         assert response == 204
 
         response = self.client.subscribers.delete(123123)
         assert response == 404
     
     @vcr.use_cassette('tests/vcr_cassettes/subscribers-get-import.yml', filter_headers=['Authorization'])
-    def test_get_subscriber_import(self, import_keys):
+    def test_given_correct_import_id_when_calling_get_import_then_import_information_is_returned(self, import_keys):
         response = self.client.subscribers.get_import(75009793000998293)
 
         assert isinstance(response, dict)
@@ -115,7 +109,7 @@ class TestSubscribers:
         assert set(import_keys).issubset(response['data'].keys())
 
     @vcr.use_cassette('tests/vcr_cassettes/subscribers-assign-subscriber-to-group.yml', filter_headers=['Authorization'])
-    def test_assign_subscriber_to_group(self, group_keys):
+    def test_given_correct_subscriber_id_and_grop_id_when_calling_assign_subscriber_to_group_then_subscriber_is_assigned(self, group_keys):
         """Tests an API call for retreiving members of a subscriber group"""
 
         group_id = 75011449370445335
@@ -127,7 +121,7 @@ class TestSubscribers:
         assert set(group_keys).issubset(response['data'].keys())
 
     @vcr.use_cassette('tests/vcr_cassettes/subscribers-unassign-subscriber-from-group.yml', filter_headers=['Authorization'])
-    def test_assign_subscriber_to_group(self, group_keys):
+    def test_given_correct_subscriber_id_and_grop_id_when_calling_unassign_subscriber_from_group_then_subscriber_is_unassigned(self):
         """Tests an API call for retreiving members of a subscriber group"""
 
         group_id = 75011449370445335
