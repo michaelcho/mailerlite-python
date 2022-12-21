@@ -206,7 +206,7 @@ class Subscribers(object):
             )
 
         return self.api_client.request(
-            "GET", "{}/import/{}".format(self.base_api_url, id)
+            "GET", "{}/import/{}".format(self.base_api_url, import_id)
         ).json()
 
     def assign_subscriber_to_group(self, subscriber_id, group_id):
