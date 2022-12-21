@@ -2,7 +2,6 @@ import pytest
 import os
 import vcr
 import mailerlite as MailerLite
-import mailerlite.sdk.groups as Groups
 import string
 import random
 
@@ -30,26 +29,14 @@ class TestGroups:
     def test_api_url_is_properly_set(self):
         assert self.client.groups.base_api_url == "api/groups"
 
-    @vcr.use_cassette('tests/vcr_cassettes/groups-list.yml', filter_headers=['Authorization'])
-    def test_list_all_groups(self, group_keys):
-        """Tests an API call for getting information about all groups"""
-        
-        response = self.client.groups.list(limit=10, page=1)
-
-        assert isinstance(response, dict)
-        assert isinstance(response['data'][0], dict)
-        assert set(group_keys).issubset(response['data'][0].keys())
-
-    def test_creating_list_will_fail_if_name_exceeds_max_length(self):
+    def test_given_incorrect_name_when_calling_create_then_group_create_will_fail(self):
         name = ''.join(random.choices(string.ascii_letters, k=300))
 
         with pytest.raises(ValueError):
             self.client.groups.create(name)
 
     @vcr.use_cassette('tests/vcr_cassettes/groups-create.yml', filter_headers=['Authorization'])
-    def test_create_group(self, group_keys):
-        """Tests an API call for creating new subscriber group"""
-        
+    def test_given_correct_parameters_when_calling_create_then_group_is_created(self, group_keys):
         name = "Test group"
         response = self.client.groups.create(name)
 
@@ -58,8 +45,16 @@ class TestGroups:
         assert set(group_keys).issubset(response['data'].keys())
         assert response['data']['name'] == name
 
+    @vcr.use_cassette('tests/vcr_cassettes/groups-list.yml', filter_headers=['Authorization'])
+    def test_list_of_all_groups_should_be_returned(self, group_keys):
+        response = self.client.groups.list(limit=10, page=1)
+
+        assert isinstance(response, dict)
+        assert isinstance(response['data'][0], dict)
+        assert set(group_keys).issubset(response['data'][0].keys())
+
     @vcr.use_cassette('tests/vcr_cassettes/groups-update.yml', filter_headers=['Authorization'])
-    def test_update_group(self, group_keys):
+    def test_given_correct_group_id_and_name_when_calling_update_then_group_is_updated(self, group_keys):
         """Tests an API call for updating existing subscriber group"""
         
         name = "New group name"
@@ -72,7 +67,7 @@ class TestGroups:
         assert response['data']['name'] == name
 
     @vcr.use_cassette('tests/vcr_cassettes/groups-delete.yml', filter_headers=['Authorization'])
-    def test_delete_group(self, group_keys):
+    def test_given_correct_group_id_when_calling_delete_then_group_is_removed(self, group_keys):
         """Tests an API call for deleting existing subscriber group"""
         
         id = 75011957293319274
@@ -86,7 +81,7 @@ class TestGroups:
         assert response is False
 
     @vcr.use_cassette('tests/vcr_cassettes/groups-get-subscribers-in-group.yml', filter_headers=['Authorization'])
-    def test_get_subscribers_in_group(self, subscriber_keys):
+    def test_given_correct_group_id_when_calling_get_group_subscribers_then_list_of_subscribers_is_returned(self, subscriber_keys):
         """Tests an API call for retreiving members of a subscriber group"""
 
         group_id = 75011449370445335
