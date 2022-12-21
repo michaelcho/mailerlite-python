@@ -1,11 +1,16 @@
 <a href="https://www.mailerlite.com"><img src="https://app.mailerlite.com/assets/images/logo-color.png" width="200px"/></a>
 
-MailerLite Python SDK
-
+# MailerLite Python SDK
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
+## Getting started
+For more information about MailerLite API, please visit the [following link:](https://developers.mailerlite.com/docs/#mailerlite-api)
+### Authentication
+API keys are a quick way to implement machine-to-machine authentication without any direct inputs from a human beyond initial setup.
 
-# Table of Contents
+For more information how to obtain an API key visit the [following link](https://developers.mailerlite.com/docs/#mailerlite-api)
+
+## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
   - [Subscribers](#subscribers)
@@ -63,3 +68,13 @@ MailerLite Python SDK
     - [Get a list of timezones](#get-a-list-of-timezones)
   - [Campaign languages](#languages)
     - [Get a list of languages](#get-a-list-of-languages)
+
+<a name="installation"></a>
+## Installation
+Please run the following command:
+```
+$ python -m pip install mailerlite
+```
+
+<a name="usage"></a>
+## Usage
