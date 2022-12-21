@@ -783,6 +783,16 @@ response = client.webhooks.delete(webhook_id)
 ### Get a list of timezones
 <a name="get-a-list-of-timezones"></a>
 
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+response = client.timezone.list()
+```
+
 ## Campaign languages
 <a name="languages"></a>
 
