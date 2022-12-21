@@ -415,11 +415,45 @@ response = client.fields.delete(field_id)
 ### List all automations
 <a name="list-all-automations"></a>
 
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+response = client.automations.list(limit=10, page=1, filter={'status': true, 'name': 'some name', 'group': 123456})
+```
+
 ### Get an automation
 <a name="get-an-automation"></a>
 
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+automation_id = 123456
+
+response = client.automations.get(automation_id)
+```
+
 ### Get subscribers activity for an automation
 <a name="get-subscribers-activity-for-an-automation"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+automation_id = 123456
+
+response = client.automations.activity(automation_id, page=1, limit=10, filter={'status': 'active', 'date_from': '2022-12-20', 'date_to': '2022-12-31'})
+```
 
 ## Campaigns
 <a name="campaigns"></a>
