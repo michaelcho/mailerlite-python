@@ -14,11 +14,11 @@ For more information how to obtain an API key visit the [following link](https:/
 - [Installation](#installation)
 - [Usage](#usage)
   - [Subscribers](#subscribers)
-    - [Get a list of subscribers](#get-a-list-of-subscribers)
-    - [Get a single subscriber](#get-a-single-subscriber)
-    - [Count all subscribers](#count-all-subscribers)
+    - [List all subscribers](#get-a-list-of-subscribers)
     - [Create a subscriber](#create-a-subscriber)
     - [Update a subscriber](#update-a-subscriber)
+    - [Get a subscriber](#get-a-subscriber)
+    - [Count all subscribers](#count-all-subscribers)
     - [Delete a subscriber](#delete-a-subscriber)
   - [Groups](#groups)
     - [Get a list of groups](#get-a-list-of-groups)
@@ -100,12 +100,12 @@ client = MailerLite.Client({
 })
 ```
 
+## Subscribers
 <a name="subscribers"></a>
 
-## Subscribers
+### List all subscribers
 <a name="get-a-list-of-subscribers"></a>
 
-### List all subscribers
 ```python
 import mailerlite as MailerLite
 
@@ -113,5 +113,59 @@ client = MailerLite.Client({
   'api_key': 'your-api-key'
 })
 
-response = client.subscribers.create('some@email.com', fields={'name': 'John', 'last_name': 'Doe'}, ip_address='1.2.3.4')
+response = client.subscribers.list(limit=10, page=1, filter={'status': 'active'})
+```
+
+### Create a subscriber
+<a name="create-a-subscriber"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+response = client.subscribers.create('some@email.com', fields={'name': 'John', 'last_name': 'Doe'}, ip_address='1.2.3.4', optin_ip='1.2.3.4')
+```
+
+### Update a subscriber
+<a name="update-a-subscriber"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+response = client.subscribers.update('some@email.com', fields={'name': 'New', 'last_name': 'Name'}, ip_address='1.2.3.5', optin_ip='1.2.3.5')
+```
+
+### Get a subscriber
+<a name="get-a-subscriber"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+response = client.subscribers.get('some@email.com')
+```
+
+### Delete a subscriber
+<a name="delete-a-subscriber"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+subscriber_id = 1234567890
+
+response = client.subscribers.delete(subscriber_id)
 ```
