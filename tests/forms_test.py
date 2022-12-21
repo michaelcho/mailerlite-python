@@ -2,9 +2,6 @@ import pytest
 import os
 import vcr
 import mailerlite as MailerLite
-import mailerlite.sdk.forms as Forms
-import string
-import random
 
 from dotenv import load_dotenv
 from pytest import fixture
@@ -30,13 +27,13 @@ class TestForms:
         assert self.client.forms.base_api_url == "api/forms"
 
     @vcr.use_cassette('tests/vcr_cassettes/forms-list.yml', filter_headers=['Authorization'])
-    def test_list_all_forms(self, form_keys):
+    def test_list_of_all_forms_should_be_returned(self, form_keys):
         """Tests an API call for getting information about all forms"""
         
         type = "popup"
         response = self.client.forms.list(type, limit=10, page=1, sort="name")
 
-        pytest.entity_id = response['data'][0]['id']
+        pytest.entity_id = int(response['data'][0]['id'])
 
         assert isinstance(response, dict)
         assert isinstance(response['data'], list)
@@ -44,7 +41,7 @@ class TestForms:
         assert set(form_keys).issubset(response['data'][0].keys())
 
     @vcr.use_cassette('tests/vcr_cassettes/forms-get.yml', filter_headers=['Authorization'])
-    def test_get_form(self, form_keys):
+    def test_given_correct_form_id_when_calling_get_then_form_is_returned(self, form_keys):
         """Tests an API call for getting information about one form"""
         
         type = "popup"
@@ -55,9 +52,7 @@ class TestForms:
         assert set(form_keys).issubset(response['data'].keys())
 
     @vcr.use_cassette('tests/vcr_cassettes/forms-update.yml', filter_headers=['Authorization'])
-    def test_update_form(self, form_keys):
-        """Tests an API call for updating form information"""
-        
+    def test_given_correct_form_id_and_name_when_calling_update_then_form_is_updated(self, form_keys):
         name = "New Form Name"
         response = self.client.forms.update(pytest.entity_id, name)
 
@@ -67,9 +62,7 @@ class TestForms:
         assert response['data']['name'] == name
 
     @vcr.use_cassette('tests/vcr_cassettes/forms-get-subscribers.yml', filter_headers=['Authorization'])
-    def test_get_form_subscribers(self, subscriber_keys):
-        """Tests an API call for retrieving a list of subscribers who signed up using form"""
-        
+    def test_given_correct_form_id_when_calling_get_subscribers_then_list_of_signed_up_subscribers_is_returned(self, subscriber_keys):
         response = self.client.forms.get_subscribers(pytest.entity_id, page=1, limit=20)
 
         assert isinstance(response, dict)
@@ -77,7 +70,7 @@ class TestForms:
         assert set(subscriber_keys).issubset(response['data'][0].keys())
 
     @vcr.use_cassette('tests/vcr_cassettes/forms-delete.yml', filter_headers=['Authorization'])
-    def test_get_form_subscribers(self):
+    def test_given_correct_form_id_when_calling_delete_then_form_is_removed(self):
         """Tests an API call for deleting a form"""
         
         response = self.client.forms.delete(pytest.entity_id)
