@@ -54,8 +54,6 @@ class TestSubscribers:
             self.client.subscribers.create('some@email.com', unknownparam=1)
 
     def test_given_invalid_fields_or_groups_params_when_calling_create_then_create_subscriber_will_fail(self):
-        """Tests validation of additional parameters when creating a subscriber"""
-
         with pytest.raises(TypeError):
             self.client.subscribers.create('some@email.com', fields=[])
 
