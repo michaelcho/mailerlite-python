@@ -71,9 +71,13 @@ class Fields(object):
         :param field_id: int Field ID.
         :param name: string Can be text, number or date.
         :raises: :class: `ValueError` : `name` cannot exceed 255 characters
+        :raises: :class: `TypeError` : `field_id` type is not valid
         :return: JSON array
         :rtype: dict
         """
+
+        if not isinstance(field_id, int):
+            raise TypeError("`field_id` type is not valid. Expected `int`, got {}.".format(type(field_id)))
 
         if len(name) > 255:
             raise ValueError("Field name cannot exceed 255 characters.")
