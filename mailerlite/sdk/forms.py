@@ -26,7 +26,12 @@ class Forms(object):
         for key, val in params["kwargs"].items():
             if key not in available_params:
                 raise TypeError("Got an unknown argument '%s'" % key)
-            query_params[key] = val
+            
+            if key == "filter":
+                for filter_key, filter_value in val.items():
+                    query_params[filter_key] = filter_value
+            else:
+                query_params[key] = val
 
         return self.api_client.request(
             "GET", "{}/{}".format(self.base_api_url, type), query_params
@@ -97,7 +102,12 @@ class Forms(object):
         for key, val in params["kwargs"].items():
             if key not in available_params:
                 raise TypeError("Got an unknown argument '%s'" % key)
-            query_params[key] = val
+            
+            if key == "filter":
+                for filter_key, filter_value in val.items():
+                    query_params[filter_key] = filter_value
+            else:
+                query_params[key] = val
 
         return self.api_client.request(
             "GET", "{}/{}/subscribers".format(self.base_api_url, form_id), query_params
