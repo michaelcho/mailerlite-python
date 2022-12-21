@@ -40,6 +40,10 @@ class TestForms:
         assert isinstance(response['data'][0], dict)
         assert set(form_keys).issubset(response['data'][0].keys())
 
+    def test_given_incorrect_form_id_when_calling_get_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.forms.get("1234")
+
     @vcr.use_cassette('tests/vcr_cassettes/forms-get.yml', filter_headers=['Authorization'])
     def test_given_correct_form_id_when_calling_get_then_form_is_returned(self, form_keys):
         """Tests an API call for getting information about one form"""
@@ -51,6 +55,10 @@ class TestForms:
         assert isinstance(response['data'], dict)
         assert set(form_keys).issubset(response['data'].keys())
 
+    def test_given_incorrect_form_id_when_calling_update_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.forms.update("1234")
+
     @vcr.use_cassette('tests/vcr_cassettes/forms-update.yml', filter_headers=['Authorization'])
     def test_given_correct_form_id_and_name_when_calling_update_then_form_is_updated(self, form_keys):
         name = "New Form Name"
@@ -60,6 +68,10 @@ class TestForms:
         assert isinstance(response['data'], dict)
         assert set(form_keys).issubset(response['data'].keys())
         assert response['data']['name'] == name
+
+    def test_given_incorrect_form_id_when_calling_get_subscribers_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.forms.get_subscribers("1234")
 
     @vcr.use_cassette('tests/vcr_cassettes/forms-get-subscribers.yml', filter_headers=['Authorization'])
     def test_given_correct_form_id_when_calling_get_subscribers_then_list_of_signed_up_subscribers_is_returned(self, subscriber_keys):
@@ -72,6 +84,10 @@ class TestForms:
         # Prevent test to fail if there is no subscriber activity
         if len(response['data']) > 0:
             assert set(subscriber_keys).issubset(response['data'][0].keys())
+
+    def test_given_incorrect_form_id_when_calling_delete_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.forms.delete("1234")
 
     @vcr.use_cassette('tests/vcr_cassettes/forms-delete.yml', filter_headers=['Authorization'])
     def test_given_correct_form_id_when_calling_delete_then_form_is_removed(self):
