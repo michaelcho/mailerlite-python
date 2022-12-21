@@ -45,6 +45,10 @@ class TestSegments:
         assert isinstance(response['data'][0], dict)
         assert set(segment_keys).issubset(response['data'][0].keys())
 
+    def test_given_incorrect_segment_id_when_calling_get_subscribers_list_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.segments.get_subscribers("1234")
+
     @vcr.use_cassette('tests/vcr_cassettes/segments-get-subscribers.yml', filter_headers=['Authorization'])
     def test_given_valid_segment_id_when_calling_get_subscribers_list_of_subscribers_in_segment_is_returned(self, segment_keys):
         if pytest.entity_id and pytest.entity_id == 0:
@@ -55,6 +59,10 @@ class TestSegments:
         assert isinstance(response, dict)
         assert isinstance(response['data'], dict)
         assert set(segment_keys).issubset(response['data'].keys())
+
+    def test_given_incorrect_segment_id_when_calling_update_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.segments.update("1234", "name")
 
     def test_given_invalid_name_when_calling_update_then_segment_update_will_fail(self):
         name = ''.join(random.choices(string.ascii_letters, k=300))
@@ -77,6 +85,10 @@ class TestSegments:
         response = self.client.segments.update(segment_id, name)
 
         assert response is False
+
+    def test_given_incorrect_segment_id_when_calling_delete_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.segments.delete("1234")
 
     @vcr.use_cassette('tests/vcr_cassettes/segments-delete.yml', filter_headers=['Authorization'])
     def test_given_valid_segment_id_when_calling_id_then_segment_is_removed(self, segment_keys):
