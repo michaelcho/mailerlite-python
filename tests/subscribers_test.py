@@ -2,6 +2,8 @@ import pytest
 import os
 import vcr
 import mailerlite as MailerLite
+import random
+import string
 
 from dotenv import load_dotenv
 from pytest import fixture
@@ -62,7 +64,7 @@ class TestSubscribers:
     
     @vcr.use_cassette('tests/vcr_cassettes/subscribers-create.yml', filter_headers=['Authorization'])
     def test_given_correct_params_when_calling_create_then_subscirber_is_created(self, subscriber_keys):
-        response = self.client.subscribers.create('test5@email.com', fields={'name': 'Igor', 'last_name': 'Something'}, ip_address='1.1.1.1')
+        response = self.client.subscribers.create('test5@email.com', fields={'name': 'John', 'last_name': 'Doe'}, ip_address='1.1.1.1')
 
         pytest.entity_id = int(response['data']['id'])
         pytest.entity_email = response['data']['email']
@@ -73,12 +75,12 @@ class TestSubscribers:
 
     @vcr.use_cassette('tests/vcr_cassettes/subscribers-update.yml', filter_headers=['Authorization'])
     def test_given_correct_params_when_calling_update_then_subscirber_is_updated(self, subscriber_keys):
-        response = self.client.subscribers.update(pytest.entity_email, fields={'name': 'Someone', 'last_name': 'Something'}, ip_address='1.1.1.1')
+        response = self.client.subscribers.update(pytest.entity_email, fields={'name': 'Someone', 'last_name': 'Doe'}, ip_address='1.1.1.1')
 
         assert isinstance(response, dict)
         assert isinstance(response['data'], dict)
         assert set(subscriber_keys).issubset(response['data'].keys())
-        assert response['data']['fields']['last_name'] == "Something"
+        assert response['data']['fields']['last_name'] == "Doe"
 
     def test_given_invalid_subscriber_id_when_calling_get_then_returning_subscirber_will_fail(self):
         with pytest.raises(TypeError):
@@ -91,6 +93,43 @@ class TestSubscribers:
         assert isinstance(response, dict)
         assert isinstance(response['data'], dict)
         assert set(subscriber_keys).issubset(response['data'].keys())
+    
+    @vcr.use_cassette('tests/vcr_cassettes/subscribers-get-import.yml', filter_headers=['Authorization'])
+    def test_given_correct_import_id_when_calling_get_import_then_import_information_is_returned(self, import_keys):
+        response = self.client.subscribers.get_import(self.import_id)
+
+        print(response)
+
+        assert isinstance(response, dict)
+        assert isinstance(response['data'], dict)
+        assert set(import_keys).issubset(response['data'].keys())
+
+    @vcr.use_cassette('tests/vcr_cassettes/subscribers-assign-subscriber-to-group.yml', record_mode="new_episodes", filter_headers=['Authorization'])
+    def test_given_correct_subscriber_id_and_grop_id_when_calling_assign_subscriber_to_group_then_subscriber_is_assigned(self, group_keys):
+        subscriber = self.client.subscribers.create('grouptest@email.com', fields={'name': 'John', 'last_name': 'Doe'}, ip_address='1.1.1.1')
+        name = ''.join(random.choices(string.ascii_letters, k=10))
+        group = self.client.groups.create(name)
+        response = self.client.subscribers.assign_subscriber_to_group(int(subscriber['data']['id']), int(group['data']['id']))
+
+        assert isinstance(response, dict)
+        assert isinstance(response['data'], dict)
+        assert set(group_keys).issubset(response['data'].keys())
+
+        self.client.subscribers.delete(int(subscriber['data']['id']))
+        self.client.groups.delete(int(group['data']['id']))
+
+    @vcr.use_cassette('tests/vcr_cassettes/subscribers-unassign-subscriber-from-group.yml', record_mode="new_episodes", filter_headers=['Authorization'])
+    def test_given_correct_subscriber_id_and_grop_id_when_calling_unassign_subscriber_from_group_then_subscriber_is_unassigned(self):
+        name = ''.join(random.choices(string.ascii_letters, k=10))
+
+        subscriber = self.client.subscribers.create('{}@email.com'.format(name), fields={'name': 'John', 'last_name': 'Doe'}, ip_address='1.1.1.1')
+        group = self.client.groups.create(name)
+        assign = self.client.subscribers.assign_subscriber_to_group(int(subscriber['data']['id']), int(group['data']['id']))
+        response = self.client.subscribers.unassign_subscriber_from_group(int(subscriber['data']['id']), int(group['data']['id']))
+        self.client.subscribers.delete(int(subscriber['data']['id']))
+        self.client.groups.delete(int(group['data']['id']))
+
+        assert response == True
 
     def test_given_invalid_subscriber_id_when_calling_delete_then_returning_subscirber_will_fail(self):
         with pytest.raises(TypeError):
@@ -103,40 +142,3 @@ class TestSubscribers:
 
         response = self.client.subscribers.delete(123123)
         assert response == 404
-    
-    @vcr.use_cassette('tests/vcr_cassettes/subscribers-get-import.yml', filter_headers=['Authorization'])
-    def test_given_correct_import_id_when_calling_get_import_then_import_information_is_returned(self, import_keys):
-        response = self.client.subscribers.get_import(self.import_id)
-
-        print(response)
-
-        assert isinstance(response, dict)
-        assert isinstance(response['data'], dict)
-        assert set(import_keys).issubset(response['data'].keys())
-
-    # @vcr.use_cassette('tests/vcr_cassettes/subscribers-assign-subscriber-to-group.yml', filter_headers=['Authorization'])
-    # def test_given_correct_subscriber_id_and_grop_id_when_calling_assign_subscriber_to_group_then_subscriber_is_assigned(self, group_keys):
-    #     """Tests an API call for retreiving members of a subscriber group"""
-
-    #     group_id = 75011449370445335
-    #     subscriber_id = 73931277474989872
-    #     response = self.client.subscribers.assign_subscriber_to_group(subscriber_id, group_id)
-
-    #     assert isinstance(response, dict)
-    #     assert isinstance(response['data'], dict)
-    #     assert set(group_keys).issubset(response['data'].keys())
-
-    # @vcr.use_cassette('tests/vcr_cassettes/subscribers-unassign-subscriber-from-group.yml', filter_headers=['Authorization'])
-    # def test_given_correct_subscriber_id_and_grop_id_when_calling_unassign_subscriber_from_group_then_subscriber_is_unassigned(self):
-    #     """Tests an API call for retreiving members of a subscriber group"""
-
-    #     group_id = 75011449370445335
-    #     subscriber_id = 73931277474989872
-    #     response = self.client.subscribers.unassign_subscriber_from_group(subscriber_id, group_id)
-
-    #     assert response == True
-
-    #     subscriber_id = 121212
-    #     response = self.client.subscribers.unassign_subscriber_from_group(subscriber_id, group_id)
-
-    #     assert response == False
