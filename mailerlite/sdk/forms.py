@@ -44,6 +44,9 @@ class Forms(object):
         :rtype: dict
         """
 
+        if not isinstance(form_id, int):
+            raise TypeError("`form_id` type is not valid. Expected `int`, got {}.".format(type(form_id)))
+
         return self.api_client.request(
             "GET", "{}/{}".format(self.base_api_url, form_id)
         ).json()
@@ -60,6 +63,9 @@ class Forms(object):
         :return: JSON array
         :rtype: dict
         """
+
+        if not isinstance(form_id, int):
+            raise TypeError("`form_id` type is not valid. Expected `int`, got {}.".format(type(form_id)))
 
         body_params = {"name": name}
 
@@ -80,6 +86,9 @@ class Forms(object):
         :return: `true` if action was successful, `false` if field was not found
         :rtype: bool
         """
+
+        if not isinstance(form_id, int):
+            raise TypeError("`form_id` type is not valid. Expected `int`, got {}.".format(type(form_id)))
 
         available_params = ["limit", "page", "filter"]
 
@@ -102,9 +111,12 @@ class Forms(object):
         Ref: https://developers.mailerlite.com/docs/forms.html#delete-a-form
 
         :param form_id: int Form ID
-        :return: `true` if action was successful, `false` if field was not found
+        :return: `true` if action was successful, `false` if form was not found
         :rtype: bool
         """
+
+        if not isinstance(form_id, int):
+            raise TypeError("`form_id` type is not valid. Expected `int`, got {}.".format(type(form_id)))
 
         response = self.api_client.request(
             "DELETE", "{}/{}".format(self.base_api_url, form_id)
