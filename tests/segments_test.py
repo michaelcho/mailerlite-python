@@ -38,13 +38,16 @@ class TestSegments:
     def test_list_of_all_segments_should_be_returned(self, segment_keys):
         response = self.client.segments.list(limit=10, page=1)
 
-        pytest.entity_id = int(response['data'][0]['id'])
+        # Set segment_id for future tests
+        if len(response['data']) > 0:
+            pytest.entity_id = int(response['data'][0]['id'])
 
         assert isinstance(response, dict)
         assert isinstance(response['data'][0], dict)
         assert set(segment_keys).issubset(response['data'][0].keys())
 
     @vcr.use_cassette('tests/vcr_cassettes/segments-get-subscribers.yml', filter_headers=['Authorization'])
+    @pytest.mark.skipif(pytest.entity_id == 0, reason="segment_id is not set")
     def test_given_valid_segment_id_when_calling_get_subscribers_list_of_subscribers_in_segment_is_returned(self, segment_keys):
         response = self.client.segments.get_subscribers(pytest.entity_id)
 
@@ -60,6 +63,7 @@ class TestSegments:
             self.client.segments.update(segment_id, name)
 
     @vcr.use_cassette('tests/vcr_cassettes/segments-update.yml', filter_headers=['Authorization'])
+    @pytest.mark.skipif(pytest.entity_id == 0, reason="segment_id is not set")
     def test_given_valid_name_and_segment_id_when_calling_update_then_segment_is_updated(self, segment_keys):
         name = "New Test Segment Name"
         response = self.client.segments.update(pytest.entity_id, name)
@@ -72,6 +76,7 @@ class TestSegments:
         assert response is False
 
     @vcr.use_cassette('tests/vcr_cassettes/segments-delete.yml', filter_headers=['Authorization'])
+    @pytest.mark.skipif(pytest.entity_id == 0, reason="segment_id is not set")
     def test_given_valid_segment_id_when_calling_id_then_segment_is_removed(self, segment_keys):
         response = self.client.segments.delete(pytest.entity_id)
 
