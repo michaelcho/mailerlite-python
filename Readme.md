@@ -610,17 +610,76 @@ response = client.campaigns.activity(campaign_id)
 ### List all forms
 <a name="list-all-forms"></a>
 
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+response = client.forms.list(limit=10, page=1, sort='name', filter={'name': 'form name'})
+```
+
 ### Get a form
 <a name="get-a-form"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+form_id = 123456
+
+response = client.forms.get(form_id)
+```
 
 ### Update a form
 <a name="update-a-form"></a>
 
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+form_id = 123456
+name = 'New Form Name'
+
+response = client.forms.update(form_id, name)
+```
+
 ### Delete a form
 <a name="cancel-a-form"></a>
 
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+form_id = 123456
+
+response = client.forms.delete(form_id)
+```
+
 ### Get subscribers who signed up to a specific form
 <a name="get-subscribers-who-signed-up-to-a-specific-form"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+form_id = 123456
+
+response = client.forms.get_subscribers(form_id, page=1, limit=10, filter={'status': 'active'})
+```
 
 ## Batching
 <a name="batching"></a>
