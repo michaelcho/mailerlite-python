@@ -12,14 +12,15 @@ class Groups(object):
 
     def list(self, **kwargs):
         """
-        List all groups
+        Lists all groups
 
-        Get all groups in an account.
+        Returns a list of all groups.
+        Ref: https://developers.mailerlite.com/docs/groups.html#list-all-groups
 
-        :param list[str] filter[name]: Returns partial matches.
-        :param int limit: Number of results per page, defaults to 25
-        :param int page: Page number, defaults to 1
-        :param str sort: Can be one of: name, total, open_rate, click_rate, created_at. Defaults to ascending order; prepend -, e.g. -total for descending order
+        :param **kwargs: You can pass additional arguments - page, limit, sort or to filter by name
+        :raises: :class: `TypeError` : Got an unknown argument
+        :return: JSON array
+        :rtype: dict
         """
 
         available_params = ["list", "limit", "page", "sort"]
@@ -29,13 +30,29 @@ class Groups(object):
         for key, val in params["kwargs"].items():
             if key not in available_params:
                 raise TypeError("Got an unknown argument '%s'" % key)
-            query_params[key] = val
+            if key == "filter":
+                for filter_key, filter_value in val.items():
+                    query_params[filter_key] = filter_value
+            else:
+                query_params[key] = val
 
         return self.api_client.request("GET", self.base_api_url, query_params).json()
 
     def create(self, name):
+        """
+        Create a group
+
+        Provides an ability to create a new group.
+        Ref: https://developers.mailerlite.com/docs/groups.html#create-a-group
+
+        :param name: str Maximum length of 255 characters
+        :raises: :class: `ValueError` : `name` cannot exceed 255 characters
+        :return: JSON array
+        :rtype: dict
+        """
+
         if len(name) > 255:
-            raise ValueError("Group name cannot exceed 255 characters.")
+            raise ValueError("`name` cannot exceed 255 characters.")
 
         params = locals()
         body_params = {"name": name}
@@ -45,6 +62,19 @@ class Groups(object):
         ).json()
 
     def update(self, group_id, name):
+        """
+        Update a group
+
+        Provides an ability to update a group.
+        Ref: https://developers.mailerlite.com/docs/groups.html#update-a-group
+
+        :param group_id: int Group ID
+        :param name: str Maximum length of 255 characters
+        :raises: :class: `ValueError` : `name` cannot exceed 255 characters
+        :return: JSON array
+        :rtype: dict
+        """
+
         if len(name) > 255:
             raise ValueError("Group name cannot exceed 255 characters.")
 
@@ -56,6 +86,17 @@ class Groups(object):
         ).json()
 
     def delete(self, group_id):
+        """
+        Delete a group
+
+        Provides an ability to delete a group.
+        Ref: https://developers.mailerlite.com/docs/groups.html#delete-group
+
+        :param group_id: int Group ID
+        :return: `true` if action was successful, `false` if form was not found
+        :rtype: bool
+        """
+
         response = self.api_client.request(
             "DELETE", "{}/{}".format(self.base_api_url, group_id)
         )
@@ -63,6 +104,19 @@ class Groups(object):
         return True if response.status_code == 204 else False
 
     def get_group_subscribers(self, group_id, **kwargs):
+        """
+        Get subscribers belonging to a group
+
+        Returns a list of all subscribers belonging to a group.
+        Ref: https://developers.mailerlite.com/docs/groups.html#get-subscribers-belonging-to-a-group
+
+        :param group_id: int Group ID
+        :param **kwargs: You can pass additional arguments - page, limit, sort or to filter by status
+        :raises: :class: `TypeError` : Got an unknown argument
+        :return: JSON array
+        :rtype: dict
+        """
+
         available_params = ["filter", "limit", "page"]
 
         params = locals()
