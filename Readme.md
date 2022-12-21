@@ -290,14 +290,61 @@ response = client.subscribers.unassign_subscriber_from_group(subscriber_id, grou
 ### List all segments
 <a name="list-all-segments"></a>
 
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+response = client.segments.list(limit=10, page=1)
+```
+
 ### Update a segment
 <a name="update-a-segment"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+segment_id = 123456
+name = "My New Segment Name"
+
+response = client.segments.update(segment_id, name)
+```
 
 ### Delete a segment
 <a name="delete-a-segment"></a>
 
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+segment_id = 123456
+
+response = client.segments.delete(segment_id)
+```
+
 ### Get subscribers belonging to a segment
 <a name="get-subscribers-belonging-to-a-segment"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+segment_id = 123456
+
+response = client.segments.get_subscribers(segment_id, limit=10, filter={'status': 'active'})
+```
 
 ## Fields
 <a name="fields"></a>
@@ -305,14 +352,62 @@ response = client.subscribers.unassign_subscriber_from_group(subscriber_id, grou
 ### List all fields
 <a name="list-all-fields"></a>
 
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+response = client.fields.list(limit=10, page=1, sorn='name', filter={'keyword': 'abc', 'type': 'text'})
+```
+
 ### Create a field
 <a name="create-a-field"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+name = 'My Field'
+type = 'text
+
+response = client.fields.create(name, type)
+```
 
 ### Update a field
 <a name="update-a-field"></a>
 
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+field_id = 123456
+name = 'My New Field'
+
+response = client.fields.update(field_id, name)
+```
+
 ### Delete a field
 <a name="delete-a-field"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+field_id = 123456
+
+response = client.fields.delete(field_id)
+```
 
 ## Automations
 <a name="automations"></a>
