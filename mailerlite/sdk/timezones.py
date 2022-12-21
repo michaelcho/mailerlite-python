@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from mailerlite.api_client import ApiClient
 
 
 class Timezones(object):
