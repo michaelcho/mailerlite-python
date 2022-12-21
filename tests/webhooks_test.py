@@ -2,8 +2,6 @@ import pytest
 import os
 import vcr
 import mailerlite as MailerLite
-import random
-import string
 
 from dotenv import load_dotenv
 from pytest import fixture
@@ -27,14 +25,12 @@ class TestWebhooks:
     def test_api_url_is_properly_set(self):
         assert self.client.webhooks.base_api_url == "api/webhooks"
 
-    def test_creating_webhook_will_fail_if_attributes_are_incorrect(self):
+    def test_given_incorrect_parameters_when_calling_create_then_creating_a_webhook_will_fail(self):
         with pytest.raises(TypeError):
             self.client.webhooks.create({}, "http", "Test")
 
     @vcr.use_cassette('tests/vcr_cassettes/webhooks-create.yml', filter_headers=['Authorization'])
-    def test_create_webhook(self, webhook_keys):
-        """Tests an API call for creating a webhook"""
-
+    def test_given_correct_params_when_calling_create_then_webhook_is_created(self, webhook_keys):
         name = "My Webhooks"        
         events = [
             "subscriber.created",
@@ -50,9 +46,7 @@ class TestWebhooks:
         assert set(webhook_keys).issubset(response['data'].keys())
 
     @vcr.use_cassette('tests/vcr_cassettes/webhooks-list.yml', filter_headers=['Authorization'])
-    def test_list_all_webhooks(self, webhook_keys):
-        """Tests an API call for getting information about all webhooks"""
-        
+    def test_list_of_all_webhooks_should_be_returned(self, webhook_keys):
         response = self.client.webhooks.list()
 
         assert isinstance(response, dict)
@@ -61,19 +55,15 @@ class TestWebhooks:
         assert set(webhook_keys).issubset(response['data'][0].keys())
 
     @vcr.use_cassette('tests/vcr_cassettes/webhooks-get.yml', filter_headers=['Authorization'])
-    def test_get_webhook(self, webhook_keys):
-        """Tests an API call for getting information about one webhook"""
-        
+    def test_given_correct_webhook_id_when_calling_get_then_webhook_is_returned(self, webhook_keys):
         response = self.client.webhooks.get(pytest.entity_id)
 
         assert isinstance(response, dict)
         assert isinstance(response['data'], dict)
         assert set(webhook_keys).issubset(response['data'].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/webhook-update.yml', filter_headers=['Authorization'])
-    def test_update_webhook(self, webhook_keys):
-        """Tests an API call for updating the webhook"""
-
+    @vcr.use_cassette('tests/vcr_cassettes/webhooks-update.yml', filter_headers=['Authorization'])
+    def test_given_correct_webhook_id_and_params_when_calling_update_then_webhook_is_updated(self, webhook_keys):
         name = "My New Webhook Name"        
         response = self.client.webhooks.update(pytest.entity_id, name=name)
 
@@ -81,8 +71,8 @@ class TestWebhooks:
         assert isinstance(response['data'], dict)
         assert set(webhook_keys).issubset(response['data'].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/webhook-delete.yml', filter_headers=['Authorization'])
-    def test_delete_webhook(self):
+    @vcr.use_cassette('tests/vcr_cassettes/webhooks-delete.yml', filter_headers=['Authorization'])
+    def test_given_correct_webhook_id_when_calling_delete_then_webhook_is_removed(self):
         """Tests an API call for webhook the field"""
 
         response = self.client.webhooks.delete(int(pytest.entity_id))
