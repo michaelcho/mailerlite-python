@@ -33,7 +33,7 @@ class TestCampaigns:
         assert self.client.campaigns.base_api_url == "api/campaigns"
 
     @vcr.use_cassette('tests/vcr_cassettes/campaign-create.yml', filter_headers=['Authorization'])
-    def test_create_campaign(self, campaign_keys):
+    def test_given_proper_parameters_when_user_calls_create_then_new_campaign_is_created(self, campaign_keys):
         params = {
             "name": "Test Campaign",
             "language_id": 1,
@@ -56,8 +56,12 @@ class TestCampaigns:
         assert int(response['data']['language']['id']) == params['language_id']
         assert response['data']['type'] == params['type']
 
+    def test_given_incorrect_campaign_id_when_calling_update_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.campaigns.update("1234", {})
+
     @vcr.use_cassette('tests/vcr_cassettes/campaign-update.yml', filter_headers=['Authorization'])
-    def test_update_campaign(self, campaign_keys):
+    def test_given_correct_parameters_when_user_calls_update_then_existing_campaign_is_updated(self, campaign_keys):
         params = {
             "name": "New Campaign Name",
             "language_id": 2,
@@ -77,8 +81,12 @@ class TestCampaigns:
         assert response['data']['name'] == params['name']
         assert int(response['data']['language']['id']) == params['language_id']
 
+    def test_given_incorrect_campaign_id_when_calling_get_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.campaigns.get("1234")
+
     @vcr.use_cassette('tests/vcr_cassettes/campaign-get.yml', filter_headers=['Authorization'])
-    def test_get_campaign(self, campaign_keys):
+    def test_given_correct_campaign_id_when_calling_get_then_campaign_is_returned(self, campaign_keys):
         response = self.client.campaigns.get(pytest.entity_id)
         
         assert isinstance(response, dict)
@@ -86,7 +94,7 @@ class TestCampaigns:
         assert set(campaign_keys).issubset(response['data'].keys())
 
     @vcr.use_cassette('tests/vcr_cassettes/campaign-list.yml', filter_headers=['Authorization'])
-    def test_list_campaigns(self, campaign_keys):
+    def test_list_of_all_campaigns_should_be_returned(self, campaign_keys):
         response = self.client.campaigns.list(limit=10, page=1, filter={"filter[status]": "draft"})
 
         assert isinstance(response, dict)
@@ -94,8 +102,12 @@ class TestCampaigns:
         assert isinstance(response['data'][0], dict)
         assert set(campaign_keys).issubset(response['data'][0].keys())
 
+    def test_given_incorrect_campaign_id_when_calling_schedule_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.campaigns.schedule("1234", {})
+
     @vcr.use_cassette('tests/vcr_cassettes/campaign-schedule.yml', filter_headers=['Authorization'])
-    def test_schedule_campaign(self, campaign_keys):
+    def test_given_correct_campaign_id_and_schedule_parameters_when_calling_schedule_then_campaign_schedule_is_updated(self, campaign_keys):
         params = {
             "delivery": "scheduled",
             "schedule": {
@@ -112,14 +124,22 @@ class TestCampaigns:
         test_date = datetime.strptime(params['schedule']['date'], '%Y-%m-%d')
         assert schedule_date.date() == test_date.date()
 
+    def test_given_incorrect_campaign_id_when_calling_cancel_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.campaigns.cancel("1234")
+
     @vcr.use_cassette('tests/vcr_cassettes/campaign-cancel.yml', filter_headers=['Authorization'])
-    def test_cancel_campaign(self):
+    def test_given_correct_campaign_id_when_calling_cancel_then_campaign_is_going_to_be_cancelled(self):
         response = self.client.campaigns.cancel(pytest.entity_id)
 
         assert response['data']['status'] == 'draft'
 
+    def test_given_incorrect_campaign_id_when_calling_delete_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.campaigns.delete("1234")
+
     @vcr.use_cassette('tests/vcr_cassettes/campaign-delete.yml', filter_headers=['Authorization'])
-    def test_delete_campaign(self):
+    def test_given_correct_campaign_id_when_calling_delete_then_campaign_is_removed(self):
         response = self.client.campaigns.delete(pytest.entity_id)
 
         assert response == True
@@ -128,8 +148,12 @@ class TestCampaigns:
 
         assert response == False
 
+    def test_given_incorrect_campaign_id_when_calling_activity_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.campaigns.activity("1234")
+
     @vcr.use_cassette('tests/vcr_cassettes/campaign-activity.yml', filter_headers=['Authorization'])
-    def test_activity_campaign(self, campaign_activity_keys):
+    def test_given_correct_campaign_id_when_calling_activity_then_campaign_activity_information_is_returned(self, campaign_activity_keys):
         response = self.client.campaigns.activity(75037917434611569)
 
         assert isinstance(response, dict)
@@ -137,7 +161,7 @@ class TestCampaigns:
         assert set(campaign_activity_keys).issubset(response['data'][0].keys())
 
     @vcr.use_cassette('tests/vcr_cassettes/campaign-languages.yml', filter_headers=['Authorization'])
-    def test_campaign_languages(self, campaign_language_keys):
+    def test_list_of_all_supported_languages_in_campaign(self, campaign_language_keys):
         response = self.client.campaigns.languages()
 
         assert isinstance(response, dict)
