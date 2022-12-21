@@ -3,6 +3,7 @@ from mailerlite.api_client import ApiClient
 import re
 import json
 
+
 class Groups(object):
     base_api_url = "api/groups"
 

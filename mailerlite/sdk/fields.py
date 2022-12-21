@@ -14,8 +14,8 @@ class Fields(object):
         allowed_types = ["text", "number", "date"]
 
         if type not in allowed_types:
-            raise ValueError('Type be text, number or date')
-        
+            raise ValueError("Type be text, number or date")
+
         if len(name) > 255:
             raise ValueError("Field name cannot exceed 255 characters.")
 
@@ -24,7 +24,7 @@ class Fields(object):
         return self.api_client.request(
             "POST", self.base_api_url, body=body_params
         ).json()
-    
+
     def list(self, **kwargs):
         available_params = ["limit", "page", "filter", "sort"]
 
@@ -44,12 +44,12 @@ class Fields(object):
         body_params = {"name": name}
 
         return self.api_client.request(
-            "PUT", '{}/{}'.format(self.base_api_url, field_id), body=body_params
+            "PUT", "{}/{}".format(self.base_api_url, field_id), body=body_params
         ).json()
 
     def delete(self, field_id):
-        response =  self.api_client.request(
-            "DELETE", '{}/{}'.format(self.base_api_url, field_id)
+        response = self.api_client.request(
+            "DELETE", "{}/{}".format(self.base_api_url, field_id)
         )
 
         return True if response.status_code == 204 else False

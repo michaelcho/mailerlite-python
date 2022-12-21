@@ -3,6 +3,7 @@ from mailerlite.api_client import ApiClient
 import re
 import json
 
+
 class Webhooks(object):
     base_api_url = "api/webhooks"
 
@@ -17,7 +18,9 @@ class Webhooks(object):
         return self.api_client.request("GET", self.base_api_url).json()
 
     def get(self, webhook_id):
-        return self.api_client.request("GET", '{}/{}'.format(self.base_api_url, webhook_id)).json()
+        return self.api_client.request(
+            "GET", "{}/{}".format(self.base_api_url, webhook_id)
+        ).json()
 
     def update(self, webhook_id, events=None, url=None, name=None):
         if len(name) > 255:
@@ -26,7 +29,7 @@ class Webhooks(object):
         params = locals()
         body_params = {}
         for key, val in params.items():
-            if val is not None and key not in ['self', 'webhook_id']:
+            if val is not None and key not in ["self", "webhook_id"]:
                 body_params[key] = val
 
         return self.api_client.request(

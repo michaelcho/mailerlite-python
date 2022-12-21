@@ -3,6 +3,7 @@ from mailerlite.api_client import ApiClient
 import re
 import json
 
+
 class Segments(object):
     base_api_url = "api/segments"
 
@@ -33,7 +34,7 @@ class Segments(object):
     def get_subscribers(self, segment_id, **kwargs):
         if not isinstance(segment_id, int):
             raise ValueError("Segment ID are not valid.")
-        
+
         available_params = ["filter", "limit", "after"]
 
         params = locals()
@@ -43,7 +44,9 @@ class Segments(object):
                 raise TypeError("Got an unknown argument '%s'" % key)
             query_params[key] = val
 
-        return self.api_client.request("GET", '{}/{}'.format(self.base_api_url, segment_id), query_params).json()
+        return self.api_client.request(
+            "GET", "{}/{}".format(self.base_api_url, segment_id), query_params
+        ).json()
 
     def update(self, segment_id, name):
         if len(name) > 255:
