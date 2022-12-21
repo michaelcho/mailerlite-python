@@ -55,6 +55,10 @@ class TestGroups:
         assert isinstance(response['data'][0], dict)
         assert set(group_keys).issubset(response['data'][0].keys())
 
+    def test_given_incorrect_group_id_when_calling_update_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.groups.update("1234", "name")
+
     @vcr.use_cassette('tests/vcr_cassettes/groups-update.yml', filter_headers=['Authorization'])
     def test_given_correct_group_id_and_name_when_calling_update_then_group_is_updated(self, group_keys):
         """Tests an API call for updating existing subscriber group"""
@@ -67,14 +71,25 @@ class TestGroups:
         assert set(group_keys).issubset(response['data'].keys())
         assert response['data']['name'] == name
 
+    def test_given_incorrect_group_id_when_calling_get_group_subscribers_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.groups.get_group_subscribers("1234")
+
     @vcr.use_cassette('tests/vcr_cassettes/groups-get-subscribers-in-group.yml', filter_headers=['Authorization'])
     def test_given_correct_group_id_when_calling_get_group_subscribers_then_list_of_subscribers_is_returned(self, subscriber_keys):
+        # This test requires at least one subscriber assigned to a group
         response = self.client.groups.get_group_subscribers(pytest.entity_id, limit=5, page=1)
 
         assert isinstance(response, dict)
         assert isinstance(response['data'], list)
-        assert isinstance(response['data'][0], dict)
-        assert set(subscriber_keys).issubset(response['data'][0].keys())
+
+        if len(response['data']) > 0:
+            assert isinstance(response['data'][0], dict)
+            assert set(subscriber_keys).issubset(response['data'][0].keys())
+
+    def test_given_incorrect_group_id_when_calling_delete_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.groups.delete("1234")
 
     @vcr.use_cassette('tests/vcr_cassettes/groups-delete.yml', filter_headers=['Authorization'])
     def test_given_correct_group_id_when_calling_delete_then_group_is_removed(self, group_keys):
