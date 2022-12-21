@@ -1,10 +1,9 @@
 from __future__ import absolute_import
-from mailerlite.api_client import ApiClient
-import re
-import json
 
 
 class Webhooks(object):
+
+    # Webhooks base API uri
     base_api_url = "api/webhooks"
 
     def __init__(self, api_client):
@@ -12,19 +11,51 @@ class Webhooks(object):
 
     def list(self):
         """
-        List all webhooks
+        Lists all webhooks
+
+        Returns a list of all webhooks.
+        Ref: https://developers.mailerlite.com/docs/webhooks.html#list-all-webhooks
+
+        :return: JSON array
+        :rtype: dict
         """
 
         return self.api_client.request("GET", self.base_api_url).json()
 
     def get(self, webhook_id):
+        """
+        Get a webhook
+
+        Returns information about single webhook.
+        Ref: https://developers.mailerlite.com/docs/webhooks.html#get-a-webhook
+
+        :param webhook_id: int Webhook ID
+        :return: JSON array
+        :rtype: dict
+        """
+
         return self.api_client.request(
             "GET", "{}/{}".format(self.base_api_url, webhook_id)
         ).json()
 
-    def update(self, webhook_id, events=None, url=None, name=None):
-        if len(name) > 255:
-            raise ValueError("Segment name cannot exceed 255 characters.")
+    def update(self, webhook_id, events=None, url=None, name=None, enabled=True):
+        """
+        Update a webhook
+
+        Provides ability to update an existing webhook.
+        Ref: https://developers.mailerlite.com/docs/webhooks.html#update-a-webhook
+
+        :param webhook_id: int Webhook ID
+        :param events: list A list of events https://developers.mailerlite.com/docs/webhooks.html#available-events
+        :param url: str Webhook URL
+        :param name: str Webhook name
+        :param enabled: bool Defines the state of a webhook
+        :return: JSON array
+        :rtype: dict
+        """
+
+        if type(events) is not list and events is not None:
+            raise TypeError("`events` type is not valid. Expected `list`, got {}.".format(type(events)))
 
         params = locals()
         body_params = {}
@@ -37,8 +68,22 @@ class Webhooks(object):
         ).json()
 
     def create(self, events, url, name=None):
+        """
+        Create a webhook
+
+        Provides ability to create a new webhook.
+        Ref: https://developers.mailerlite.com/docs/webhooks.html#create-a-webhook
+
+        :param events: list A list of events https://developers.mailerlite.com/docs/webhooks.html#available-events
+        :param url: str Webhook URL
+        :param name: str Webhook name
+        :raises: :class: `TypeError` : `events` type is not valid
+        :return: JSON array
+        :rtype: dict
+        """
+
         if type(events) is not list:
-            raise TypeError("Events should be dict.")
+            raise TypeError("`events` type is not valid. Expected `list`, got {}.".format(type(events)))
 
         body_params = {"events": events, "url": url}
         if len(name) > 0:
@@ -49,8 +94,24 @@ class Webhooks(object):
         ).json()
 
     def delete(self, webhook_id):
+        """
+        Delete a webhook
+
+        Provides ability to delete existing webhook.
+        Ref: https://developers.mailerlite.com/docs/webhooks.html#delete-a-webhook
+
+        :param webhook_id: int Webhook URL
+        :raises: :class: `TypeError` : `webhook_id` type is not valid
+        :return: `true` if action was successful, `false` if form was not found
+        :rtype: bool
+        """
+
         if not isinstance(webhook_id, int):
-            raise ValueError("Webhook ID is not valid.")
+            raise TypeError(
+                "`webhook_id` type is not valid. Expected `int`, got {}.".format(
+                    type(webhook_id)
+                )
+            )
 
         response = self.api_client.request(
             "DELETE", "{}/{}".format(self.base_api_url, webhook_id)
