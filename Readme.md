@@ -798,3 +798,13 @@ response = client.timezone.list()
 
 ### Get a list of languages
 <a name="get-a-list-of-languages"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+response = client.campaigns.languages()
+```
