@@ -1,10 +1,9 @@
 from __future__ import absolute_import
-from mailerlite.api_client import ApiClient
-import re
-import json
 
 
 class Groups(object):
+
+    # Groups base API uri
     base_api_url = "api/groups"
 
     def __init__(self, api_client):

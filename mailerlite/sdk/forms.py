@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 class Forms(object):
 
-    # Automations base API uri
+    # Forms base API uri
     base_api_url = "api/forms"
 
     def __init__(self, api_client):
