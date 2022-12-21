@@ -1,11 +1,9 @@
 from __future__ import absolute_import
-from mailerlite.api_client import ApiClient
 import re
-import json
-import urllib
-
 
 class Subscribers(object):
+
+    # Subscribers base API uri
     base_api_url = "api/subscribers"
 
     def __init__(self, api_client):
@@ -13,13 +11,15 @@ class Subscribers(object):
 
     def list(self, **kwargs):
         """
-        List all subscribers
+        Lists all subscribers
 
-        Get all subscribers in an account.
+        Returns a list of all subscribers.
+        Ref: https://developers.mailerlite.com/docs/subscribers.html#list-all-subscribers
 
-        :param list[str] filter[status]: Must be one of the possible statuses: active, unsubscribed, unconfirmed, bounced or junk.
-        :param int limit: Number of results per page, defaults to 25
-        :param int page: Page number, defaults to 1
+        :param **kwargs: dict You can pass additional arguments - page, limit or filter by status
+        :raises: :class: `TypeError` : Got an unknown argument
+        :return: JSON array
+        :rtype: dict
         """
 
         available_params = ["list", "limit", "page"]
@@ -34,6 +34,22 @@ class Subscribers(object):
         return self.api_client.request("GET", self.base_api_url, query_params).json()
 
     def create(self, email, **kwargs):
+        """
+        Create a subscriber
+
+        Provides ability to create a new subscriber.
+        Ref: https://developers.mailerlite.com/docs/subscribers.html#create-update-subscriber
+
+        :param email: string Valid email address as per RFC 2821
+        :param **kwargs: dict You can pass additional arguments - fields, groups, status, subscribed_at, ip_address, opted_in_at, optin_ip and unsubscribed_at
+        :raises: :class: `TypeError` : `email` is not a valid email address
+        :raises: :class: `TypeError` : `fields` argument should be a dict
+        :raises: :class: `TypeError` : `groups` argument should be a list
+        :raises: :class: `TypeError` : Got an unknown argument
+        :return: JSON array
+        :rtype: dict
+        """
+
         available_params = [
             "fields",
             "groups",
@@ -48,7 +64,7 @@ class Subscribers(object):
         valid = re.search(r"[\w.]+\@[\w.]+", email)
 
         if not valid:
-            raise ValueError("Email address is not valid.")
+            raise TypeError("`email` is not a valid email address.")
 
         params = locals()
         body_params = {"email": email}
@@ -58,10 +74,10 @@ class Subscribers(object):
                 raise TypeError("Got an unknown argument '%s'" % key)
 
             if key == "fields" and type(val) is not dict:
-                raise TypeError("Fields argument should be a dict.")
+                raise TypeError("`fields` argument should be a dict.")
 
             if key == "groups" and type(val) is not list:
-                raise TypeError("Groups argument should be a list.")
+                raise TypeError("`groups` argument should be a list.")
 
             body_params[key] = val
 
@@ -70,6 +86,22 @@ class Subscribers(object):
         ).json()
 
     def update(self, email, **kwargs):
+        """
+        Update a subscriber
+
+        Provides ability to update an existing subscriber.
+        Ref: https://developers.mailerlite.com/docs/subscribers.html#create-update-subscriber
+
+        :param email: string Valid email address as per RFC 2821
+        :param **kwargs: dict You can pass additional arguments - fields, groups, status, subscribed_at, ip_address, opted_in_at, optin_ip and unsubscribed_at
+        :raises: :class: `TypeError` : `email` is not a valid email address
+        :raises: :class: `TypeError` : `fields` argument should be a dict
+        :raises: :class: `TypeError` : `groups` argument should be a list
+        :raises: :class: `TypeError` : Got an unknown argument
+        :return: JSON array
+        :rtype: dict
+        """
+
         available_params = [
             "fields",
             "groups",
@@ -84,7 +116,7 @@ class Subscribers(object):
         valid = re.search(r"[\w.]+\@[\w.]+", email)
 
         if not valid:
-            raise ValueError("Email address is not valid.")
+            raise TypeError("`email` is not a valid email address.")
 
         params = locals()
         body_params = {"email": email}
@@ -94,10 +126,10 @@ class Subscribers(object):
                 raise TypeError("Got an unknown argument '%s'" % key)
 
             if key == "fields" and type(val) is not dict:
-                raise TypeError("Fields argument should be a dict.")
+                raise TypeError("`fields` argument should be a dict.")
 
             if key == "groups" and type(val) is not list:
-                raise TypeError("Groups argument should be a list.")
+                raise TypeError("`groups` argument should be a list.")
 
             body_params[key] = val
 
@@ -105,51 +137,139 @@ class Subscribers(object):
             "POST", self.base_api_url, body=body_params
         ).json()
 
-    def get(self, id):
-        valid = re.search(r"[\w.]+\@[\w.]+", id)
+    def get(self, subscriber_id):
+        """
+        Get a subscriber
 
-        if not valid and not isinstance(id, int):
-            raise ValueError("Email address or subscriber id are not valid.")
+        Returns information about subscriber.
+        Ref: https://developers.mailerlite.com/docs/subscribers.html#fetch-a-subscriber
+
+        :param subscriber_id: int/string Susbscriber email address or ID
+        :raises: :class: `TypeError` : Provided email address or subscriber id are not valid
+        :return: JSON array
+        :rtype: dict
+        """
+
+        valid = re.search(r"[\w.]+\@[\w.]+", subscriber_id)
+
+        if not valid and not isinstance(subscriber_id, int):
+            raise TypeError("Provided email address or subscriber id are not valid.")
 
         return self.api_client.request(
-            "GET", "{}/{}".format(self.base_api_url, id)
+            "GET", "{}/{}".format(self.base_api_url, subscriber_id)
         ).json()
 
-    def delete(self, id):
-        if not isinstance(id, int):
-            raise ValueError("Subscriber ID is not valid.")
+    def delete(self, subscriber_id):
+        """
+        Delete a subscriber
+
+        Provides ability to delete existing subscriber.
+        Ref: https://developers.mailerlite.com/docs/subscribers.html#delete-a-subscriber
+
+        :param subscriber_id: int Susbscriber ID
+        :raises: :class: `TypeError` : `subscriber_id` type is not valid
+        :return: `true` if action was successful, `false` if subscriber was not found
+        :rtype: bool
+        """
+
+        if not isinstance(subscriber_id, int):
+            raise TypeError(
+                "`subscriber_id` type is not valid. Expected `int`, got {}.".format(
+                    type(subscriber_id)
+                )
+            )
 
         response = self.api_client.request(
-            "DELETE", "{}/{}".format(self.base_api_url, id)
+            "DELETE", "{}/{}".format(self.base_api_url, subscriber_id)
         )
 
         return response.status_code
 
-    def get_import(self, id):
-        if not isinstance(id, int):
-            raise ValueError("Subscriber ID is not valid.")
+    def get_import(self, import_id):
+        """
+        Get single import
+
+        Returns a single import report.
+        Ref: https://developers.mailerlite.com/docs/subscribers.html#get-single-import
+
+        :param import_id: int Import ID
+        :raises: :class: `TypeError` : `import_id` type is not valid
+        :return: JSON array
+        :rtype: dict
+        """
+
+        if not isinstance(import_id, int):
+            raise TypeError(
+                "`import_id` type is not valid. Expected `int`, got {}.".format(
+                    type(import_id)
+                )
+            )
 
         return self.api_client.request(
             "GET", "{}/import/{}".format(self.base_api_url, id)
         ).json()
 
     def assign_subscriber_to_group(self, subscriber_id, group_id):
+        """
+        Assign subscriber to a group
+
+        Provides the ability to assign an existing subscriber to a group.
+        Ref: https://developers.mailerlite.com/docs/groups.html#assign-subscriber-to-a-group
+
+        :param subscriber_id: int Subscriber ID
+        :param group_id: int Group ID
+        :raises: :class: `TypeError` : `subscriber_id` type is not valid
+        :raises: :class: `TypeError` : `group_id` type is not valid
+        :return: JSON array
+        :rtype: dict
+        """
+
         if not isinstance(subscriber_id, int):
-            raise ValueError("Subscriber ID is not valid.")
+            raise TypeError(
+                "`subscriber_id` type is not valid. Expected `int`, got {}.".format(
+                    type(subscriber_id)
+                )
+            )
 
         if not isinstance(group_id, int):
-            raise ValueError("Group ID is not valid.")
+            raise TypeError(
+                "`group_id` type is not valid. Expected `int`, got {}.".format(
+                    type(group_id)
+                )
+            )
 
         return self.api_client.request(
             "POST", "{}/{}/groups/{}".format(self.base_api_url, subscriber_id, group_id)
         ).json()
 
     def unassign_subscriber_from_group(self, subscriber_id, group_id):
+        """
+        Unassign subscriber to a group
+
+        Provides the ability to unassign an existing subscriber to a group.
+        Ref: https://developers.mailerlite.com/docs/groups.html#unassign-subscriber-from-a-group
+
+        :param subscriber_id: int Subscriber ID
+        :param group_id: int Group ID
+        :raises: :class: `TypeError` : `subscriber_id` type is not valid
+        :raises: :class: `TypeError` : `group_id` type is not valid
+        :return: `true` if action was successful, `false` if subscriber was not found
+        :rtype: bool
+        """
+
         if not isinstance(subscriber_id, int):
-            raise ValueError("Subscriber ID is not valid.")
+            raise TypeError(
+                "`subscriber_id` type is not valid. Expected `int`, got {}.".format(
+                    type(subscriber_id)
+                )
+            )
 
         if not isinstance(group_id, int):
-            raise ValueError("Group ID is not valid.")
+            raise TypeError(
+                "`group_id` type is not valid. Expected `int`, got {}.".format(
+                    type(group_id)
+                )
+            )
 
         response = self.api_client.request(
             "DELETE",
