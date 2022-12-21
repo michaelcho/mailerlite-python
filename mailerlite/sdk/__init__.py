@@ -6,7 +6,6 @@ from mailerlite.sdk.fields import Fields
 from mailerlite.sdk.forms import Forms
 from mailerlite.sdk.groups import Groups
 from mailerlite.sdk.segments import Segments
-from mailerlite.sdk.stats import Stats
 from mailerlite.sdk.subscribers import Subscribers
 from mailerlite.sdk.timezones import Timezones
 from mailerlite.sdk.webhooks import Webhooks
