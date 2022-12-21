@@ -19,6 +19,10 @@ def subscriber_keys():
     return ['id', 'email', 'status', 'source', 'sent', 'opens_count', 'click_rate', 'ip_address', 'subscribed_at', 'unsubscribed_at', 'created_at', 'updated_at']
 
 class TestSegments:
+    """
+    Before running these tests make sure that at least one segment exist
+    """
+
     @classmethod
     def setup_class(self):
         load_dotenv()
@@ -34,16 +38,15 @@ class TestSegments:
     def test_list_of_all_segments_should_be_returned(self, segment_keys):
         response = self.client.segments.list(limit=10, page=1)
 
+        pytest.entity_id = int(response['data'][0]['id'])
+
         assert isinstance(response, dict)
         assert isinstance(response['data'][0], dict)
         assert set(segment_keys).issubset(response['data'][0].keys())
 
     @vcr.use_cassette('tests/vcr_cassettes/segments-get-subscribers.yml', filter_headers=['Authorization'])
     def test_given_valid_segment_id_when_calling_get_subscribers_list_of_subscribers_in_segment_is_returned(self, segment_keys):
-        """Tests an API call for getting in formation about all subscribers belonging to a specific segment"""
-        
-        segment_id = 75015812692314029
-        response = self.client.segments.get_subscribers(segment_id)
+        response = self.client.segments.get_subscribers(pytest.entity_id)
 
         assert isinstance(response, dict)
         assert isinstance(response['data'], dict)
@@ -58,11 +61,8 @@ class TestSegments:
 
     @vcr.use_cassette('tests/vcr_cassettes/segments-update.yml', filter_headers=['Authorization'])
     def test_given_valid_name_and_segment_id_when_calling_update_then_segment_is_updated(self, segment_keys):
-        """Tests an API call for updating information about segment"""
-        
-        segment_id = 75015812692314029
         name = "New Test Segment Name"
-        response = self.client.segments.update(segment_id, name)
+        response = self.client.segments.update(pytest.entity_id, name)
 
         assert response is True
 
@@ -73,8 +73,7 @@ class TestSegments:
 
     @vcr.use_cassette('tests/vcr_cassettes/segments-delete.yml', filter_headers=['Authorization'])
     def test_given_valid_segment_id_when_calling_id_then_segment_is_removed(self, segment_keys):
-        segment_id = 75015812692314029
-        response = self.client.segments.delete(segment_id)
+        response = self.client.segments.delete(pytest.entity_id)
 
         assert response is True
 
