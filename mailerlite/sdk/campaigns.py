@@ -35,7 +35,7 @@ class Campaigns(object):
         """
 
         if not isinstance(campaign_id, int):
-            raise ValueError("`campaign_id` type is not valid. Expected `int`.")
+            raise TypeError("`campaign_id` type is not valid. Expected `int`.")
 
         return self.api_client.request(
             "PUT", "{}/{}".format(self.base_api_url, campaign_id), body=campaign
@@ -54,7 +54,7 @@ class Campaigns(object):
         """
 
         if not isinstance(campaign_id, int):
-            raise ValueError("`campaign_id` type is not valid. Expected `int`.")
+            raise TypeError("`campaign_id` type is not valid. Expected `int`.")
 
         return self.api_client.request(
             "GET", "{}/{}".format(self.base_api_url, campaign_id)
@@ -97,7 +97,7 @@ class Campaigns(object):
         """
 
         if not isinstance(campaign_id, int):
-            raise ValueError("`campaign_id` type is not valid. Expected `int`.")
+            raise TypeError("`campaign_id` type is not valid. Expected `int`.")
 
         return self.api_client.request(
             "POST",
@@ -118,7 +118,7 @@ class Campaigns(object):
         """
 
         if not isinstance(campaign_id, int):
-            raise ValueError("`campaign_id` type is not valid. Expected `int`.")
+            raise TypeError("`campaign_id` type is not valid. Expected `int`.")
 
         return self.api_client.request(
             "POST", "{}/{}/cancel".format(self.base_api_url, campaign_id)
@@ -137,7 +137,7 @@ class Campaigns(object):
         """
 
         if not isinstance(campaign_id, int):
-            raise ValueError("`campaign_id` type is not valid. Expected `int`.")
+            raise TypeError("`campaign_id` type is not valid. Expected `int`.")
 
         response = self.api_client.request(
             "DELETE", "{}/{}".format(self.base_api_url, campaign_id)
@@ -158,7 +158,7 @@ class Campaigns(object):
         """
 
         if not isinstance(campaign_id, int):
-            raise ValueError("`campaign_id` type is not valid. Expected `int`.")
+            raise TypeError("`campaign_id` type is not valid. Expected `int`.")
 
         return self.api_client.request(
             "POST",
