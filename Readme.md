@@ -359,7 +359,7 @@ client = MailerLite.Client({
   'api_key': 'your-api-key'
 })
 
-response = client.fields.list(limit=10, page=1, sorn='name', filter={'keyword': 'abc', 'type': 'text'})
+response = client.fields.list(limit=10, page=1, sort='name', filter={'keyword': 'abc', 'type': 'text'})
 ```
 
 ### Create a field
@@ -461,26 +461,148 @@ response = client.automations.activity(automation_id, page=1, limit=10, filter={
 ### List all campaigns
 <a name="list-all-campaigns"></a>
 
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+response = client.campaigns.list(limit=10, page=1, filter={'status': 'ready', 'type': 'regular'})
+```
+
 ### Get a campaign
 <a name="get-a-campaign"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+campaign_id = 123456
+
+response = client.campaigns.get(campaign_id)
+```
 
 ### Create a campaign
 <a name="create-a-campaign"></a>
 
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+params = {
+    "name": "Test Campaign",
+    "language_id": 1,
+    "type": "regular",
+    "emails": [{
+        "subject": "This is a test campaign",
+        "from_name": "Test Man",
+        "from": "testuser@mailerlite.com",
+        "content": "Hi there, this is a test campaign!"
+    }]
+}
+
+response = client.campaigns.create(params)
+```
+
 ### Update a campaign
 <a name="update-a-campaign"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+campaign_id = 123456
+params = {
+    "name": "New Campaign Name",
+    "language_id": 2,
+    "emails": [{
+        "subject": "This is a test campaign",
+        "from_name": "Test Man",
+        "from": "testuser@mailerlite.com",
+        "content": "Hi there, this is a test campaign!"
+    }]
+}
+
+response = client.campaigns.update(campaign_id, params)
+```
 
 ### Schedule a campaign
 <a name="schedule-a-campaign"></a>
 
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+campaign_id = 123456
+params = {
+    "delivery": "scheduled",
+    "schedule": {
+        "date": "2022-12-31",
+        "hours": "22",
+        "minutes": "00"
+    }
+}
+
+response = client.campaigns.schedule(campaign_id, params)
+```
+
 ### Cancel a campaign
 <a name="cancel-a-campaign"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+campaign_id = 123456
+
+response = client.campaigns.cancel(campaign_id)
+```
 
 ### Delete a campaign
 <a name="cancel-a-campaign"></a>
 
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+campaign_id = 123456
+
+response = client.campaigns.delete(campaign_id)
+```
+
 ### Get subscribers activity for a campaign
 <a name="get-subscribers-activity-for-an-campaign"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+campaign_id = 123456
+
+response = client.campaigns.activity(campaign_id)
+```
 
 ## Forms
 <a name="forms"></a>
