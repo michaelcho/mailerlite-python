@@ -30,7 +30,7 @@ class TestGroups:
     def test_api_url_is_properly_set(self):
         assert self.client.groups.base_api_url == "api/groups"
 
-    @vcr.use_cassette('tests/vcr_cassettes/groups-list.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/groups-list.yml', filter_headers=['Authorization'])
     def test_list_all_groups(self, group_keys):
         """Tests an API call for getting information about all groups"""
         
@@ -46,7 +46,7 @@ class TestGroups:
         with pytest.raises(ValueError):
             self.client.groups.create(name)
 
-    @vcr.use_cassette('tests/vcr_cassettes/groups-create.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/groups-create.yml', filter_headers=['Authorization'])
     def test_create_group(self, group_keys):
         """Tests an API call for creating new subscriber group"""
         
@@ -58,7 +58,7 @@ class TestGroups:
         assert set(group_keys).issubset(response['data'].keys())
         assert response['data']['name'] == name
 
-    @vcr.use_cassette('tests/vcr_cassettes/groups-update.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/groups-update.yml', filter_headers=['Authorization'])
     def test_update_group(self, group_keys):
         """Tests an API call for updating existing subscriber group"""
         
@@ -71,7 +71,7 @@ class TestGroups:
         assert set(group_keys).issubset(response['data'].keys())
         assert response['data']['name'] == name
 
-    @vcr.use_cassette('tests/vcr_cassettes/groups-delete.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/groups-delete.yml', filter_headers=['Authorization'])
     def test_delete_group(self, group_keys):
         """Tests an API call for deleting existing subscriber group"""
         
@@ -85,7 +85,7 @@ class TestGroups:
 
         assert response is False
 
-    @vcr.use_cassette('tests/vcr_cassettes/groups-get-subscribers-in-group.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/groups-get-subscribers-in-group.yml', filter_headers=['Authorization'])
     def test_get_subscribers_in_group(self, subscriber_keys):
         """Tests an API call for retreiving members of a subscriber group"""
 

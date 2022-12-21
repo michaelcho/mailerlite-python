@@ -31,7 +31,7 @@ class TestWebhooks:
         with pytest.raises(TypeError):
             self.client.webhooks.create({}, "http", "Test")
 
-    @vcr.use_cassette('tests/vcr_cassettes/webhooks-create.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/webhooks-create.yml', filter_headers=['Authorization'])
     def test_create_webhook(self, webhook_keys):
         """Tests an API call for creating a webhook"""
 
@@ -49,7 +49,7 @@ class TestWebhooks:
         assert isinstance(response['data'], dict)
         assert set(webhook_keys).issubset(response['data'].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/webhooks-list.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/webhooks-list.yml', filter_headers=['Authorization'])
     def test_list_all_webhooks(self, webhook_keys):
         """Tests an API call for getting information about all webhooks"""
         
@@ -60,7 +60,7 @@ class TestWebhooks:
         assert isinstance(response['data'][0], dict)
         assert set(webhook_keys).issubset(response['data'][0].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/webhooks-get.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/webhooks-get.yml', filter_headers=['Authorization'])
     def test_get_webhook(self, webhook_keys):
         """Tests an API call for getting information about one webhook"""
         
@@ -70,7 +70,7 @@ class TestWebhooks:
         assert isinstance(response['data'], dict)
         assert set(webhook_keys).issubset(response['data'].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/webhook-update.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/webhook-update.yml', filter_headers=['Authorization'])
     def test_update_webhook(self, webhook_keys):
         """Tests an API call for updating the webhook"""
 
@@ -81,7 +81,7 @@ class TestWebhooks:
         assert isinstance(response['data'], dict)
         assert set(webhook_keys).issubset(response['data'].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/webhook-delete.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/webhook-delete.yml', filter_headers=['Authorization'])
     def test_delete_webhook(self):
         """Tests an API call for webhook the field"""
 

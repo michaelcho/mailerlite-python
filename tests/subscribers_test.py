@@ -32,7 +32,7 @@ class TestSubscribers:
     def test_api_url_is_properly_set(self):
         assert self.client.subscribers.base_api_url == "api/subscribers"
 
-    @vcr.use_cassette('tests/vcr_cassettes/subscribers-list.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/subscribers-list.yml', filter_headers=['Authorization'])
     def test_list_all_subscribers(self, subscriber_keys):
         """Tests an API call for getting information about all subscribers"""
         
@@ -64,7 +64,7 @@ class TestSubscribers:
         with pytest.raises(TypeError):
             self.client.subscribers.create('some@email.com', groups={})
     
-    @vcr.use_cassette('tests/vcr_cassettes/subscribers-create.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/subscribers-create.yml', filter_headers=['Authorization'])
     def test_create_subscriber(self, subscriber_keys):
         """Tests creating new subscriber"""
         response = self.client.subscribers.create('test5@email.com', fields={'name': 'Igor', 'last_name': 'Something'}, ip_address='1.1.1.1')
@@ -73,7 +73,7 @@ class TestSubscribers:
         assert isinstance(response['data'], dict)
         assert set(subscriber_keys).issubset(response['data'].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/subscribers-update.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/subscribers-update.yml', filter_headers=['Authorization'])
     def test_update_subscriber(self, subscriber_keys):
         response = self.client.subscribers.update('test5@email.com', fields={'name': 'Someone', 'last_name': 'Something'}, ip_address='1.1.1.1')
 
@@ -86,7 +86,7 @@ class TestSubscribers:
         with pytest.raises(ValueError):
             self.client.subscribers.get('abcdefgh')
 
-    @vcr.use_cassette('tests/vcr_cassettes/subscribers-get.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/subscribers-get.yml', filter_headers=['Authorization'])
     def test_get_subscriber(self, subscriber_keys):
         response = self.client.subscribers.get('test5@email.com')
 
@@ -98,7 +98,7 @@ class TestSubscribers:
         with pytest.raises(ValueError):
             self.client.subscribers.get('abcdefgh')
     
-    @vcr.use_cassette('tests/vcr_cassettes/subscribers-delete.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/subscribers-delete.yml', filter_headers=['Authorization'])
     def test_delete_subscriber(self):
         response = self.client.subscribers.delete(75007210693855095)
         assert response == 204
@@ -106,7 +106,7 @@ class TestSubscribers:
         response = self.client.subscribers.delete(123123)
         assert response == 404
     
-    @vcr.use_cassette('tests/vcr_cassettes/subscribers-get-import.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/subscribers-get-import.yml', filter_headers=['Authorization'])
     def test_get_subscriber_import(self, import_keys):
         response = self.client.subscribers.get_import(75009793000998293)
 
@@ -114,7 +114,7 @@ class TestSubscribers:
         assert isinstance(response['data'], dict)
         assert set(import_keys).issubset(response['data'].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/subscribers-assign-subscriber-to-group.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/subscribers-assign-subscriber-to-group.yml', filter_headers=['Authorization'])
     def test_assign_subscriber_to_group(self, group_keys):
         """Tests an API call for retreiving members of a subscriber group"""
 
@@ -126,7 +126,7 @@ class TestSubscribers:
         assert isinstance(response['data'], dict)
         assert set(group_keys).issubset(response['data'].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/subscribers-unassign-subscriber-from-group.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/subscribers-unassign-subscriber-from-group.yml', filter_headers=['Authorization'])
     def test_assign_subscriber_to_group(self, group_keys):
         """Tests an API call for retreiving members of a subscriber group"""
 

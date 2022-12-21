@@ -29,7 +29,7 @@ class TestForms:
     def test_api_url_is_properly_set(self):
         assert self.client.forms.base_api_url == "api/forms"
 
-    @vcr.use_cassette('tests/vcr_cassettes/forms-list.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/forms-list.yml', filter_headers=['Authorization'])
     def test_list_all_forms(self, form_keys):
         """Tests an API call for getting information about all forms"""
         
@@ -43,7 +43,7 @@ class TestForms:
         assert isinstance(response['data'][0], dict)
         assert set(form_keys).issubset(response['data'][0].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/forms-get.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/forms-get.yml', filter_headers=['Authorization'])
     def test_get_form(self, form_keys):
         """Tests an API call for getting information about one form"""
         
@@ -54,7 +54,7 @@ class TestForms:
         assert isinstance(response['data'], dict)
         assert set(form_keys).issubset(response['data'].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/forms-update.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/forms-update.yml', filter_headers=['Authorization'])
     def test_update_form(self, form_keys):
         """Tests an API call for updating form information"""
         
@@ -66,7 +66,7 @@ class TestForms:
         assert set(form_keys).issubset(response['data'].keys())
         assert response['data']['name'] == name
 
-    @vcr.use_cassette('tests/vcr_cassettes/forms-get-subscribers.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/forms-get-subscribers.yml', filter_headers=['Authorization'])
     def test_get_form_subscribers(self, subscriber_keys):
         """Tests an API call for retrieving a list of subscribers who signed up using form"""
         
@@ -76,7 +76,7 @@ class TestForms:
         assert isinstance(response['data'], list)
         assert set(subscriber_keys).issubset(response['data'][0].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/forms-delete.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/forms-delete.yml', filter_headers=['Authorization'])
     def test_get_form_subscribers(self):
         """Tests an API call for deleting a form"""
         

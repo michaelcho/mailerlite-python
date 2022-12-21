@@ -35,7 +35,7 @@ class TestCampaigns:
     def test_api_url_is_properly_set(self):
         assert self.client.campaigns.base_api_url == "api/campaigns"
 
-    @vcr.use_cassette('tests/vcr_cassettes/campaign-create.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/campaign-create.yml', filter_headers=['Authorization'])
     def test_create_campaign(self, campaign_keys):
         params = {
             "name": "Test Campaign",
@@ -59,7 +59,7 @@ class TestCampaigns:
         assert int(response['data']['language']['id']) == params['language_id']
         assert response['data']['type'] == params['type']
 
-    @vcr.use_cassette('tests/vcr_cassettes/campaign-update.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/campaign-update.yml', filter_headers=['Authorization'])
     def test_update_campaign(self, campaign_keys):
         params = {
             "name": "New Campaign Name",
@@ -80,7 +80,7 @@ class TestCampaigns:
         assert response['data']['name'] == params['name']
         assert int(response['data']['language']['id']) == params['language_id']
 
-    @vcr.use_cassette('tests/vcr_cassettes/campaign-get.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/campaign-get.yml', filter_headers=['Authorization'])
     def test_get_campaign(self, campaign_keys):
         response = self.client.campaigns.get(pytest.entity_id)
         
@@ -88,7 +88,7 @@ class TestCampaigns:
         assert isinstance(response['data'], dict)
         assert set(campaign_keys).issubset(response['data'].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/campaign-list.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/campaign-list.yml', filter_headers=['Authorization'])
     def test_list_campaigns(self, campaign_keys):
         response = self.client.campaigns.list(limit=10, page=1, filter={"filter[status]": "draft"})
 
@@ -97,7 +97,7 @@ class TestCampaigns:
         assert isinstance(response['data'][0], dict)
         assert set(campaign_keys).issubset(response['data'][0].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/campaign-schedule.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/campaign-schedule.yml', filter_headers=['Authorization'])
     def test_schedule_campaign(self, campaign_keys):
         params = {
             "delivery": "scheduled",
@@ -115,13 +115,13 @@ class TestCampaigns:
         test_date = datetime.strptime(params['schedule']['date'], '%Y-%m-%d')
         assert schedule_date.date() == test_date.date()
 
-    @vcr.use_cassette('tests/vcr_cassettes/campaign-cancel.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/campaign-cancel.yml', filter_headers=['Authorization'])
     def test_cancel_campaign(self):
         response = self.client.campaigns.cancel(pytest.entity_id)
 
         assert response['data']['status'] == 'draft'
 
-    @vcr.use_cassette('tests/vcr_cassettes/campaign-delete.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/campaign-delete.yml', filter_headers=['Authorization'])
     def test_delete_campaign(self):
         response = self.client.campaigns.delete(pytest.entity_id)
 
@@ -131,7 +131,7 @@ class TestCampaigns:
 
         assert response == False
 
-    @vcr.use_cassette('tests/vcr_cassettes/campaign-activity.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/campaign-activity.yml', filter_headers=['Authorization'])
     def test_activity_campaign(self, campaign_activity_keys):
         response = self.client.campaigns.activity(75037917434611569)
 
@@ -139,7 +139,7 @@ class TestCampaigns:
         assert isinstance(response['data'], list)
         assert set(campaign_activity_keys).issubset(response['data'][0].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/campaign-languages.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/campaign-languages.yml', filter_headers=['Authorization'])
     def test_campaign_languages(self, campaign_language_keys):
         response = self.client.campaigns.languages()
 

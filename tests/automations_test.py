@@ -25,7 +25,7 @@ class TestAutomations:
     def test_api_url_is_properly_set(self):
         assert self.client.automations.base_api_url == "api/automations"
 
-    @vcr.use_cassette('tests/vcr_cassettes/automations-list.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/automations-list.yml', filter_headers=['Authorization'])
     def test_list_all_automations(self, automation_keys):
         """Tests an API call for getting information about all automations"""
         
@@ -36,7 +36,7 @@ class TestAutomations:
         assert isinstance(response['data'][0], dict)
         assert set(automation_keys).issubset(response['data'][0].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/automations-get.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/automations-get.yml', filter_headers=['Authorization'])
     def test_get_automation(self, automation_keys):
         """Tests an API call for getting information about one automation"""
         
@@ -46,7 +46,7 @@ class TestAutomations:
         assert isinstance(response['data'], dict)
         assert set(automation_keys).issubset(response['data'].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/automations-activity.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/automations-activity.yml', filter_headers=['Authorization'])
     def test_get_automation_activity(self, automation_keys):
         """Tests an API call for getting activity information of automation"""
         

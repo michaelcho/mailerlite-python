@@ -39,7 +39,7 @@ class TestFields:
         with pytest.raises(ValueError):
             self.client.fields.create(name, type)
 
-    @vcr.use_cassette('tests/vcr_cassettes/fields-create.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/fields-create.yml', filter_headers=['Authorization'])
     def test_create_field(self, field_keys):
         """Tests an API call for creating a field"""
 
@@ -53,7 +53,7 @@ class TestFields:
         assert isinstance(response['data'], dict)
         assert set(field_keys).issubset(response['data'].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/fields-list.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/fields-list.yml', filter_headers=['Authorization'])
     def test_list_all_fields(self, field_keys):
         """Tests an API call for getting information about all fields"""
         
@@ -64,7 +64,7 @@ class TestFields:
         assert isinstance(response['data'][0], dict)
         assert set(field_keys).issubset(response['data'][0].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/fields-update.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/fields-update.yml', filter_headers=['Authorization'])
     def test_update_field(self, field_keys):
         """Tests an API call for updating the field"""
 
@@ -75,7 +75,7 @@ class TestFields:
         assert isinstance(response['data'], dict)
         assert set(field_keys).issubset(response['data'].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/fields-delete.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/fields-delete.yml', filter_headers=['Authorization'])
     def test_delete_field(self, field_keys):
         """Tests an API call for deleting the field"""
 

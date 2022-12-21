@@ -30,7 +30,7 @@ class TestSegments:
     def test_api_url_is_properly_set(self):
         assert self.client.segments.base_api_url == "api/segments"
 
-    @vcr.use_cassette('tests/vcr_cassettes/segments-list.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/segments-list.yml', filter_headers=['Authorization'])
     def test_list_all_segments(self, segment_keys):
         """Tests an API call for getting information about all segments"""
         
@@ -40,7 +40,7 @@ class TestSegments:
         assert isinstance(response['data'][0], dict)
         assert set(segment_keys).issubset(response['data'][0].keys())
 
-    @vcr.use_cassette('tests/vcr_cassettes/segments-get-subscribers.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/segments-get-subscribers.yml', filter_headers=['Authorization'])
     def test_list_all_segments(self, segment_keys):
         """Tests an API call for getting in formation about all subscribers belonging to a specific segment"""
         
@@ -58,7 +58,7 @@ class TestSegments:
         with pytest.raises(ValueError):
             self.client.segments.update(segment_id, name)
 
-    @vcr.use_cassette('tests/vcr_cassettes/segments-update.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/segments-update.yml', filter_headers=['Authorization'])
     def test_update_segment(self, segment_keys):
         """Tests an API call for updating information about segment"""
         
@@ -73,7 +73,7 @@ class TestSegments:
 
         assert response is False
 
-    @vcr.use_cassette('tests/vcr_cassettes/segments-delete.yml', remove_headers=['Authorization'])
+    @vcr.use_cassette('tests/vcr_cassettes/segments-delete.yml', filter_headers=['Authorization'])
     def test_update_segment(self, segment_keys):
         """Tests an API call for deleting segment"""
         
