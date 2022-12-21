@@ -43,10 +43,17 @@ class Segments(object):
         :param segment_id: int Segment ID
         :param **kwargs: dict You can pass additional arguments - after, limit or filter by status
         :raises: :class: `TypeError` : Got an unknown argument
-        :raises: :class: `TypeError` : Got an unknown argument
+        :raises: :class: `TypeError` : `segment_id` type is not valid
         :return: JSON array
         :rtype: dict
         """
+
+        if not isinstance(segment_id, int):
+            raise TypeError(
+                "`segment_id` type is not valid. Expected `int`, got {}.".format(
+                    type(segment_id)
+                )
+            )
 
         if not isinstance(segment_id, int):
             raise TypeError("Segment ID are not valid.")
@@ -74,10 +81,17 @@ class Segments(object):
         :param segment_id: int Segment ID
         :param name: str Maximum length of 255 characters
         :raises: :class: `ValueError` : `name` cannot exceed 255 characters
-        :raises: :class: `TypeError` : Got an unknown argument
+        :raises: :class: `TypeError` : `segment_id` type is not valid
         :return: JSON array
         :rtype: dict
         """
+
+        if not isinstance(segment_id, int):
+            raise TypeError(
+                "`segment_id` type is not valid. Expected `int`, got {}.".format(
+                    type(segment_id)
+                )
+            )
 
         if len(name) > 255:
             raise ValueError("`name` cannot exceed 255 characters.")
@@ -99,13 +113,17 @@ class Segments(object):
         Ref: https://developers.mailerlite.com/docs/segments.html#delete-segment
 
         :param segment_id: int Segment ID
-        :raises: :class: `TypeError` : Got an unknown argument
+        :raises: :class: `TypeError` : `segment_id` type is not valid
         :return: `true` if action was successful, `false` if form was not found
         :rtype: bool
         """
 
         if not isinstance(segment_id, int):
-            raise ValueError("Segment ID are not valid.")
+            raise TypeError(
+                "`segment_id` type is not valid. Expected `int`, got {}.".format(
+                    type(segment_id)
+                )
+            )
 
         response = self.api_client.request(
             "DELETE", "{}/{}".format(self.base_api_url, segment_id)
