@@ -31,9 +31,7 @@ class TestSegments:
         assert self.client.segments.base_api_url == "api/segments"
 
     @vcr.use_cassette('tests/vcr_cassettes/segments-list.yml', filter_headers=['Authorization'])
-    def test_list_all_segments(self, segment_keys):
-        """Tests an API call for getting information about all segments"""
-        
+    def test_list_of_all_segments_should_be_returned(self, segment_keys):
         response = self.client.segments.list(limit=10, page=1)
 
         assert isinstance(response, dict)
@@ -41,7 +39,7 @@ class TestSegments:
         assert set(segment_keys).issubset(response['data'][0].keys())
 
     @vcr.use_cassette('tests/vcr_cassettes/segments-get-subscribers.yml', filter_headers=['Authorization'])
-    def test_list_all_segments(self, segment_keys):
+    def test_given_valid_segment_id_when_calling_get_subscribers_list_of_subscribers_in_segment_is_returned(self, segment_keys):
         """Tests an API call for getting in formation about all subscribers belonging to a specific segment"""
         
         segment_id = 75015812692314029
@@ -51,7 +49,7 @@ class TestSegments:
         assert isinstance(response['data'], dict)
         assert set(segment_keys).issubset(response['data'].keys())
 
-    def test_updating_segment_will_fail_if_name_exceeds_max_length(self):
+    def test_given_invalid_name_when_calling_update_then_segment_update_will_fail(self):
         name = ''.join(random.choices(string.ascii_letters, k=300))
         segment_id = 123
 
@@ -59,7 +57,7 @@ class TestSegments:
             self.client.segments.update(segment_id, name)
 
     @vcr.use_cassette('tests/vcr_cassettes/segments-update.yml', filter_headers=['Authorization'])
-    def test_update_segment(self, segment_keys):
+    def test_given_valid_name_and_segment_id_when_calling_update_then_segment_is_updated(self, segment_keys):
         """Tests an API call for updating information about segment"""
         
         segment_id = 75015812692314029
@@ -74,9 +72,7 @@ class TestSegments:
         assert response is False
 
     @vcr.use_cassette('tests/vcr_cassettes/segments-delete.yml', filter_headers=['Authorization'])
-    def test_update_segment(self, segment_keys):
-        """Tests an API call for deleting segment"""
-        
+    def test_given_valid_segment_id_when_calling_id_then_segment_is_removed(self, segment_keys):
         segment_id = 75015812692314029
         response = self.client.segments.delete(segment_id)
 
