@@ -61,7 +61,7 @@ class TestFields:
         assert isinstance(response['data'][0], dict)
         assert set(field_keys).issubset(response['data'][0].keys())
 
-    def test_given_incorrect_campaign_id_when_calling_update_then_type_error_is_returned(self):
+    def test_given_incorrect_field_id_when_calling_update_then_type_error_is_returned(self):
         with pytest.raises(TypeError):
             self.client.fields.update("1234", "some name")
 
@@ -76,7 +76,7 @@ class TestFields:
         assert isinstance(response['data'], dict)
         assert set(field_keys).issubset(response['data'].keys())
 
-    def test_given_incorrect_campaign_id_when_calling_delete_then_type_error_is_returned(self):
+    def test_given_incorrect_field_id_when_calling_delete_then_type_error_is_returned(self):
         with pytest.raises(TypeError):
             self.client.fields.update("1234")
 
