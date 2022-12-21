@@ -2,9 +2,6 @@ import pytest
 import os
 import vcr
 import mailerlite as MailerLite
-import mailerlite.sdk.campaigns as Campaigns
-import string
-import random
 
 from dotenv import load_dotenv
 from pytest import fixture
