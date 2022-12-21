@@ -39,7 +39,7 @@ class TestWebhooks:
         url = "https://mailerlite.com"
         response = self.client.webhooks.create(events, url, name)
 
-        pytest.entity_id = response['data']['id']
+        pytest.entity_id = int(response['data']['id'])
 
         assert isinstance(response, dict)
         assert isinstance(response['data'], dict)
@@ -54,6 +54,10 @@ class TestWebhooks:
         assert isinstance(response['data'][0], dict)
         assert set(webhook_keys).issubset(response['data'][0].keys())
 
+    def test_given_incorrect_webhook_id_when_calling_get_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.webhooks.get("1234")
+
     @vcr.use_cassette('tests/vcr_cassettes/webhooks-get.yml', filter_headers=['Authorization'])
     def test_given_correct_webhook_id_when_calling_get_then_webhook_is_returned(self, webhook_keys):
         response = self.client.webhooks.get(pytest.entity_id)
@@ -62,14 +66,22 @@ class TestWebhooks:
         assert isinstance(response['data'], dict)
         assert set(webhook_keys).issubset(response['data'].keys())
 
+    def test_given_incorrect_webhook_id_when_calling_update_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.webhooks.update("1234")
+
     @vcr.use_cassette('tests/vcr_cassettes/webhooks-update.yml', filter_headers=['Authorization'])
     def test_given_correct_webhook_id_and_params_when_calling_update_then_webhook_is_updated(self, webhook_keys):
-        name = "My New Webhook Name"        
+        name = "My New Webhook Name"
         response = self.client.webhooks.update(pytest.entity_id, name=name)
 
         assert isinstance(response, dict)
         assert isinstance(response['data'], dict)
         assert set(webhook_keys).issubset(response['data'].keys())
+
+    def test_given_incorrect_webhook_id_when_calling_delete_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.webhooks.delete("1234")
 
     @vcr.use_cassette('tests/vcr_cassettes/webhooks-delete.yml', filter_headers=['Authorization'])
     def test_given_correct_webhook_id_when_calling_delete_then_webhook_is_removed(self):

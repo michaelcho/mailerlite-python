@@ -34,6 +34,13 @@ class Webhooks(object):
         :rtype: dict
         """
 
+        if not isinstance(webhook_id, int):
+            raise TypeError(
+                "`webhook_id` type is not valid. Expected `int`, got {}.".format(
+                    type(webhook_id)
+                )
+            )
+
         return self.api_client.request(
             "GET", "{}/{}".format(self.base_api_url, webhook_id)
         ).json()
@@ -53,6 +60,13 @@ class Webhooks(object):
         :return: JSON array
         :rtype: dict
         """
+
+        if not isinstance(webhook_id, int):
+            raise TypeError(
+                "`webhook_id` type is not valid. Expected `int`, got {}.".format(
+                    type(webhook_id)
+                )
+            )
 
         if type(events) is not list and events is not None:
             raise TypeError("`events` type is not valid. Expected `list`, got {}.".format(type(events)))
