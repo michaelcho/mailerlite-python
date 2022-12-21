@@ -73,7 +73,7 @@ class TestCampaigns:
             }]
         }
 
-        response = self.client.campaigns.update(pytest.entity_id, params)
+        response = self.client.campaigns.update(int(pytest.entity_id), params)
         
         assert isinstance(response, dict)
         assert isinstance(response['data'], dict)
@@ -87,7 +87,7 @@ class TestCampaigns:
 
     @vcr.use_cassette('tests/vcr_cassettes/campaign-get.yml', filter_headers=['Authorization'])
     def test_given_correct_campaign_id_when_calling_get_then_campaign_is_returned(self, campaign_keys):
-        response = self.client.campaigns.get(pytest.entity_id)
+        response = self.client.campaigns.get(int(pytest.entity_id))
         
         assert isinstance(response, dict)
         assert isinstance(response['data'], dict)
@@ -116,7 +116,7 @@ class TestCampaigns:
                 "minutes": "00"
             }
         }
-        response = self.client.campaigns.schedule(pytest.entity_id, params)
+        response = self.client.campaigns.schedule(int(pytest.entity_id), params)
 
         assert isinstance(response, dict)
         assert isinstance(response['data'], dict)
@@ -130,7 +130,7 @@ class TestCampaigns:
 
     @vcr.use_cassette('tests/vcr_cassettes/campaign-cancel.yml', filter_headers=['Authorization'])
     def test_given_correct_campaign_id_when_calling_cancel_then_campaign_is_going_to_be_cancelled(self):
-        response = self.client.campaigns.cancel(pytest.entity_id)
+        response = self.client.campaigns.cancel(int(pytest.entity_id))
 
         assert response['data']['status'] == 'draft'
 
@@ -140,7 +140,7 @@ class TestCampaigns:
 
     @vcr.use_cassette('tests/vcr_cassettes/campaign-delete.yml', filter_headers=['Authorization'])
     def test_given_correct_campaign_id_when_calling_delete_then_campaign_is_removed(self):
-        response = self.client.campaigns.delete(pytest.entity_id)
+        response = self.client.campaigns.delete(int(pytest.entity_id))
 
         assert response == True
 
