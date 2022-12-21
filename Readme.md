@@ -693,17 +693,89 @@ response = client.forms.get_subscribers(form_id, page=1, limit=10, filter={'stat
 ### List all webhooks
 <a name="list-all-webhooks"></a>
 
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+response = client.webhooks.list()
+```
+
 ### Get a webhook
 <a name="get-a-webhook"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+webhook_id = 123456
+
+response = client.webhooks.get(webhook_id)
+```
 
 ### Create a webhook
 <a name="create-a-webhook"></a>
 
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+events = [
+  'subscriber.created',
+  'subscriber.updated',
+  'subscriber.unsubscribed'
+]
+url = 'https://my-url.com'
+name = 'Webhook name'
+
+response = client.webhooks.create(events, url, name)
+```
+
 ### Update a webhook
 <a name="update-a-webhook"></a>
 
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+webhook_id = 123456
+events = [
+  'subscriber.created',
+  'subscriber.updated',
+  'subscriber.unsubscribed'
+]
+url = 'https://my-url.com'
+name = 'Webhook name'
+enabled = False
+
+response = client.webhooks.update(webhook_id, events, url, name, enabled)
+```
+
 ### Delete a webhook
 <a name="cancel-a-webhook"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+webhook_id = 123456
+
+response = client.webhooks.delete(webhook_id)
+```
 
 ## Timezones
 <a name="timezones"></a>
