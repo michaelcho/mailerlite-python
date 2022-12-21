@@ -32,6 +32,47 @@ For more information how to obtain an API key visit the [following link](https:/
     - [Get subscribers belonging to a group](#get-subscribers-belonging-to-a-group)
     - [Assign subscriber to a group](#assign-subscriber-to-a-group)
     - [Unassign subscriber from a group](#unassign-subscriber-from-a-group)
+  - [Segments](#segments)
+    - [List all segments](#list-all-segments)
+    - [Update a segment](#update-a-segment)
+    - [Delete a segment](#delete-a-segment)
+    - [Get subscribers belonging to a segment](#get-subscribers-belonging-to-a-segment)
+  - [Fields](#fields)
+    - [List all fields](#list-all-fields)
+    - [Create a field](#create-a-field)
+    - [Update a field](#update-a-field)
+    - [Delete a field](#delete-a-field)
+  - [Automations](#automations)
+    - [List all automations](#list-all-automations)
+    - [Get an automation](#get-an-automation)
+    - [Get subscribers activity for an automation](#get-subscribers-activity-for-an-automation)
+  - [Campaigns](#campaigns)
+    - [List all campaigns](#list-all-campaigns)
+    - [Get a campaign](#get-a-campaign)
+    - [Create a campaign](#create-a-campaign)
+    - [Update a campaign](#update-a-campaign)
+    - [Schedule a campaign](#schedule-a-campaign)
+    - [Cancel a campaign](#cancel-a-campaign)
+    - [Delete a campaign](#delete-a-campaign)
+    - [Get subscribers activity for a campaign](#get-subscribers-activity-for-a-campaign)
+  - [Forms](#forms)
+    - [List all forms](#list-all-forms)
+    - [Get a form](#get-a-form)
+    - [Update a form](#update-a-form)
+    - [Delete a form](#delete-a-form)
+    - [Get subscribers who signed up to a specific form](#get-subscribers-who-signed-up-to-a-specific-form)
+  - [Batching](#batching)
+    - [Create a new batch](#create-a-new-batch)
+  - [Webhooks](#webhooks)
+    - [List all webhooks](#list-all-webhooks)
+    - [Get a webhook](#get-a-webhook)
+    - [Create a webhook](#create-a-webhook)
+    - [Update a webhook](#update-a-webhook)
+    - [Delete a webhook](#delete-a-webhook)
+  - [Timezones](#timezones)
+    - [Get a list of timezones](#get-a-list-of-timezones)
+  - [Campaign languages](#campaign-languages)
+    - [Get a list of languages](#get-a-list-of-languages)
 
 ## Installation
 <a name="installation"></a>
@@ -242,3 +283,126 @@ group_id = 1234567
 
 response = client.subscribers.unassign_subscriber_from_group(subscriber_id, group_id)
 ```
+
+## Segments
+<a name="segments"></a>
+
+### List all segments
+<a name="list-all-segments"></a>
+
+### Update a segment
+<a name="update-a-segment"></a>
+
+### Delete a segment
+<a name="delete-a-segment"></a>
+
+### Get subscribers belonging to a segment
+<a name="get-subscribers-belonging-to-a-segment"></a>
+
+## Fields
+<a name="fields"></a>
+
+### List all fields
+<a name="list-all-fields"></a>
+
+### Create a field
+<a name="create-a-field"></a>
+
+### Update a field
+<a name="update-a-field"></a>
+
+### Delete a field
+<a name="delete-a-field"></a>
+
+## Automations
+<a name="automations"></a>
+
+### List all automations
+<a name="list-all-automations"></a>
+
+### Get an automation
+<a name="get-an-automation"></a>
+
+### Get subscribers activity for an automation
+<a name="get-subscribers-activity-for-an-automation"></a>
+
+## Campaigns
+<a name="campaigns"></a>
+
+### List all campaigns
+<a name="list-all-campaigns"></a>
+
+### Get a campaign
+<a name="get-a-campaign"></a>
+
+### Create a campaign
+<a name="create-a-campaign"></a>
+
+### Update a campaign
+<a name="update-a-campaign"></a>
+
+### Schedule a campaign
+<a name="schedule-a-campaign"></a>
+
+### Cancel a campaign
+<a name="cancel-a-campaign"></a>
+
+### Delete a campaign
+<a name="cancel-a-campaign"></a>
+
+### Get subscribers activity for a campaign
+<a name="get-subscribers-activity-for-an-campaign"></a>
+
+## Forms
+<a name="forms"></a>
+
+### List all forms
+<a name="list-all-forms"></a>
+
+### Get a form
+<a name="get-a-form"></a>
+
+### Update a form
+<a name="update-a-form"></a>
+
+### Delete a form
+<a name="cancel-a-form"></a>
+
+### Get subscribers who signed up to a specific form
+<a name="get-subscribers-who-signed-up-to-a-specific-form"></a>
+
+## Batching
+<a name="batching"></a>
+
+### Create a new batch
+<a name="create-a-new-batch"></a>
+
+## Webhooks
+<a name="webhooks"></a>
+
+### List all webhooks
+<a name="list-all-webhooks"></a>
+
+### Get a webhook
+<a name="get-a-webhook"></a>
+
+### Create a webhook
+<a name="create-a-webhook"></a>
+
+### Update a webhook
+<a name="update-a-webhook"></a>
+
+### Delete a webhook
+<a name="cancel-a-webhook"></a>
+
+## Timezones
+<a name="timezones"></a>
+
+### Get a list of timezones
+<a name="get-a-list-of-timezones"></a>
+
+## Campaign languages
+<a name="languages"></a>
+
+### Get a list of languages
+<a name="get-a-list-of-languages"></a>
