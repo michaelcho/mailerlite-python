@@ -1,5 +1,5 @@
 [run]
-include = src/*
+include = mailerlite/sdk/*
 branch = True
 
 [report]
@@ -28,4 +28,4 @@ ignore_errors = True
 
 
 [paths]
-source = src/
+source = mailerlite/sdk/
