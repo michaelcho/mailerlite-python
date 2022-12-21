@@ -44,7 +44,7 @@ class TestFields:
         type = "text"
         response = self.client.fields.create(name, type)
 
-        pytest.entity_id = response['data']['id']
+        pytest.entity_id = int(response['data']['id'])
 
         assert isinstance(response, dict)
         assert isinstance(response['data'], dict)
