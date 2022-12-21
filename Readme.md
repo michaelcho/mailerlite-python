@@ -78,3 +78,22 @@ $ python -m pip install mailerlite
 
 <a name="usage"></a>
 ## Usage
+
+The first thing that you need to do is to import `mailerlite` into your project and to instantiate the client by passing your API key:
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+```
+
+MailerLite API supports [versioning](https://developers.mailerlite.com/docs/#versioning), so you can pass additional argument to specify the API version:
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key',
+  'api_version': '2038-01-19'
+})
+```
