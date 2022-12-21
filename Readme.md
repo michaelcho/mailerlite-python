@@ -69,16 +69,18 @@ For more information how to obtain an API key visit the [following link](https:/
   - [Campaign languages](#languages)
     - [Get a list of languages](#get-a-list-of-languages)
 
-<a name="installation"></a>
 ## Installation
+<a name="installation"></a>
+
 Please run the following command:
-```
-$ python -m pip install mailerlite
+```bash
+python -m pip install mailerlite
 ```
 
-<a name="usage"></a>
 ## Usage
+<a name="usage"></a>
 
+### MailerLite Client
 The first thing that you need to do is to import `mailerlite` into your project and to instantiate the client by passing your API key:
 ```python
 import mailerlite as MailerLite
@@ -96,4 +98,20 @@ client = MailerLite.Client({
   'api_key': 'your-api-key',
   'api_version': '2038-01-19'
 })
+```
+
+<a name="subscribers"></a>
+
+## Subscribers
+<a name="get-a-list-of-subscribers"></a>
+
+### List all subscribers
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+response = client.subscribers.create('some@email.com', fields={'name': 'John', 'last_name': 'Doe'}, ip_address='1.2.3.4')
 ```
