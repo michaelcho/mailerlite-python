@@ -11,63 +11,27 @@ API keys are a quick way to implement machine-to-machine authentication without 
 For more information how to obtain an API key visit the [following link](https://developers.mailerlite.com/docs/#mailerlite-api)
 
 ## Table of Contents
-- [Installation](#installation)
-- [Usage](#usage)
+- [MailerLite Python SDK](#mailerlite-python-sdk)
+  - [Getting started](#getting-started)
+    - [Authentication](#authentication)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [MailerLite Client](#mailerlite-client)
   - [Subscribers](#subscribers)
-    - [List all subscribers](#get-a-list-of-subscribers)
+    - [List all subscribers](#list-all-subscribers)
     - [Create a subscriber](#create-a-subscriber)
     - [Update a subscriber](#update-a-subscriber)
     - [Get a subscriber](#get-a-subscriber)
-    - [Count all subscribers](#count-all-subscribers)
     - [Delete a subscriber](#delete-a-subscriber)
   - [Groups](#groups)
-    - [Get a list of groups](#get-a-list-of-groups)
+    - [List all groups](#list-all-groups)
     - [Create a group](#create-a-group)
     - [Update a group](#update-a-group)
     - [Delete a group](#delete-a-group)
     - [Get subscribers belonging to a group](#get-subscribers-belonging-to-a-group)
-    - [Assign subscriber to a group](#assign-subscribers-to-a-group)
-  - [Segments](#segments)
-    - [Get a list of segments](#get-a-list-of-segments)
-    - [Update a segment](#update-a-segment)
-    - [Delete a segment](#delete-a-segment)
-    - [Get subscribers belonging to a segment](#get-subscribers-belonging-to-a-segment)
-  - [Fields](#fields)
-    - [Get a list of fields](#get-a-list-of-fields)
-    - [Create a field](#create-a-field)
-    - [Update a field](#update-a-field)
-    - [Delete a field](#delete-a-field)
-  - [Automations](#automations)
-    - [Get a list of automations](#get-a-list-of-automations)
-    - [Get an automation](#get-an-automation)
-    - [Get subscribers activity for an automation](#get-subscribers-activity-for-an-automation)
-  - [Campaigns](#campaigns)
-    - [Get a list of campaigns](#get-a-list-of-campaigns)
-    - [Get a campaign](#get-a-campaign)
-    - [Create a campaign](#update-a-campaign)
-    - [Update a campaign](#update-a-campaign)
-    - [Schedule a campaign](#schedule-a-campaign)
-    - [Cancel a ready campaign](#cancel-a-ready-campaign)
-    - [Delete a campaign](#delete-a-campaign)
-    - [Get subscribers activity for a campaign](#get-subscribers-activity-for-an-campaign)
-  - [Forms](#forms)
-    - [Get a list of forms](#get-a-list-of-forms)
-    - [Get a form](#get-a-form)
-    - [Update a form](#update-a-form)
-    - [Delete a form](#delete-a-form)
-    - [Get subscribers of a form](#get-subscribers-of-a-form)
-  - [Batching](#batching)
-    - [Create a new batch](#create-a-new-batch)
-  - [Webhooks](#webhooks)
-    - [Get a list of webhooks](#get-a-list-of-webhooks)
-    - [Get a webhook](#get-a-webhook)
-    - [Create a webhook](#update-a-webhook)
-    - [Update a webhook](#update-a-webhook)
-    - [Delete a webhook](#delete-a-webhook)
-  - [Timezones](#timezones)
-    - [Get a list of timezones](#get-a-list-of-timezones)
-  - [Campaign languages](#languages)
-    - [Get a list of languages](#get-a-list-of-languages)
+    - [Assign subscriber to a group](#assign-subscriber-to-a-group)
+    - [Unassign subscriber from a group](#unassign-subscriber-from-a-group)
 
 ## Installation
 <a name="installation"></a>
@@ -168,4 +132,113 @@ client = MailerLite.Client({
 subscriber_id = 1234567890
 
 response = client.subscribers.delete(subscriber_id)
+```
+
+## Groups
+<a name="groups"></a>
+
+### List all groups
+<a name="list-all-groups"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+response = client.groups.list(limit=10, page=1, filter={'name': 'My'}, sort='name')
+```
+
+### Create a group
+<a name="create-a-group"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+group_name = 'My Group'
+
+response = client.groups.create(group_name)
+```
+
+### Update a group
+<a name="update-a-group"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+group_id = 1234567
+group_name = 'My New Group'
+
+response = client.groups.update(group_id, group_name)
+```
+
+### Delete a group
+<a name="delete-a-group"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+group_id = 1234567
+
+response = client.groups.delete(group_id)
+```
+
+### Get subscribers belonging to a group
+<a name="get-subscribers-belonging-to-a-group"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+group_id = 1234567
+
+response = client.groups.get_group_subscribers(group_id, page=1, limit=10, filter={'status': 'active'})
+```
+
+### Assign subscriber to a group
+<a name="assign-subscribers-to-a-group"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+subscriber_id = 111222
+group_id = 1234567
+
+response = client.subscribers.assign_subscriber_to_group(subscriber_id, group_id)
+```
+
+### Unassign subscriber from a group
+<a name="unassign-subscribers-from-a-group"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+subscriber_id = 111222
+group_id = 1234567
+
+response = client.subscribers.unassign_subscriber_from_group(subscriber_id, group_id)
 ```
