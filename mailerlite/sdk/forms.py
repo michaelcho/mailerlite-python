@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 
+
 class Forms(object):
 
     # Forms base API uri
@@ -26,7 +27,7 @@ class Forms(object):
         for key, val in params["kwargs"].items():
             if key not in available_params:
                 raise TypeError("Got an unknown argument '%s'" % key)
-            
+
             if key == "filter":
                 for filter_key, filter_value in val.items():
                     query_params[filter_key] = filter_value
@@ -50,7 +51,11 @@ class Forms(object):
         """
 
         if not isinstance(form_id, int):
-            raise TypeError("`form_id` type is not valid. Expected `int`, got {}.".format(type(form_id)))
+            raise TypeError(
+                "`form_id` type is not valid. Expected `int`, got {}.".format(
+                    type(form_id)
+                )
+            )
 
         return self.api_client.request(
             "GET", "{}/{}".format(self.base_api_url, form_id)
@@ -70,7 +75,11 @@ class Forms(object):
         """
 
         if not isinstance(form_id, int):
-            raise TypeError("`form_id` type is not valid. Expected `int`, got {}.".format(type(form_id)))
+            raise TypeError(
+                "`form_id` type is not valid. Expected `int`, got {}.".format(
+                    type(form_id)
+                )
+            )
 
         body_params = {"name": name}
 
@@ -93,7 +102,11 @@ class Forms(object):
         """
 
         if not isinstance(form_id, int):
-            raise TypeError("`form_id` type is not valid. Expected `int`, got {}.".format(type(form_id)))
+            raise TypeError(
+                "`form_id` type is not valid. Expected `int`, got {}.".format(
+                    type(form_id)
+                )
+            )
 
         available_params = ["limit", "page", "filter"]
 
@@ -102,7 +115,7 @@ class Forms(object):
         for key, val in params["kwargs"].items():
             if key not in available_params:
                 raise TypeError("Got an unknown argument '%s'" % key)
-            
+
             if key == "filter":
                 for filter_key, filter_value in val.items():
                     query_params[filter_key] = filter_value
@@ -126,7 +139,11 @@ class Forms(object):
         """
 
         if not isinstance(form_id, int):
-            raise TypeError("`form_id` type is not valid. Expected `int`, got {}.".format(type(form_id)))
+            raise TypeError(
+                "`form_id` type is not valid. Expected `int`, got {}.".format(
+                    type(form_id)
+                )
+            )
 
         response = self.api_client.request(
             "DELETE", "{}/{}".format(self.base_api_url, form_id)

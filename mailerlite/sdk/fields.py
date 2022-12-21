@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 
+
 class Fields(object):
 
     # Fields base API uri
@@ -81,7 +82,11 @@ class Fields(object):
         """
 
         if not isinstance(field_id, int):
-            raise TypeError("`field_id` type is not valid. Expected `int`, got {}.".format(type(field_id)))
+            raise TypeError(
+                "`field_id` type is not valid. Expected `int`, got {}.".format(
+                    type(field_id)
+                )
+            )
 
         if len(name) > 255:
             raise ValueError("Field name cannot exceed 255 characters.")

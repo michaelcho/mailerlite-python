@@ -76,7 +76,11 @@ class Groups(object):
         """
 
         if not isinstance(group_id, int):
-            raise TypeError("`group_id` type is not valid. Expected `int`, got {}.".format(type(group_id)))
+            raise TypeError(
+                "`group_id` type is not valid. Expected `int`, got {}.".format(
+                    type(group_id)
+                )
+            )
 
         if len(name) > 255:
             raise ValueError("Group name cannot exceed 255 characters.")
@@ -102,7 +106,11 @@ class Groups(object):
         """
 
         if not isinstance(group_id, int):
-            raise TypeError("`group_id` type is not valid. Expected `int`, got {}.".format(type(group_id)))
+            raise TypeError(
+                "`group_id` type is not valid. Expected `int`, got {}.".format(
+                    type(group_id)
+                )
+            )
 
         response = self.api_client.request(
             "DELETE", "{}/{}".format(self.base_api_url, group_id)
@@ -126,7 +134,11 @@ class Groups(object):
         """
 
         if not isinstance(group_id, int):
-            raise TypeError("`group_id` type is not valid. Expected `int`, got {}.".format(type(group_id)))
+            raise TypeError(
+                "`group_id` type is not valid. Expected `int`, got {}.".format(
+                    type(group_id)
+                )
+            )
 
         available_params = ["filter", "limit", "page"]
 

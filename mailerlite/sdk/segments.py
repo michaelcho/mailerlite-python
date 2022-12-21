@@ -1,7 +1,4 @@
 from __future__ import absolute_import
-from mailerlite.api_client import ApiClient
-import re
-import json
 
 
 class Segments(object):
