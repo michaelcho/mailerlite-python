@@ -40,6 +40,8 @@ class TestGroups:
         name = "Test group"
         response = self.client.groups.create(name)
 
+        pytest.entity_id = int(response['data']['id'])
+
         assert isinstance(response, dict)
         assert isinstance(response['data'], dict)
         assert set(group_keys).issubset(response['data'].keys())
@@ -58,20 +60,27 @@ class TestGroups:
         """Tests an API call for updating existing subscriber group"""
         
         name = "New group name"
-        id = 75011957293319274
-        response = self.client.groups.update(id, name)
+        response = self.client.groups.update(pytest.entity_id, name)
 
         assert isinstance(response, dict)
         assert isinstance(response['data'], dict)
         assert set(group_keys).issubset(response['data'].keys())
         assert response['data']['name'] == name
 
+    @vcr.use_cassette('tests/vcr_cassettes/groups-get-subscribers-in-group.yml', filter_headers=['Authorization'])
+    def test_given_correct_group_id_when_calling_get_group_subscribers_then_list_of_subscribers_is_returned(self, subscriber_keys):
+        response = self.client.groups.get_group_subscribers(pytest.entity_id, limit=5, page=1)
+
+        assert isinstance(response, dict)
+        assert isinstance(response['data'], list)
+        assert isinstance(response['data'][0], dict)
+        assert set(subscriber_keys).issubset(response['data'][0].keys())
+
     @vcr.use_cassette('tests/vcr_cassettes/groups-delete.yml', filter_headers=['Authorization'])
     def test_given_correct_group_id_when_calling_delete_then_group_is_removed(self, group_keys):
         """Tests an API call for deleting existing subscriber group"""
         
-        id = 75011957293319274
-        response = self.client.groups.delete(id)
+        response = self.client.groups.delete(pytest.entity_id)
 
         assert response is True
 
@@ -79,15 +88,3 @@ class TestGroups:
         response = self.client.groups.delete(id)
 
         assert response is False
-
-    @vcr.use_cassette('tests/vcr_cassettes/groups-get-subscribers-in-group.yml', filter_headers=['Authorization'])
-    def test_given_correct_group_id_when_calling_get_group_subscribers_then_list_of_subscribers_is_returned(self, subscriber_keys):
-        """Tests an API call for retreiving members of a subscriber group"""
-
-        group_id = 75011449370445335
-        response = self.client.groups.get_group_subscribers(group_id, limit=5, page=1)
-
-        assert isinstance(response, dict)
-        assert isinstance(response['data'], list)
-        assert isinstance(response['data'][0], dict)
-        assert set(subscriber_keys).issubset(response['data'][0].keys())
