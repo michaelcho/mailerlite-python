@@ -2,7 +2,6 @@ import pytest
 import os
 import vcr
 import mailerlite as MailerLite
-import mailerlite.sdk.fields as Fields
 import random
 import string
 
@@ -28,7 +27,7 @@ class TestFields:
     def test_api_url_is_properly_set(self):
         assert self.client.fields.base_api_url == "api/fields"
 
-    def test_creating_field_will_fail_if_attributes_are_incorrect(self):
+    def test_given_incorrect_name_when_calling_create_then_creating_field_will_fail(self):
         name = ''.join(random.choices(string.ascii_letters, k=300))
         type = 'text'
 
@@ -40,9 +39,7 @@ class TestFields:
             self.client.fields.create(name, type)
 
     @vcr.use_cassette('tests/vcr_cassettes/fields-create.yml', filter_headers=['Authorization'])
-    def test_create_field(self, field_keys):
-        """Tests an API call for creating a field"""
-
+    def test_given_correct_parameters_when_calling_create_then_field_is_created(self, field_keys):
         name = "My Field"        
         type = "text"
         response = self.client.fields.create(name, type)
@@ -54,7 +51,7 @@ class TestFields:
         assert set(field_keys).issubset(response['data'].keys())
 
     @vcr.use_cassette('tests/vcr_cassettes/fields-list.yml', filter_headers=['Authorization'])
-    def test_list_all_fields(self, field_keys):
+    def test_list_of_all_fields_should_be_returned(self, field_keys):
         """Tests an API call for getting information about all fields"""
         
         response = self.client.fields.list(limit=10, page=1, sort="name")
@@ -64,8 +61,12 @@ class TestFields:
         assert isinstance(response['data'][0], dict)
         assert set(field_keys).issubset(response['data'][0].keys())
 
+    def test_given_incorrect_campaign_id_when_calling_update_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.fields.update("1234", "some name")
+
     @vcr.use_cassette('tests/vcr_cassettes/fields-update.yml', filter_headers=['Authorization'])
-    def test_update_field(self, field_keys):
+    def test_given_correct_field_id_and_name_when_caling_update_then_field_is_updated(self, field_keys):
         """Tests an API call for updating the field"""
 
         name = "My New Field Name"        
@@ -75,8 +76,12 @@ class TestFields:
         assert isinstance(response['data'], dict)
         assert set(field_keys).issubset(response['data'].keys())
 
+    def test_given_incorrect_campaign_id_when_calling_delete_then_type_error_is_returned(self):
+        with pytest.raises(TypeError):
+            self.client.fields.update("1234")
+
     @vcr.use_cassette('tests/vcr_cassettes/fields-delete.yml', filter_headers=['Authorization'])
-    def test_delete_field(self, field_keys):
+    def test_given_correct_field_id_when_calling_delete_then_field_is_removed(self, field_keys):
         """Tests an API call for deleting the field"""
 
         response = self.client.fields.delete(pytest.entity_id)
