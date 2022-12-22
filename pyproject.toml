@@ -23,3 +23,6 @@ build-backend = "poetry.core.masonry.api"
 [tool.semantic_release]
 version_variable = "setup.py:__version__"
 branch = "main"
+upload_to_pypi = false
+upload_to_release = true
+build_command = "pip install poetry && poetry build"
