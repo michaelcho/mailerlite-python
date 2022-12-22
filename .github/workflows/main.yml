@@ -27,9 +27,11 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('setup.py') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/poetry.lock') }}-${{ hashFiles('.github/workflows/main.yml') }}
           restore-keys: |
             ${{ runner.os }}-pip-
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
       - name: Configure poetry
         shell: bash
         run: python -m poetry config virtualenvs.in-project true
