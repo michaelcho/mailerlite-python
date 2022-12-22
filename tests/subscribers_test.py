@@ -140,3 +140,10 @@ class TestSubscribers:
 
         response = self.client.subscribers.delete(123123)
         assert response == 404
+
+    @vcr.use_cassette('tests/vcr_cassettes/subscribers-count.yml', filter_headers=['Authorization'])
+    def test_list_of_all_subscribers_should_be_returned(self, subscriber_keys):
+        response = self.client.subscribers.count()
+
+        assert isinstance(response, dict)
+        assert 'total' in response
