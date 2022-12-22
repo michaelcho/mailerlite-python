@@ -12,6 +12,7 @@ from mailerlite.sdk.subscribers import Subscribers
 from mailerlite.sdk.timezones import Timezones
 from mailerlite.sdk.webhooks import Webhooks
 from mailerlite.sdk.automations import Automations
+from mailerlite.sdk.batch import Batches
 
 from mailerlite.api_client import ApiClient
 
@@ -31,3 +32,4 @@ class Client(object):
         self.timezones = Timezones(self.api_client)
         self.webhooks = Webhooks(self.api_client)
         self.automations = Automations(self.api_client)
+        self.batches = Batches(self.api_client)
