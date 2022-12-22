@@ -27,8 +27,8 @@ class Batches(object):
                 )
             )
 
-        body_params = {
-            'requests': requests
-        }
+        body_params = {"requests": requests}
 
-        return self.api_client.request("POST", self.base_api_url, body=body_params).json()
+        return self.api_client.request(
+            "POST", self.base_api_url, body=body_params
+        ).json()

@@ -1,6 +1,7 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 __version__ = "0.1.0"
+
 
 def _read_long_description():
     try:
@@ -9,35 +10,31 @@ def _read_long_description():
     except Exception:
         return None
 
+
 setup(
-    name='mailerlite-sdk',
+    name="mailerlite-sdk",
     version=__version__,
-    author='MailerLite',
-    author_email='igor@mailerlite.com',
-    url='https://developers.mailerlite.com/',
-    description='The official Python SDK for MailerLite API.',
+    author="MailerLite",
+    author_email="igor@mailerlite.com",
+    url="https://developers.mailerlite.com/",
+    description="The official Python SDK for MailerLite API.",
     long_description=_read_long_description(),
     license="MIT",
-
     include_package_data=True,
     classifiers=[
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
-        'Topic :: Software Development :: Libraries',
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Topic :: Software Development :: Libraries",
     ],
-
     # Packages and dependencies
-    package_dir={'': 'src'},
-    packages=find_packages('src'),
-    install_requires=[
-    ],
-    extras_require={
-    },
-
+    package_dir={"": "src"},
+    packages=find_packages("src"),
+    install_requires=[],
+    extras_require={},
     # Other configurations
     zip_safe=False,
-    platforms='any',
+    platforms="any",
 )

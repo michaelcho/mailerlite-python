@@ -69,7 +69,11 @@ class Webhooks(object):
             )
 
         if type(events) is not list and events is not None:
-            raise TypeError("`events` type is not valid. Expected `list`, got {}.".format(type(events)))
+            raise TypeError(
+                "`events` type is not valid. Expected `list`, got {}.".format(
+                    type(events)
+                )
+            )
 
         params = locals()
         body_params = {}
@@ -97,7 +101,11 @@ class Webhooks(object):
         """
 
         if type(events) is not list:
-            raise TypeError("`events` type is not valid. Expected `list`, got {}.".format(type(events)))
+            raise TypeError(
+                "`events` type is not valid. Expected `list`, got {}.".format(
+                    type(events)
+                )
+            )
 
         body_params = {"events": events, "url": url}
         if len(name) > 0:

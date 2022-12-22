@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 
+
 class Timezones(object):
 
     # Timezones base API uri

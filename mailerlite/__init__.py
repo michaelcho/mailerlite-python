@@ -2,6 +2,9 @@
 
 from __future__ import absolute_import
 
+from mailerlite.api_client import ApiClient
+from mailerlite.sdk.automations import Automations
+from mailerlite.sdk.batch import Batches
 # import all api files into api package
 from mailerlite.sdk.campaigns import Campaigns
 from mailerlite.sdk.fields import Fields
@@ -11,10 +14,6 @@ from mailerlite.sdk.segments import Segments
 from mailerlite.sdk.subscribers import Subscribers
 from mailerlite.sdk.timezones import Timezones
 from mailerlite.sdk.webhooks import Webhooks
-from mailerlite.sdk.automations import Automations
-from mailerlite.sdk.batch import Batches
-
-from mailerlite.api_client import ApiClient
 
 
 class Client(object):
