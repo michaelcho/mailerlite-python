@@ -277,3 +277,16 @@ class Subscribers(object):
         )
 
         return True if response.status_code == 204 else False
+
+    def count(self):
+        """
+        Fetch total subscribers count
+
+        Returns a total count of subscribers.
+        Ref: https://developers.mailerlite.com/docs/subscribers.html#fetch-total-subscribers-count
+
+        :return: JSON array
+        :rtype: dict
+        """
+
+        return self.list(limit=0)
