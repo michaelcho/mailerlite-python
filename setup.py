@@ -2,25 +2,22 @@ import os
 import codecs
 from setuptools import setup, find_packages
 
-# Save version and author to __meta__.py
-version = open('VERSION').read().strip()
-dirname = os.path.dirname(__file__)
-path = os.path.join(dirname, 'mailerlite', '__meta__.py')
-meta = '''# Automatically created. Please do not edit.
-__version__ = '%s'
-__author__ = 'MailerLite'
-''' % version
-with open(path, 'w') as F:
-    F.write(meta)
+__version__ = "0.1.0"
+
+def _read_long_description():
+    try:
+        with open("readme.rst") as fd:
+            return fd.read()
+    except Exception:
+        return None
 
 setup(
-    # Basic info
     name='mailerlite-sdk',
-    version=version,
+    version=__version__,
     author='MailerLite',
     author_email='igor@mailerlite.com',
-    url='',
-    description='',
+    url='https://developers.mailerlite.com/',
+    description='The official Python SDK for MailerLite API.',
     long_description=codecs.open('README.rst', 'rb', 'utf8').read(),
 
     # Classifiers (see https://pypi.python.org/pypi?%3Aaction=list_classifiers)
