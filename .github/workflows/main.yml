@@ -34,15 +34,15 @@ jobs:
         uses: snok/install-poetry@v1
       - name: Configure poetry
         shell: bash
-        run: python -m poetry config virtualenvs.in-project true
+        run: source .venv/bin/activate
       - name: View poetry version
         run: poetry --version
       - name: Install dependencies
         run: |
-          python -m poetry install
-          python -m poetry install pytest-github-actions-annotate-failures
+          poetry install
+          poetry install pytest-github-actions-annotate-failures
       - name: Test with pytest
-        run: python -m poetry run python -m pytest
+        run: pytest
 
   beautify:
     name: Beautify
