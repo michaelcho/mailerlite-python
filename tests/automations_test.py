@@ -24,7 +24,6 @@ def automation_keys():
 
 
 class TestAutomations:
-
     # Automationd ID used in tests
     automation_id = 75040845299975641
 

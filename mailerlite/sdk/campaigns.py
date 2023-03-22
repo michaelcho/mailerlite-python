@@ -2,7 +2,6 @@ from __future__ import absolute_import
 
 
 class Campaigns(object):
-
     # Campaigns base API uri
     base_api_url = "api/campaigns"
 

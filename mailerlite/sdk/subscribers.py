@@ -4,7 +4,6 @@ import re
 
 
 class Subscribers(object):
-
     # Subscribers base API uri
     base_api_url = "api/subscribers"
 

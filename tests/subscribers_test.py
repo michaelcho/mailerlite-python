@@ -78,7 +78,6 @@ def group_keys():
 
 
 class TestSubscribers:
-
     # Set static import_id
     import_id = 75127888126412443
 

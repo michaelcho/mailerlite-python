@@ -2,7 +2,6 @@ from __future__ import absolute_import
 
 
 class Forms(object):
-
     # Forms base API uri
     base_api_url = "api/forms"
 
