@@ -1,0 +1,59 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: GET
+    uri: https://connect.mailerlite.com/api/segments?limit=10&page=1
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6SS0U7CQBBFf6W5iTwttltAcI3xCzQm+gaErGWADdtt3Z0STNN/Ny0QUJ8Mb5PZ
+        O3funkyNpWYNNa1hllAYj2Q6SO5SeT8YT4ZyOIGA0zlB4fkreqfA0Rutc3IMAS5YWygpUJTkFl4z
+        QdVY2UJz1w7sjVtDQSbJDRqBzJps+1uYXAiPMk+aabloX5EmadqXaT+VkRwrOVKDIZq5gDVuGzob
+        40Mr3DCXQc3iWZwVzlHGt7k2lrw1TLdZkc9iXZpZHA75w1Op1/QoIWD1dfOlpx2Uq6wVcLTnQ90I
+        5NSyrZFV3pPjRTvRgVn5Iu+KdvW5ffzStEbl7cnR6g+yUOhZ/VkVD9Grp50pqgABnbHZEdRK20CN
+        OI5dA+KwSl54s6/O1j8TvdCeo57vYv1JMxcoNW/+H6cFSv4EJWnPrINzuram+QYAAP//AwBr1nBD
+        tQIAAA==
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 77d269567c28c27d-VIE
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 21 Dec 2022 17:41:57 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Locale:
+      - en
+      X-RateLimit-Limit:
+      - '120'
+      X-RateLimit-Remaining:
+      - '119'
+    status:
+      code: 200
+      message: OK
+version: 1

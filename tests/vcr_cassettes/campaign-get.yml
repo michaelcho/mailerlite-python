@@ -1,0 +1,78 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: GET
+    uri: https://connect.mailerlite.com/api/campaigns/75117069411026195
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA8xXbW/bNhD+KwzRAhsgvzZOFi0LCnQbiq1v6AIMw1QINHmWmVCkSh6jyIb/+0BJ
+        luQ0aTasG/rJ5MPjw4d3p+N5SwVDRuMtlYLG9HQxm51OT86OZ7Pp/GR2tqARZZwbrzGtDeaL+Wwx
+        oxHVLAca0zdQkhcsL5jMNHkTsIhiVYQlC5lXzNKIOmToHY2psGyFNKK5dE7qLG3O/vNDRB0gSp25
+        ZraSCsEOx+nK2HTtc6ZbEwFK3oCtUsfXILwCGmuvVEQV05lnGbR6aY90twygWxuL3IigtFA0otKZ
+        k2dn9Wz07lV/w3dGuWtJIyqkBY7SaBpThZbuIsotMASRMgys0/l8NJuP5jMyW8TH03h2RiPqC/Gg
+        yTx+Ng1S2huIcMn9NT568O22BnDILB4gK6mlW98xMkVxgAhYMa8whZxJlR4G+dnp/Hi6ODulEa2X
+        g2vvJsLA5v5EqHeypYL0wQzqTdrU4G3GuD5bll4qATZdYx6isbImpzFFcOgd2OeBAaySCGNu8tYg
+        bUN0CQ7Ja6a7oLXO8Msr4MHvl2vpiHSEEQ0lCaRkL4FGlBuNoIPd+dGPb19c/vHuJxJkXCT6vP0l
+        5HwNTNQjQs6PRqPtkwCkaIrdaHQxQJYG0eQBbI1RooKL82TSDGqyZNLRnS+NqA6IA7AnfikJrsFC
+        RPDhOxy1ux1WCkhw6A8JRbjFZMKdS2jLPs7Vz8YgWFJsc2YzqePp7nkOQjJitKqI4xZAE6YF+SZn
+        t6NSClzHJ8fT4vbb7ThXLxpHXYZQbpvF2XT69EjmhbHINH6fSz3aLxzg7XEDaKUMw1gbDT246w95
+        6xHstmBCSJ2NGqce7N8vKVhhPFsUt/esWZmtH1xEUwwJd7vWi8mk9uPFIBiHMT1PJm3MQhxDgtCI
+        FopJnQan05j+LpHlR4lO9Fu0mypniZ/OjucQfhbLEECnAEMkjCDbJ+2HtRuTNxIcAlbksjRXjBR2
+        A5kKu6YLwew1I1oCKauGp5SAipGVsTlDT15evn41Jr8qea3lFSmMlsHslMNVRNrRsiKZIUbwTYW1
+        pulpHFRun3irdmH0gGIEPVAd1exQsoaWlNU129zZsWFSI1hwpmRB9OCWif4FWkFKEr7m4DZkY2FT
+        ZdqUrS6yIaZWUoX9bHA6i0gJV6JmYEQz4tAaHaazM+L80l3bquBXkkhSVoV0G+JksxrXN9XBhlu5
+        hF2i6/Ibst6tDabeKhrTNWLh4mQSEsFYlsE4MyZTwArpQvVJJn01GvW73aiwRiSTHkkmTVlNJp+U
+        02Qym393fHv67GRc6Czkj4UbCeUnElp8PCiA0nRwMmnq8GdOol/imQqFnivJr9OcFc0DLF0qwMlM
+        g6AxWg93nt75f/nwSpeWUuvQI6yYctD0GC4c5OpSPo2oKUC7tM65eu61/OghvQuHeWoZ1irrolTD
+        Dq3UGY3p9Gn90ofL38P2Cd546VG+QRYesnbw4xyuYPlgbz19dNOa2fBGec0PDh7Af+Ngs8J7OAbw
+        4xwrY0tmRb8/8IIWKVvVrV/zhKNl/LoJ2T7JvAOXfvRy04Z+96HGRCp1yjyanIVUcV1ihOfwoHuk
+        77vGVLq07Zg68zXrU6vR0MzSG7BOGt1T3VkP4kNPizI/PO+OlQIePrScac+UqgatGg+c2/ZT3F9X
+        gIJ+Fg7Zj7kpqv3YQrPSeKR1EnCT52A5dJerYeftDVQdxplOl9C10R390gIT3Pp82bSFdwuTYG69
+        NMyK8WFvlky67m5QjfbdYDIBIcNfgPal/BGwbjxDd4nyppcqpAttRh8YX3CT1xk0+OLbXm8X/RN9
+        nynKh+LaVuR/Ffd551ngspCg0SWTJXOS92Lfd0tfld7wSg1FtvOvRWD377GT+FuP/CuRHyJaMqv7
+        P7V97PY1bx5RDbeYOoTiy7pbupR7a0GjqrrKZDzuK8TuLwAAAP//AwC61a4a+A8AAA==
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 77d1ba66c967c2f7-VIE
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 21 Dec 2022 15:42:31 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Locale:
+      - en
+      X-RateLimit-Limit:
+      - '120'
+      X-RateLimit-Remaining:
+      - '118'
+    status:
+      code: 200
+      message: OK
+version: 1

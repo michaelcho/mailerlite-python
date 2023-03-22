@@ -1,0 +1,67 @@
+interactions:
+- request:
+    body: '{"name": "New Form Name"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '25'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: PUT
+    uri: https://connect.mailerlite.com/api/forms/75017795259074408
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4xU23LbOAz9lQxm9k2JJVleJ/yA7su2D/sadzg0BctoKFAlwKSejv99h3ESOWl6
+        edEIN4I4B4ffoXfqwHwH6sHAelU36/XNql3d1Ouuq6+hAj1MCAamOOUJKpCQBzDw37d/v+wbqIDd
+        WMKf8OHiQ0zjxadiV+ATOsXeOgUDbd22l0172dYXzdK0rWm7khL5HpNQZLE+ZlYwdQVxwlf2nGWT
+        UyxX3YXoTkHRRFyuU/8Fx3dOtMQ+5J54sH5PoU/Ib5v8LOVN33fTfnEVQVXiQUpSH/M2oI2TEoPR
+        lLGCIcWotoDe/n3drdumgl1Mo32DtiYaBkwC5haURoxZ4XP1/GsFfeRewKwqEJ9iCHbC5JHVDQhm
+        VVewS/g1I/sDmObMspmpUDNG1r1ABfcktKVAegADLjy4Q/HmFGwgUTC3n2fLlmG9guEcQgV76tFG
+        PuWI32OfQxmCY0EiOFGbcCDR5LTg6V4qnVe6RzA7FwQrILHbFO8KtE+eB5e4YD6iiBtQTj32rpDH
+        imVHTnh698hHnvrHJSnOYwVZsLfE1mWN42NzeXv005HvcSQ+IbLso9qcAhjYq05iNovNQjQmN+DV
+        EOMQ0E0kVz6Om8XoKGAKpHg5V8vllGK/WcyezaKQLZvFD4LbLJr2uvtWPlcTD3AadiSRAsOQYp7m
+        EZ7N2zP5Nl13s1zXXbdaLlezPj8eLv4p2fAM+pnEBFl/ocBi/4H2Avm7V8Itjt/XZZa8FZ9oi/1Z
+        dWYfeUdpnL3LCrYxs3+V9yXz3XnTnz07jekas2zh+LQ+MgVSqyg6wzn77I6YZI/9ezFktw0/hM51
+        Vz+u8lnJAzFjeqmYX5CyepNLhYDC4EkVMdFA7II9cfckFXbhoOTFJhTUFxEdj/8DAAD//wMAZm6D
+        6sQFAAA=
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 77d1fa8e482bfcb5-VIE
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 21 Dec 2022 16:26:19 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Locale:
+      - en
+      X-RateLimit-Limit:
+      - '120'
+      X-RateLimit-Remaining:
+      - '117'
+    status:
+      code: 200
+      message: OK
+version: 1

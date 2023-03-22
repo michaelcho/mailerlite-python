@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: '{"name": "My New Webhook Name", "enabled": true}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '48'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: PUT
+    uri: https://connect.mailerlite.com/api/webhooks/75140634583762630
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA3SOTYvCMBRF/0q566hN0lZ5O3dulGE2sxgHSZsHBvuhyevIIP53KcjgxuU993I5
+        N3gnDnRD8CAsS13klS3KlV1WprI5FHrXMQjbv2zH1+yL6+MwnLLdRBXG2IJwFDkn2i/2i86FlmMb
+        hOfN0EGBf7mXBPpGGuvUxFBznDeRnbCHeoVj/x88fhS4d3XLHiRxZIXETWSZRD4vfhOua/mAwvPp
+        4KbG5MbMtJkZnRlNZUGlnRTP/u2kIm1xvz8AAAD//wMA5EZ+3wYBAAA=
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 77d3ddce8e6efcad-VIE
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 21 Dec 2022 21:56:13 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Locale:
+      - en
+      X-RateLimit-Limit:
+      - '120'
+      X-RateLimit-Remaining:
+      - '117'
+    status:
+      code: 200
+      message: OK
+version: 1

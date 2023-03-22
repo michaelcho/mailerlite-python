@@ -1,0 +1,109 @@
+interactions:
+- request:
+    body: '{"name": "New Test Segment Name"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '33'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: PUT
+    uri: https://connect.mailerlite.com/api/segments/75123062193784148
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1zMwQqDMBCE4VcJA71FyEatdh/CS3uXoFuRalJ0oQfx3Yulh9LrPx+zoQ8awBvG
+        HoyqJJ+7s6dLXtUFFTUsYpgFjEZe5iarmqsMs0Q1zdEtNGmYwGSRnhLbJagcd/cpBf3kVZcxDmCQ
+        cyfsFt00do9/6H7gly0SVPr2WOGd9xn5zJOhiqnkvMC+vwEAAP//AwAym5ifvgAAAA==
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 77d282a82b66c270-VIE
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 21 Dec 2022 17:59:14 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Locale:
+      - en
+      X-RateLimit-Limit:
+      - '120'
+      X-RateLimit-Remaining:
+      - '118'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"name": "New Test Segment Name"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '33'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: PUT
+    uri: https://connect.mailerlite.com/api/segments/123123
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6rmUlBQUFDKTS0uTkxPVbJSUPLLVygsTS2qVChKLS7NKSlWSMsvUsjNT0nNUYh2
+        LCiIifEFsYtjYoJT03NT80piFQyNjA2NjJW4agEAAAD//wMA6xdugU0AAAA=
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 77d282aa1b24c2eb-VIE
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 21 Dec 2022 17:59:14 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-RateLimit-Limit:
+      - '120'
+      X-RateLimit-Remaining:
+      - '117'
+    status:
+      code: 404
+      message: Not Found
+version: 1
