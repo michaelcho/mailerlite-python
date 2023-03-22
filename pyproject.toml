@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "mailerlite-sdk"
+name = "mailerlite"
 description = "The official MailerLite Python SDK"
 authors = ["Igor Hrček <igor@mailerlite.com>"]
 version = "0.1.0"
