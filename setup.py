@@ -12,10 +12,10 @@ def _read_long_description():
 
 
 setup(
-    name="mailerlite-sdk",
+    name="mailerlite",
     version=__version__,
     author="MailerLite",
-    author_email="igor@mailerlite.com",
+    author_email="tech@mailerlite.com",
     url="https://developers.mailerlite.com/",
     description="The official Python SDK for MailerLite API.",
     long_description=_read_long_description(),
