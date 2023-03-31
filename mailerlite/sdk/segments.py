@@ -49,9 +49,7 @@ class Segments(object):
 
         if not isinstance(segment_id, int):
             raise TypeError(
-                "`segment_id` type is not valid. Expected `int`, got {}.".format(
-                    type(segment_id)
-                )
+                f"`segment_id` type is not valid. Expected `int`, got {type(segment_id)}."
             )
 
         if not isinstance(segment_id, int):
@@ -67,7 +65,7 @@ class Segments(object):
             query_params[key] = val
 
         return self.api_client.request(
-            "GET", "{}/{}".format(self.base_api_url, segment_id), query_params
+            "GET", f"{self.base_api_url}/{segment_id}", query_params
         ).json()
 
     def update(self, segment_id, name):
@@ -87,9 +85,7 @@ class Segments(object):
 
         if not isinstance(segment_id, int):
             raise TypeError(
-                "`segment_id` type is not valid. Expected `int`, got {}.".format(
-                    type(segment_id)
-                )
+                f"`segment_id` type is not valid. Expected `int`, got {type(segment_id)}."
             )
 
         if len(name) > 255:
@@ -99,7 +95,7 @@ class Segments(object):
         body_params = {"name": name}
 
         response = self.api_client.request(
-            "PUT", "{}/{}".format(self.base_api_url, segment_id), body=body_params
+            "PUT", f"{self.base_api_url}/{segment_id}", body=body_params
         )
 
         return True if response.status_code == 200 else False
@@ -119,13 +115,11 @@ class Segments(object):
 
         if not isinstance(segment_id, int):
             raise TypeError(
-                "`segment_id` type is not valid. Expected `int`, got {}.".format(
-                    type(segment_id)
-                )
+                f"`segment_id` type is not valid. Expected `int`, got {type(segment_id)}."
             )
 
         response = self.api_client.request(
-            "DELETE", "{}/{}".format(self.base_api_url, segment_id)
+            "DELETE", f"{self.base_api_url}/{segment_id}"
         )
 
         return True if response.status_code == 204 else False

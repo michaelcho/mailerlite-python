@@ -35,13 +35,11 @@ class Webhooks(object):
 
         if not isinstance(webhook_id, int):
             raise TypeError(
-                "`webhook_id` type is not valid. Expected `int`, got {}.".format(
-                    type(webhook_id)
-                )
+                f"`webhook_id` type is not valid. Expected `int`, got {type(webhook_id)}."
             )
 
         return self.api_client.request(
-            "GET", "{}/{}".format(self.base_api_url, webhook_id)
+            "GET", f"{self.base_api_url}/{webhook_id}"
         ).json()
 
     def update(self, webhook_id, events=None, url=None, name=None, enabled=True):
@@ -62,16 +60,12 @@ class Webhooks(object):
 
         if not isinstance(webhook_id, int):
             raise TypeError(
-                "`webhook_id` type is not valid. Expected `int`, got {}.".format(
-                    type(webhook_id)
-                )
+                f"`webhook_id` type is not valid. Expected `int`, got {type(webhook_id)}."
             )
 
         if type(events) is not list and events is not None:
             raise TypeError(
-                "`events` type is not valid. Expected `list`, got {}.".format(
-                    type(events)
-                )
+                f"`events` type is not valid. Expected `list`, got {type(events)}."
             )
 
         params = locals()
@@ -81,7 +75,7 @@ class Webhooks(object):
                 body_params[key] = val
 
         return self.api_client.request(
-            "PUT", "{}/{}".format(self.base_api_url, webhook_id), body=body_params
+            "PUT", f"{self.base_api_url}/{webhook_id}", body=body_params
         ).json()
 
     def create(self, events, url, name=None):
@@ -101,9 +95,7 @@ class Webhooks(object):
 
         if type(events) is not list:
             raise TypeError(
-                "`events` type is not valid. Expected `list`, got {}.".format(
-                    type(events)
-                )
+                f"`events` type is not valid. Expected `list`, got {type(events)}."
             )
 
         body_params = {"events": events, "url": url}
@@ -129,13 +121,11 @@ class Webhooks(object):
 
         if not isinstance(webhook_id, int):
             raise TypeError(
-                "`webhook_id` type is not valid. Expected `int`, got {}.".format(
-                    type(webhook_id)
-                )
+                f"`webhook_id` type is not valid. Expected `int`, got {type(webhook_id)}."
             )
 
         response = self.api_client.request(
-            "DELETE", "{}/{}".format(self.base_api_url, webhook_id)
+            "DELETE", f"{self.base_api_url}/{webhook_id}"
         )
 
         return True if response.status_code == 204 else False

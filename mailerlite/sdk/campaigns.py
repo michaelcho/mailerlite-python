@@ -35,13 +35,11 @@ class Campaigns(object):
 
         if not isinstance(campaign_id, int):
             raise TypeError(
-                "`campaign_id` type is not valid. Expected `int`, got {}.".format(
-                    type(campaign_id)
-                )
+                f"`campaign_id` type is not valid. Expected `int`, got {type(campaign_id)}."
             )
 
         return self.api_client.request(
-            "PUT", "{}/{}".format(self.base_api_url, campaign_id), body=campaign
+            "PUT", f"{self.base_api_url}/{campaign_id}", body=campaign
         ).json()
 
     def get(self, campaign_id):
@@ -58,13 +56,11 @@ class Campaigns(object):
 
         if not isinstance(campaign_id, int):
             raise TypeError(
-                "`campaign_id` type is not valid. Expected `int`, got {}.".format(
-                    type(campaign_id)
-                )
+                f"`campaign_id` type is not valid. Expected `int`, got {type(campaign_id)}."
             )
 
         return self.api_client.request(
-            "GET", "{}/{}".format(self.base_api_url, campaign_id)
+            "GET", f"{self.base_api_url}/{campaign_id}"
         ).json()
 
     def list(self, **kwargs):
@@ -110,14 +106,12 @@ class Campaigns(object):
 
         if not isinstance(campaign_id, int):
             raise TypeError(
-                "`campaign_id` type is not valid. Expected `int`, got {}.".format(
-                    type(campaign_id)
-                )
+                f"`campaign_id` type is not valid. Expected `int`, got {type(campaign_id)}."
             )
 
         return self.api_client.request(
             "POST",
-            "{}/{}/schedule".format(self.base_api_url, campaign_id),
+            f"{self.base_api_url}/{campaign_id}/schedule",
             body=schedule,
         ).json()
 
@@ -135,13 +129,11 @@ class Campaigns(object):
 
         if not isinstance(campaign_id, int):
             raise TypeError(
-                "`campaign_id` type is not valid. Expected `int`, got {}.".format(
-                    type(campaign_id)
-                )
+                f"`campaign_id` type is not valid. Expected `int`, got {type(campaign_id)}."
             )
 
         return self.api_client.request(
-            "POST", "{}/{}/cancel".format(self.base_api_url, campaign_id)
+            "POST", f"{self.base_api_url}/{campaign_id}/cancel"
         ).json()
 
     def delete(self, campaign_id):
@@ -158,13 +150,11 @@ class Campaigns(object):
 
         if not isinstance(campaign_id, int):
             raise TypeError(
-                "`campaign_id` type is not valid. Expected `int`, got {}.".format(
-                    type(campaign_id)
-                )
+                f"`campaign_id` type is not valid. Expected `int`, got {type(campaign_id)}."
             )
 
         response = self.api_client.request(
-            "DELETE", "{}/{}".format(self.base_api_url, campaign_id)
+            "DELETE", f"{self.base_api_url}/{campaign_id}"
         )
 
         return True if response.status_code == 204 else False
@@ -183,14 +173,11 @@ class Campaigns(object):
 
         if not isinstance(campaign_id, int):
             raise TypeError(
-                "`campaign_id` type is not valid. Expected `int`, got {}.".format(
-                    type(campaign_id)
-                )
+                f"`campaign_id` type is not valid. Expected `int`, got {type(campaign_id)}."
             )
 
         return self.api_client.request(
-            "POST",
-            "{}/{}/reports/subscriber-activity".format(self.base_api_url, campaign_id),
+            "POST", f"{self.base_api_url}/{campaign_id}/reports/subscriber-activity"
         ).json()
 
     def languages(self):
@@ -204,6 +191,4 @@ class Campaigns(object):
         :rtype: dict
         """
 
-        return self.api_client.request(
-            "GET", "{}/languages".format(self.base_api_url)
-        ).json()
+        return self.api_client.request("GET", f"{self.base_api_url}/languages").json()

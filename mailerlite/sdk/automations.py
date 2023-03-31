@@ -35,7 +35,7 @@ class Automations(object):
         """
 
         return self.api_client.request(
-            "GET", "{}/{}".format(self.base_api_url, automation_id)
+            "GET", f"{self.base_api_url}/{automation_id}"
         ).json()
 
     def activity(self, automation_id, **kwargs):
@@ -65,6 +65,6 @@ class Automations(object):
 
         return self.api_client.request(
             "GET",
-            "{}/{}/activity".format(self.base_api_url, automation_id),
+            f"{self.base_api_url}/{automation_id}/activity",
             query_params,
         ).json()

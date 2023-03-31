@@ -76,9 +76,7 @@ class Groups(object):
 
         if not isinstance(group_id, int):
             raise TypeError(
-                "`group_id` type is not valid. Expected `int`, got {}.".format(
-                    type(group_id)
-                )
+                f"`group_id` type is not valid. Expected `int`, got {type(group_id)}."
             )
 
         if len(name) > 255:
@@ -88,7 +86,7 @@ class Groups(object):
         body_params = {"name": name}
 
         return self.api_client.request(
-            "PUT", "{}/{}".format(self.base_api_url, group_id), body=body_params
+            "PUT", f"{self.base_api_url}/{group_id}", body=body_params
         ).json()
 
     def delete(self, group_id):
@@ -106,14 +104,10 @@ class Groups(object):
 
         if not isinstance(group_id, int):
             raise TypeError(
-                "`group_id` type is not valid. Expected `int`, got {}.".format(
-                    type(group_id)
-                )
+                f"`group_id` type is not valid. Expected `int`, got {type(group_id)}."
             )
 
-        response = self.api_client.request(
-            "DELETE", "{}/{}".format(self.base_api_url, group_id)
-        )
+        response = self.api_client.request("DELETE", f"{self.base_api_url}/{group_id}")
 
         return True if response.status_code == 204 else False
 
@@ -134,9 +128,7 @@ class Groups(object):
 
         if not isinstance(group_id, int):
             raise TypeError(
-                "`group_id` type is not valid. Expected `int`, got {}.".format(
-                    type(group_id)
-                )
+                f"`group_id` type is not valid. Expected `int`, got {type(group_id)}."
             )
 
         available_params = ["filter", "limit", "page"]
@@ -154,6 +146,6 @@ class Groups(object):
 
         return self.api_client.request(
             "GET",
-            "{}/{}/{}".format(self.base_api_url, group_id, "subscribers"),
+            f"{self.base_api_url}/{group_id}/subscribers",
             query_params,
         ).json()

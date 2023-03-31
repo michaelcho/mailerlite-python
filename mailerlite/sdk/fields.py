@@ -82,9 +82,7 @@ class Fields(object):
 
         if not isinstance(field_id, int):
             raise TypeError(
-                "`field_id` type is not valid. Expected `int`, got {}.".format(
-                    type(field_id)
-                )
+                f"`field_id` type is not valid. Expected `int`, got {type(field_id)}."
             )
 
         if len(name) > 255:
@@ -93,7 +91,7 @@ class Fields(object):
         body_params = {"name": name}
 
         return self.api_client.request(
-            "PUT", "{}/{}".format(self.base_api_url, field_id), body=body_params
+            "PUT", f"{self.base_api_url}/{field_id}", body=body_params
         ).json()
 
     def delete(self, field_id):
@@ -108,8 +106,6 @@ class Fields(object):
         :rtype: bool
         """
 
-        response = self.api_client.request(
-            "DELETE", "{}/{}".format(self.base_api_url, field_id)
-        )
+        response = self.api_client.request("DELETE", f"{self.base_api_url}/{field_id}")
 
         return True if response.status_code == 204 else False

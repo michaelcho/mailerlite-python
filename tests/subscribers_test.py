@@ -2,11 +2,12 @@ import os
 import random
 import string
 
-import mailerlite as MailerLite
 import pytest
 import vcr
 from dotenv import load_dotenv
 from pytest import fixture
+
+import mailerlite as MailerLite
 
 
 @fixture
@@ -228,7 +229,7 @@ class TestSubscribers:
         name = "".join(random.choices(string.ascii_letters, k=10))
 
         subscriber = self.client.subscribers.create(
-            "{}@email.com".format(name),
+            f"{name}@email.com",
             fields={"name": "John", "last_name": "Doe"},
             ip_address="1.1.1.1",
         )

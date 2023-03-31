@@ -22,9 +22,7 @@ class Batches(object):
 
         if type(requests) is not list:
             raise TypeError(
-                "`requests` type is not valid. Expected `dict`, got {}.".format(
-                    type(requests)
-                )
+                f"`requests` type is not valid. Expected `dict`, got {type(requests)}."
             )
 
         body_params = {"requests": requests}
