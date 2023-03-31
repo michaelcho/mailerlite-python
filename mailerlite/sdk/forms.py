@@ -34,7 +34,7 @@ class Forms(object):
                 query_params[key] = val
 
         return self.api_client.request(
-            "GET", "{}/{}".format(self.base_api_url, type), query_params
+            "GET", f"{self.base_api_url}/{type}", query_params
         ).json()
 
     def get(self, form_id):
@@ -51,14 +51,10 @@ class Forms(object):
 
         if not isinstance(form_id, int):
             raise TypeError(
-                "`form_id` type is not valid. Expected `int`, got {}.".format(
-                    type(form_id)
-                )
+                f"`form_id` type is not valid. Expected `int`, got {type(form_id)}."
             )
 
-        return self.api_client.request(
-            "GET", "{}/{}".format(self.base_api_url, form_id)
-        ).json()
+        return self.api_client.request("GET", f"{self.base_api_url}/{form_id}").json()
 
     def update(self, form_id, name):
         """
@@ -75,15 +71,13 @@ class Forms(object):
 
         if not isinstance(form_id, int):
             raise TypeError(
-                "`form_id` type is not valid. Expected `int`, got {}.".format(
-                    type(form_id)
-                )
+                f"`form_id` type is not valid. Expected `int`, got {type(form_id)}."
             )
 
         body_params = {"name": name}
 
         return self.api_client.request(
-            "PUT", "{}/{}".format(self.base_api_url, form_id), body=body_params
+            "PUT", f"{self.base_api_url}/{form_id}", body=body_params
         ).json()
 
     def get_subscribers(self, form_id, **kwargs):
@@ -102,9 +96,7 @@ class Forms(object):
 
         if not isinstance(form_id, int):
             raise TypeError(
-                "`form_id` type is not valid. Expected `int`, got {}.".format(
-                    type(form_id)
-                )
+                f"`form_id` type is not valid. Expected `int`, got {type(form_id)}."
             )
 
         available_params = ["limit", "page", "filter"]
@@ -122,7 +114,7 @@ class Forms(object):
                 query_params[key] = val
 
         return self.api_client.request(
-            "GET", "{}/{}/subscribers".format(self.base_api_url, form_id), query_params
+            "GET", f"{self.base_api_url}/{form_id}/subscribers", query_params
         ).json()
 
     def delete(self, form_id):
@@ -139,13 +131,9 @@ class Forms(object):
 
         if not isinstance(form_id, int):
             raise TypeError(
-                "`form_id` type is not valid. Expected `int`, got {}.".format(
-                    type(form_id)
-                )
+                f"`form_id` type is not valid. Expected `int`, got {type(form_id)}."
             )
 
-        response = self.api_client.request(
-            "DELETE", "{}/{}".format(self.base_api_url, form_id)
-        )
+        response = self.api_client.request("DELETE", f"{self.base_api_url}/{form_id}")
 
         return True if response.status_code == 204 else False

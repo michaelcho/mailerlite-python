@@ -157,7 +157,7 @@ class Subscribers(object):
             raise TypeError("Provided email address or subscriber id are not valid.")
 
         return self.api_client.request(
-            "GET", "{}/{}".format(self.base_api_url, subscriber_id)
+            "GET", f"{self.base_api_url}/{subscriber_id}"
         ).json()
 
     def delete(self, subscriber_id):
@@ -175,13 +175,11 @@ class Subscribers(object):
 
         if not isinstance(subscriber_id, int):
             raise TypeError(
-                "`subscriber_id` type is not valid. Expected `int`, got {}.".format(
-                    type(subscriber_id)
-                )
+                f"`subscriber_id` type is not valid. Expected `int`, got {type(subscriber_id)}."
             )
 
         response = self.api_client.request(
-            "DELETE", "{}/{}".format(self.base_api_url, subscriber_id)
+            "DELETE", f"{self.base_api_url}/{subscriber_id}"
         )
 
         return response.status_code
@@ -201,13 +199,11 @@ class Subscribers(object):
 
         if not isinstance(import_id, int):
             raise TypeError(
-                "`import_id` type is not valid. Expected `int`, got {}.".format(
-                    type(import_id)
-                )
+                f"`import_id` type is not valid. Expected `int`, got {type(import_id)}."
             )
 
         return self.api_client.request(
-            "GET", "{}/import/{}".format(self.base_api_url, import_id)
+            "GET", f"{self.base_api_url}/import/{import_id}"
         ).json()
 
     def assign_subscriber_to_group(self, subscriber_id, group_id):
@@ -227,20 +223,16 @@ class Subscribers(object):
 
         if not isinstance(subscriber_id, int):
             raise TypeError(
-                "`subscriber_id` type is not valid. Expected `int`, got {}.".format(
-                    type(subscriber_id)
-                )
+                f"`subscriber_id` type is not valid. Expected `int`, got {type(subscriber_id)}."
             )
 
         if not isinstance(group_id, int):
             raise TypeError(
-                "`group_id` type is not valid. Expected `int`, got {}.".format(
-                    type(group_id)
-                )
+                f"`group_id` type is not valid. Expected `int`, got {type(group_id)}."
             )
 
         return self.api_client.request(
-            "POST", "{}/{}/groups/{}".format(self.base_api_url, subscriber_id, group_id)
+            "POST", f"{self.base_api_url}/{subscriber_id}/groups/{group_id}"
         ).json()
 
     def unassign_subscriber_from_group(self, subscriber_id, group_id):
@@ -260,21 +252,16 @@ class Subscribers(object):
 
         if not isinstance(subscriber_id, int):
             raise TypeError(
-                "`subscriber_id` type is not valid. Expected `int`, got {}.".format(
-                    type(subscriber_id)
-                )
+                f"`subscriber_id` type is not valid. Expected `int`, got {type(subscriber_id)}."
             )
 
         if not isinstance(group_id, int):
             raise TypeError(
-                "`group_id` type is not valid. Expected `int`, got {}.".format(
-                    type(group_id)
-                )
+                f"`group_id` type is not valid. Expected `int`, got {type(group_id)}."
             )
 
         response = self.api_client.request(
-            "DELETE",
-            "{}/{}/groups/{}".format(self.base_api_url, subscriber_id, group_id),
+            "DELETE", f"{self.base_api_url}/{subscriber_id}/groups/{group_id}"
         )
 
         return True if response.status_code == 204 else False
