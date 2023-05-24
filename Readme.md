@@ -24,6 +24,7 @@ For more information how to obtain an API key visit the [following link](https:/
     - [Update a subscriber](#update-a-subscriber)
     - [Get a subscriber](#get-a-subscriber)
     - [Delete a subscriber](#delete-a-subscriber)
+    - [Forget a subscriber](#forget-a-subscriber)
   - [Groups](#groups)
     - [List all groups](#list-all-groups)
     - [Create a group](#create-a-group)
@@ -173,6 +174,21 @@ client = MailerLite.Client({
 subscriber_id = 1234567890
 
 response = client.subscribers.delete(subscriber_id)
+```
+
+### Forget a subscriber
+<a name="forget-a-subscriber"></a>
+
+```python
+import mailerlite as MailerLite
+
+client = MailerLite.Client({
+  'api_key': 'your-api-key'
+})
+
+subscriber_id = 1234567890
+
+response = client.subscribers.forget(subscriber_id)
 ```
 
 ## Groups

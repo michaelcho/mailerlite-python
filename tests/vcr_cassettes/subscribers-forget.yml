@@ -1,0 +1,124 @@
+interactions:
+- request:
+    body: '{"email": "test5@email.com", "fields": {"name": "John", "last_name": "Doe"},
+      "ip_address": "1.1.1.1"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '101'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: POST
+    uri: https://connect.mailerlite.com/api/subscribers
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SRz2oDIRDGXyXM2Q2uu7LEUw899RVKEaO2GbqromOhDXn3Ypp/LYTixd98M87M
+        5x6cIQNqD+hAwSQ5n6ZRDlKO/SSHARj4xeAMCsgXkg9HWtu4AINChmoBBcYSfvgWiTVb3yIJG/pA
+        oDiDmHwo2sZ6Yjujfb8NtASdDfmrfEVM2jiXfWm9+vXxtNfrttiMW++0IVAguBBdLzrBVz1Xo1Aj
+        BwY1/MkLdZ4Z2OwN/VOZ3K+UoeOyE+Oq3ygplNgAg1f0syvNvmCWtvdT3AVgMJtC+hR6jM0ZG5dk
+        wuelfds8XxHpck+7GPwZmsUX+NKo0xnad+itIbvTxyl0f1cRd5XhrjL+KAcGbznWVEA9vzCYozWE
+        MZzLYmoGYbgxNibCoPE05+HwDQAA//8DABEp4vdiAgAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 7cc815e1ee47b903-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 24 May 2023 19:53:34 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      VIA:
+      - Ingress
+      access-control-allow-origin:
+      - '*'
+      cache-control:
+      - no-cache, private
+      x-locale:
+      - en
+      x-ratelimit-limit:
+      - '120'
+      x-ratelimit-remaining:
+      - '119'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: 'null'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '4'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - MailerLite-Python-SDK-Client
+    method: POST
+    uri: https://connect.mailerlite.com/api/subscribers/75007745355417533/forget
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4RSy24bIRT9FXTXjMXATK2y6qKrbruMKoTh1kZhAMGdRG6Uf69w/UolK2LDeVxm
+        OIc38JYs6DcIHjRsZyG222lW8zyN21kp4ICLDRE0EDaav53QxuUFODSytDbQYB2FF+xMXqvDzpTQ
+        ISYCLTjkgqkZl9czdjG453uiG0y1hDf5BkMx1vuKrX9r3JxWP33dNVfDDr2xBBqkkHIY5SAFG4We
+        pJ4EcFjTf760xsjBVbT0yWTxHyxqEPMgJzZ+1bPSagIOHiN+Yvmd6x7p3vFlkOqDI2D0rXeQ7NLD
+        +5EPCThE28icqe+5x+vyUmw6Xu/Q46s3GOi6L4ec8AJ6T1fwxwRTLqB3anaW3MGc/sKMDxX5UFEP
+        lemf8s5hX/NaGuinXxxidpZCTpexXHqEId21kwuFZEK5zi/Ymt33JH5e2qysP132GmJkO2Q9m15G
+        PLJzK8wmz3r8mQgTew10CIkpwbw9tg28/wUAAP//AwCHbe7y/AIAAA==
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 7cc815e478acb772-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 24 May 2023 19:53:34 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      VIA:
+      - Ingress
+      access-control-allow-origin:
+      - '*'
+      cache-control:
+      - no-cache, private
+      x-locale:
+      - en
+      x-ratelimit-limit:
+      - '120'
+      x-ratelimit-remaining:
+      - '118'
+    status:
+      code: 200
+      message: OK
+version: 1

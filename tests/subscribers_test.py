@@ -234,7 +234,7 @@ class TestSubscribers:
             ip_address="1.1.1.1",
         )
         group = self.client.groups.create(name)
-        assign = self.client.subscribers.assign_subscriber_to_group(
+        self.client.subscribers.assign_subscriber_to_group(
             int(subscriber["data"]["id"]), int(group["data"]["id"])
         )
         response = self.client.subscribers.unassign_subscriber_from_group(
@@ -243,7 +243,7 @@ class TestSubscribers:
         self.client.subscribers.delete(int(subscriber["data"]["id"]))
         self.client.groups.delete(int(group["data"]["id"]))
 
-        assert response == True
+        assert response is True
 
     def test_given_invalid_subscriber_id_when_calling_delete_then_returning_subscirber_will_fail(
         self,
@@ -266,8 +266,24 @@ class TestSubscribers:
     @vcr.use_cassette(
         "tests/vcr_cassettes/subscribers-count.yml", filter_headers=["Authorization"]
     )
-    def test_list_of_all_subscribers_should_be_returned(self, subscriber_keys):
+    def test_count_of_all_subscribers_should_be_returned(self, subscriber_keys):
         response = self.client.subscribers.count()
 
         assert isinstance(response, dict)
         assert "total" in response
+
+    @vcr.use_cassette(
+        "tests/vcr_cassettes/subscribers-forget.yml", filter_headers=["Authorization"]
+    )
+    def test_given_correct_params_when_calling_forget_then_subscirber_is_marked_as_forgotten(
+        self,
+    ):
+        user = self.client.subscribers.create(
+            "test5@email.com",
+            fields={"name": "John", "last_name": "Doe"},
+            ip_address="1.1.1.1",
+        )
+
+        response = self.client.subscribers.forget(int(user["data"]["id"]))
+
+        assert response == 200
