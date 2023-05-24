@@ -21,7 +21,7 @@ class Groups(object):
         :rtype: dict
         """
 
-        available_params = ["list", "limit", "page", "sort"]
+        available_params = ["list", "limit", "page", "sort", "filter"]
 
         params = locals()
         query_params = {}
