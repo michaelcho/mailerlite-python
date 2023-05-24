@@ -278,3 +278,27 @@ class Subscribers(object):
         """
 
         return self.list(limit=0)
+
+    def forget(self, subscriber_id):
+        """
+        Forget a subscriber
+
+        It will removes the subscriber from your account and all information will be completely deleted in 30 days. This feature is GDPR compliant.If you want to forget a subscriber, send this POST request.
+        Ref: https://developers.mailerlite.com/docs/subscribers.html#forget-a-subscriber
+
+        :param subscriber_id: int Susbscriber ID
+        :raises: :class: `TypeError` : `subscriber_id` type is not valid
+        :return: `true` if action was successful, `false` if subscriber was not found
+        :rtype: bool
+        """
+
+        if not isinstance(subscriber_id, int):
+            raise TypeError(
+                f"`subscriber_id` type is not valid. Expected `int`, got {type(subscriber_id)}."
+            )
+
+        response = self.api_client.request(
+            "POST", f"{self.base_api_url}/{subscriber_id}/forget"
+        )
+
+        return response.status_code
