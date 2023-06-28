@@ -23,7 +23,7 @@ class Subscribers(object):
         :rtype: dict
         """
 
-        available_params = ["list", "limit", "page"]
+        available_params = ["filter", "limit", "page"]
 
         params = locals()
         query_params = {}
