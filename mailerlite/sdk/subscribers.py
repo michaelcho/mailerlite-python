@@ -151,9 +151,12 @@ class Subscribers(object):
         :rtype: dict
         """
 
-        valid = re.search(r"[\w.]+\@[\w.]+", subscriber_id)
+        valid = None
+        is_int = isinstance(subscriber_id, int)
+        if not is_int:
+            valid = re.search(r"[\w.]+\@[\w.]+", subscriber_id)
 
-        if not valid and not isinstance(subscriber_id, int):
+        if not valid and not is_int:
             raise TypeError("Provided email address or subscriber id are not valid.")
 
         return self.api_client.request(
